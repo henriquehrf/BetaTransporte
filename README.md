@@ -7,6 +7,9 @@ Com base no estudo inicial do problema, foi realizado uma modelagem do processo 
   <h4 align="center">Figura 1: Diagrama BPD Beta Transportes</h4>
 <img src="https://i.imgur.com/NS7tkPf.png" height="940" width="940">
 
+<h3 align="left">Tecnologias</h3>
+
+
 Para o desenvolvimento do software Beta Transporte, atualmente a seguinte stack de tecnologias:
 <ul>
   <li>JavaFX</li>
@@ -17,11 +20,11 @@ Para o desenvolvimento do software Beta Transporte, atualmente a seguinte stack 
   <li>Maven</li>
 </ul>
 
-<h4 align="left">Idioma</h4>
+<h3 align="left">Idioma</h3>
 
 O projeto é todo escrito em inglês, com excessão de algumas funções e atributos específicos do negócio. Além disto, há um arquivo de internacionalização i18n_pt_BR localizado em "docs/i18N_pt_BR" que descreve a lingua referente ao sistema.
 
-<h4 align="left">Diretórios</h4>
+<h3 align="left">Diretórios</h3>
 
 Todo código fonte localiza-se na pasta "src". 
 
@@ -43,7 +46,7 @@ No diretório "resource", localiza-se os pacotes:
    <li>style - Arquivo de folha de estilo do sistema</li>
 </ul>
 
-<h4 align="left">Dependências</h4 align="left">
+<h3 align="left">Dependências</h3>
 
 Toda configuração de dependência do sistema é configurado no arquivo "pom.xml".
 </p>
