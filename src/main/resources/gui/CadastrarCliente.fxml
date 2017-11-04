@@ -9,22 +9,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="stpCadastrarCliente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.CadastrarClienteController">
    <children>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0">
+      <BorderPane fx:id="bdpCadastroCliente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0">
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="%btnSalvar">
+                  <Button mnemonicParsing="false" onAction="#onSave" text="%btnSalvar" textAlignment="RIGHT">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="btnOperation" />
+                        <String fx:value="btnSalvar" />
+                     </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" text="%Cancelar">
+                  <Button mnemonicParsing="false" onAction="#onCancel" text="%btnCancelar">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="btnOperation" />
+                        <String fx:value="btnCancelar" />
+                     </styleClass>
                   </Button>
                </children>
             </HBox>
@@ -41,7 +48,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtCpfCnpj" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -55,7 +62,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="400.0">
+                              <TextField fx:id="txtNomeRazaoSocial" prefHeight="25.0" prefWidth="400.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -69,7 +76,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="%rdbFeminino">
+                              <RadioButton fx:id="rdbFemino" mnemonicParsing="false" text="%rdbFeminino">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="Sexo" />
                                  </toggleGroup>
@@ -77,12 +84,12 @@
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="%rdbMasculino" toggleGroup="$Sexo">
+                              <RadioButton fx:id="rdbMasculino" mnemonicParsing="false" text="%rdbMasculino" toggleGroup="$Sexo">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="%rdbNaoAplica" toggleGroup="$Sexo">
+                              <RadioButton fx:id="rdbNaoAplica" mnemonicParsing="false" text="%rdbNaoAplica" toggleGroup="$Sexo">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
@@ -96,7 +103,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <DatePicker prefHeight="25.0" prefWidth="150.0">
+                              <DatePicker fx:id="dtpDataNascimento" prefHeight="25.0" prefWidth="150.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -110,7 +117,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtTelefoneFixo" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -124,7 +131,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtTelefoneCelular" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -138,7 +145,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="400.0">
+                              <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="400.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -164,12 +171,15 @@
             </HBox>
          </center>
          <top>
-            <HBox alignment="CENTER" minHeight="100.0" minWidth="800.0" BorderPane.alignment="CENTER">
+            <HBox alignment="TOP_CENTER" minHeight="100.0" minWidth="800.0" BorderPane.alignment="CENTER">
                <children>
                   <Label text="%lblTitle">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>

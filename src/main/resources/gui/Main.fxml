@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.MainController">
+<BorderPane fx:id="bdpPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.MainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -32,6 +32,9 @@
             </items>
           </Menu>
         </menus>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
       </MenuBar>
    </top>
    <center>

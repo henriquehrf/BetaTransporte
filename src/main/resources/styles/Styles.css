@@ -1,3 +1,89 @@
 .button {
     -fx-font-weight: bold;
 }
+.btnOperation{
+    -fx-pref-width:120px;
+    -fx-pref-height:35px;
+    -fx-border-radius: 5px;
+    -fx-text-alignment: right;
+    -fx-font-size: 9pt;
+    -fx-font-family: "Arial";
+    -fx-cursor:hand;
+    -fx-border-color:none;
+    -fx-border-width: 1px;
+    -fx-background-color:none;
+}
+.btnOperation:hover{
+    -fx-background-color: linear-gradient( powderblue,   whitesmoke);
+}
+.btnOperation:focused{
+    -fx-background-color: linear-gradient( powderblue,   whitesmoke);
+}
+.btnSalvar{
+    -fx-background-image: url('../img/ICON_Save.png');
+    -fx-background-size: 25 25 ;
+    -fx-padding: 2 2 2 4;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:5 5;
+    -fx-border-color: gray;
+}
+.btnCancelar{
+    -fx-background-image: url('../img/ICON_Cancel.png');
+    -fx-background-size: 25 25 ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:5 5;
+    -fx-padding: 2 2 2 25;
+    -fx-border-color: gray;
+}
+.text-field{
+    -fx-border-color:darkgrey;
+    -fx-background-color:#f0f8ff;
+    -fx-border-radius: 5px;
+    -fx-max-height:10;
+    -fx-font-size: 9pt;
+    -fx-font-family: "Arial";
+
+}
+.text-field:focused{
+    -fx-background-color: linear-gradient( #f0f8ff,  #faebd7);
+}
+.menu-bar{
+    -fx-background: none;
+    -fx-border-color: none;
+    -fx-background-color: #1e90ff;
+    -fx-border-color: #1e90ff;
+    -fx-pref-height:35px;
+    -fx-padding: 2 2 2 2;
+    -fx-cursor: hand;
+    -fx-border-radius: 5px;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Arial";
+    -fx-animated: true;
+}
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background: -fx-accent;
+    -fx-background-color: #1e90ff;
+    -fx-opacity: 0.5;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+.menu-item{
+    -fx-background: none;
+    -fx-border-color: none;
+    -fx-padding: 0em 0em 0em 0em;
+    -fx-background-color: #1e90ff;
+    -fx-border-color: #1e90ff;
+    -fx-cursor: hand;
+    -fx-border-radius: 5px;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Arial";
+    -fx-animated: true;
+    -fx-border-radius: 5px;   
+}
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color:#1e90ff;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+    -fx-padding: 0.533333em 0.53333em 0.966667em 0.483333em; /* 4 1 8 1 */
+    
+}
