@@ -7,6 +7,7 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import util.GetMessage;
@@ -30,6 +31,7 @@ public class MainApp extends Application {
         stage.setMaximized(true);
        
         stage.setTitle(msg.getMessage("TituloSistema"));
+       // stage.getIcons().add(new Image("../img/IMG_01_LogoBetaTransportePNG.png"));
         stage.setScene(scene);
         stage.show();
     }

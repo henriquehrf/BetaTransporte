@@ -6,13 +6,18 @@
 package com.dev.betaTransporteVO;
 
 import com.dev.betaTransporteDAO.EntidadeBase;
+import com.dev.betaTransporteENUM.Sexo;
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -34,9 +39,108 @@ public class Cliente implements EntidadeBase , Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idCliente;
+
+    public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getCpfCnpj() {
+        return cpfCnpj;
+    }
+
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getTelFixo() {
+        return telFixo;
+    }
+
+    public void setTelFixo(String telFixo) {
+        this.telFixo = telFixo;
+    }
+
+    public String getTelCelular() {
+        return telCelular;
+    }
+
+    public void setTelCelular(String telCelular) {
+        this.telCelular = telCelular;
+    }
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
     
     @Column(length = 100,nullable = false)
     private String nome;
+    
+    @Column(length = 18,nullable = false)
+    private String cpfCnpj;
+    
+    @Column(length = 20,nullable = true)
+    private String rg;
+    
+    @Column(nullable = true)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataNascimento;
+    
+    @Column(length = 14,nullable = true)
+    private String telFixo;
+    
+    @Column(length = 15,nullable = false)
+    private String telCelular;
+    
+    @Column(nullable = true)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dataCadastro;
+    
+    @Column(length = 50,nullable = true)
+    private String email;
+    
+    @Column(length = 1,nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
     
     @Override
     public Long getId(){

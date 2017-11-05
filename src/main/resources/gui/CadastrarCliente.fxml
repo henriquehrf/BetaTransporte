@@ -48,7 +48,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtCpfCnpj" prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtCpfCnpj" onKeyReleased="#onChangeCPFCNPJ" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -117,7 +117,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
-                              <TextField fx:id="txtTelefoneFixo" prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtTelefoneFixo" onKeyReleased="#onChangeTelefoneFixo" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -131,7 +131,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
-                              <TextField fx:id="txtTelefoneCelular" prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtTelefoneCelular" onKeyReleased="#onChangeTelefoneCelular" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
