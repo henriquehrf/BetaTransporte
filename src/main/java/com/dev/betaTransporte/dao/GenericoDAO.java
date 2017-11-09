@@ -5,12 +5,9 @@
  */
 package com.dev.betaTransporte.dao;
 
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import util.BoxInfo;
 import util.Loader;
 import util.Message;
 

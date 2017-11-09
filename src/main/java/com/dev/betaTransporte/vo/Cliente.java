@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
  * @author Henrique
  */
 @Entity
-public class ClienteVO implements EntidadeBase , Serializable{
+public class Cliente implements EntidadeBase , Serializable{
 
   
     public String getNome() {

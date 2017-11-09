@@ -9,7 +9,7 @@ import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.negocio.ClienteNegocio;
 import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporteENUM.Sexo;
-import com.dev.betaTransporte.vo.ClienteVO;
+import com.dev.betaTransporte.vo.Cliente;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -75,8 +75,8 @@ public class CadastrarClienteController implements Initializable {
     Message msg = new Message();
     Mask mask = new Mask();
 
-    private ClienteVO getCliente() {
-        ClienteVO cliente = new ClienteVO();
+    private Cliente getCliente() {
+        Cliente cliente = new Cliente();
         cliente.setCpfCnpj(this.txtCpfCnpj.getText());
         cliente.setEmail(this.txtEmail.getText());
         cliente.setNome(this.txtNomeRazaoSocial.getText());
@@ -151,7 +151,7 @@ public class CadastrarClienteController implements Initializable {
     @FXML
     void onSave(ActionEvent event) {
 
-        ClienteVO cliente = getCliente();
+        Cliente cliente = getCliente();
         ClienteException ex = ClienteNegocio.save(cliente);
 
         if (ex == null) {

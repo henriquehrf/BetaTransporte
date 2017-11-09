@@ -5,8 +5,9 @@
  */
 package com.dev.betaTransporte.negocio;
 
+import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.negocio.exception.ClienteException;
-import com.dev.betaTransporte.vo.ClienteVO;
+import com.dev.betaTransporte.vo.Cliente;
 
 /**
  *
@@ -14,7 +15,7 @@ import com.dev.betaTransporte.vo.ClienteVO;
  */
 public  class ClienteNegocio {
     
-    private static ClienteException validar(ClienteVO cliente){
+    private static ClienteException validar(Cliente cliente){
         
         ClienteException ex = new ClienteException();
         
@@ -57,11 +58,18 @@ public  class ClienteNegocio {
         return ex;
     }
     
-    public static ClienteException save(ClienteVO cliente){
-        ClienteException ex = validar(cliente);
-        if(ex.getMsg().trim().length()>0){
-            return ex; 
+    public static ClienteException save(Cliente cliente){
+        ClienteException cli_ex = validar(cliente);
+        if(cli_ex.getMsg().trim().length()>0){
+            return cli_ex; 
         }else{
+            try{
+            GenericoDAO dao = new GenericoDAO();
+            dao.save(Cliente.class, cliente);
+            }catch(Exception ex){
+                cli_ex.setMsg(ex.getMessage());
+                return cli_ex;
+            }
             System.out.println("Passou!");
             return null;
         }
