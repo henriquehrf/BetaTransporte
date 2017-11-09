@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dev.betaTransporteVO;
+package com.dev.betaTransporte.vo;
 
-import com.dev.betaTransporteDAO.EntidadeBase;
+import com.dev.betaTransporte.dao.EntidadeBase;
 import com.dev.betaTransporteENUM.Sexo;
 import java.io.Serializable;
 import java.util.Date;
@@ -24,7 +24,7 @@ import javax.persistence.Temporal;
  * @author Henrique
  */
 @Entity
-public class Cliente implements EntidadeBase , Serializable{
+public class ClienteVO implements EntidadeBase , Serializable{
 
   
     public String getNome() {

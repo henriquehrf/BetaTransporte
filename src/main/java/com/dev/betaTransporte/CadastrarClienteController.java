@@ -5,35 +5,25 @@
  */
 package com.dev.betaTransporte;
 
-import com.dev.betaTransporteDAO.GenericoDAO;
+import com.dev.betaTransporte.dao.GenericoDAO;
+import com.dev.betaTransporte.negocio.ClienteNegocio;
+import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporteENUM.Sexo;
-import com.dev.betaTransporteVO.Cliente;
-import java.awt.event.KeyEvent;
+import com.dev.betaTransporte.vo.ClienteVO;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.NodeOrientation;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.TextAlignment;
-import org.eclipse.persistence.logging.SessionLog;
 import util.BoxInfo;
-import util.GetMessage;
+import util.Message;
 import util.Mask;
 import util.Navegation;
 import util.Util;
@@ -45,7 +35,7 @@ import util.Util;
  */
 public class CadastrarClienteController implements Initializable {
 
-   @FXML
+    @FXML
     private RadioButton rdbNaoAplica;
 
     @FXML
@@ -71,93 +61,150 @@ public class CadastrarClienteController implements Initializable {
 
 //    @FXML
 //    private ToggleGroup Sexo;
-
     @FXML
     private TextField txtCpfCnpj;
-    
+
     @FXML
     private BorderPane bdpCadastroCliente;
-    
-    
+
     @FXML
     private StackPane stpCadastrarCliente;
-    
+
     Util util = new Util();
     BoxInfo box = new BoxInfo();
-    GetMessage msg= new GetMessage();
+    Message msg = new Message();
     Mask mask = new Mask();
-    
 
-    private Cliente getCliente(){
-        Cliente cliente = new Cliente();
+    private ClienteVO getCliente() {
+        ClienteVO cliente = new ClienteVO();
         cliente.setCpfCnpj(this.txtCpfCnpj.getText());
         cliente.setEmail(this.txtEmail.getText());
         cliente.setNome(this.txtNomeRazaoSocial.getText());
         cliente.setTelCelular(this.txtTelefoneCelular.getText());
         cliente.setTelFixo(this.txtTelefoneFixo.getText());
-        
-        if(this.rdbFemino.isSelected()){
+
+        if (this.rdbFemino.isSelected()) {
             cliente.setSexo(Sexo.F);
         }
-        if(this.rdbMasculino.isSelected()){
+        if (this.rdbMasculino.isSelected()) {
             cliente.setSexo(Sexo.M);
         }
-        if(this.rdbNaoAplica.isSelected()){
+        if (this.rdbNaoAplica.isSelected()) {
             cliente.setSexo(Sexo.N);
         }
         cliente.setDataCadastro(new Date());
-        
-        cliente.setDataNascimento(util.LocalDate_To_Date(this.dtpDataNascimento.getValue()));
-        
-        
+
+        if (this.dtpDataNascimento.getValue() != null) {
+            cliente.setDataNascimento(util.LocalDate_To_Date(this.dtpDataNascimento.getValue()));
+        }
+
         return cliente;
     }
-    
+
+    void complete_erros(ClienteException ex) {
+        final String COR = "-fx-border-color:red";
+        final String NORMAL = "-fx-border-color:darkgrey";
+        final String NONE = "-fx-border-color:none";
+        if (ex.getCpfCnpj()) {
+            this.txtCpfCnpj.setStyle(COR);
+        } else {
+            this.txtCpfCnpj.setStyle(NORMAL);
+        }
+        if (ex.getDtNascimento()) {
+            this.dtpDataNascimento.setStyle(COR);
+        } else {
+            this.dtpDataNascimento.setStyle(NORMAL);
+        }
+        if (ex.getEmail()) {
+            this.txtEmail.setStyle(COR);
+        } else {
+            this.txtEmail.setStyle(NORMAL);
+        }
+        if (ex.getNomeRazaoSocial()) {
+            this.txtNomeRazaoSocial.setStyle(COR);
+        } else {
+            this.txtNomeRazaoSocial.setStyle(NORMAL);
+        }
+        if (ex.getSexo()) {
+            this.rdbFemino.setStyle(COR);
+            this.rdbMasculino.setStyle(COR);
+            this.rdbNaoAplica.setStyle(COR);
+        } else {
+            this.rdbFemino.setStyle(NONE);
+            this.rdbMasculino.setStyle(NONE);
+            this.rdbNaoAplica.setStyle(NONE);
+        }
+        if (ex.getTelefoneCelular()) {
+            this.txtTelefoneCelular.setStyle(COR);
+        } else {
+            this.txtTelefoneCelular.setStyle(NORMAL);
+        }
+        if (ex.getTelefoneFixo()) {
+            this.txtTelefoneFixo.setStyle(COR);
+        } else {
+            this.txtTelefoneFixo.setStyle(NORMAL);
+        }
+        box.BoxInfo(Alert.AlertType.WARNING, "Erro de Preenchimento de Cadastro", ex.getMsg());
+        System.out.println(ex.getMsg());
+    }
+
     @FXML
     void onSave(ActionEvent event) {
-       
-        Cliente cliente=getCliente();
-        GenericoDAO genericoDao = new GenericoDAO();
-        
-        genericoDao.save(Cliente.class, cliente);
-        
-        this.box.BoxInfo(Alert.AlertType.INFORMATION, msg.getMessage("suss.title.Insert"), msg.getMessage("suss.msg.Insert"));
-        
-        onCancel(event);
+
+        ClienteVO cliente = getCliente();
+        ClienteException ex = ClienteNegocio.save(cliente);
+
+        if (ex == null) {
+            this.box.BoxInfo(Alert.AlertType.INFORMATION, msg.message("suss.title.Insert"), msg.message("suss.msg.Insert"));
+            onCancel(event);
+        } else {
+            complete_erros(ex);
+        }
     }
 
     @FXML
     void onCancel(ActionEvent event) {
         Navegation node = new Navegation();
         node.getFather(this.stpCadastrarCliente);
-    }  
-  
+    }
+
     @FXML
-     void onChangeCPFCNPJ() {
+    void onChangeCPFCNPJ() {
         String txt = mask.CpfCnpj(this.txtCpfCnpj.getText());
         this.txtCpfCnpj.setText(txt);
         this.txtCpfCnpj.positionCaret(txt.length());
+        
+        if(txt.length()>14){
+            this.rdbFemino.setDisable(true);
+            this.rdbMasculino.setDisable(true);
+            this.rdbNaoAplica.setSelected(true);
+            this.dtpDataNascimento.setDisable(true);
+        }else{
+             this.rdbFemino.setDisable(false);
+            this.rdbMasculino.setDisable(false);
+            this.rdbNaoAplica.setSelected(false);
+            this.dtpDataNascimento.setDisable(false);
+        }
     }
-     
+
     @FXML
-    void onChangeTelefoneFixo(){
+    void onChangeTelefoneFixo() {
         String txt = mask.TelefoneFixo(this.txtTelefoneFixo.getText());
         this.txtTelefoneFixo.setText(txt);
         this.txtTelefoneFixo.positionCaret(txt.length());
     }
-    
+
     @FXML
-    void onChangeTelefoneCelular(){
+    void onChangeTelefoneCelular() {
         String txt = mask.TelefoneCelular(this.txtTelefoneCelular.getText());
         this.txtTelefoneCelular.setText(txt);
         this.txtTelefoneCelular.positionCaret(txt.length());
     }
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
 //         this.txtCpfCnpj.focusedProperty().addListener(new ChangeListener<Boolean>() {
 //
 //            @Override
@@ -170,6 +217,6 @@ public class CadastrarClienteController implements Initializable {
 //
 //            }
 //        });
-    }    
-    
+    }
+
 }

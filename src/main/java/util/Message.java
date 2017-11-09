@@ -12,9 +12,9 @@ import java.util.ResourceBundle;
  *
  * @author Henrique
  */
-public class GetMessage {
+public class Message {
     
-    public static String getMessage(String message){
+    public static String message(String message){
         ResourceBundle rb;
         try{
             Locale ptBR = new Locale("pt","BR");

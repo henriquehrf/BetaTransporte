@@ -5,7 +5,7 @@
  */
 package com.dev.betaTransporte;
 
-import com.dev.betaTransporteDAO.GenericoDAO;
+import com.dev.betaTransporte.dao.GenericoDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
