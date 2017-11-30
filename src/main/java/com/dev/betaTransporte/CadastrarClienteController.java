@@ -5,7 +5,6 @@
  */
 package com.dev.betaTransporte;
 
-import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.negocio.ClienteNegocio;
 import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporteENUM.Sexo;
@@ -23,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import util.BoxInfo;
+import util.Loader;
 import util.Message;
 import util.Mask;
 import util.Navegation;
@@ -34,6 +34,8 @@ import util.Util;
  * @author Henrique
  */
 public class CadastrarClienteController implements Initializable {
+
+    Loader loading = new Loader();
 
     @FXML
     private RadioButton rdbNaoAplica;
@@ -150,7 +152,6 @@ public class CadastrarClienteController implements Initializable {
 
     @FXML
     void onSave(ActionEvent event) {
-
         Cliente cliente = getCliente();
         ClienteException ex = ClienteNegocio.save(cliente);
 
@@ -173,14 +174,14 @@ public class CadastrarClienteController implements Initializable {
         String txt = mask.CpfCnpj(this.txtCpfCnpj.getText());
         this.txtCpfCnpj.setText(txt);
         this.txtCpfCnpj.positionCaret(txt.length());
-        
-        if(txt.length()>14){
+
+        if (txt.length() > 14) {
             this.rdbFemino.setDisable(true);
             this.rdbMasculino.setDisable(true);
             this.rdbNaoAplica.setSelected(true);
             this.dtpDataNascimento.setDisable(true);
-        }else{
-             this.rdbFemino.setDisable(false);
+        } else {
+            this.rdbFemino.setDisable(false);
             this.rdbMasculino.setDisable(false);
             this.rdbNaoAplica.setSelected(false);
             this.dtpDataNascimento.setDisable(false);

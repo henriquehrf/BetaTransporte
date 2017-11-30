@@ -30,12 +30,12 @@ public class GenericoDAO<T extends EntidadeBase> {
     private void getEM() throws Exception {
 
         EntityManagerFactory factory = null;
-        Loader loader = new Loader();
-        loader.start();
+        //Loader loader = new Loader();
+       // loader.start();
         try {
             factory = Persistence.createEntityManagerFactory("BetaTransportePU");
             connection = factory.createEntityManager();
-            loader.stop();
+            //loader.stop();
         } catch (Exception ex) {
             System.err.println(ex);
             throw new Exception(msg.message("err.msg.BD"));

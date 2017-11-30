@@ -36,7 +36,7 @@ public class MainApp extends Application {
             stage.setMaximized(true);
 
             stage.setTitle(msg.message("TituloSistema"));
-            // stage.getIcons().add(new Image("../img/IMG_01_LogoBetaTransportePNG.png"));
+            stage.getIcons().add(new Image("./img/IMG_01_LogoBetaTransportePNG.PNG"));
             stage.setScene(scene);
 
             //escuta ao finalizar a aplicação fecha a conexão com o banco de dados

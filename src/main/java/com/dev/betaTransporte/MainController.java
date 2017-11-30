@@ -5,7 +5,6 @@
  */
 package com.dev.betaTransporte;
 
-import com.dev.betaTransporte.dao.GenericoDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,11 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-import javax.persistence.EntityManager;
+import util.Loader;
 import util.Navegation;
 
 /**
@@ -27,32 +24,31 @@ import util.Navegation;
  */
 public class MainController implements Initializable {
 
-    
     @FXML
     private MenuItem mnuItemCliente;
-    
+
     @FXML
     private BorderPane bdpPrincipal;
 
     @FXML
     void ItemClienteOnAction(ActionEvent event) {
-        
+
         System.out.println("Hello World");
-        
-        try{
-            
-             Parent root = FXMLLoader.load(getClass().getResource("/gui/CadastrarCliente.fxml"),ResourceBundle.getBundle("docs/i18N_pt_BR")); 
-             bdpPrincipal.setCenter(root);
-             
-        }catch(Exception ex){
+
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/CadastrarCliente.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            bdpPrincipal.setCenter(root);            
+
+        } catch (Exception ex) {
             System.err.println(ex);
         }
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO 
         Navegation.setFamily(bdpPrincipal);
-    }    
-    
+    }
+
 }
