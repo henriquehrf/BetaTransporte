@@ -13,67 +13,65 @@ import com.dev.betaTransporte.vo.Cliente;
  *
  * @author Henrique
  */
-public  class ClienteNegocio {
-    
-    private static ClienteException validar(Cliente cliente){
-        
+public class ClienteNegocio {
+
+    private static ClienteException validar(Cliente cliente) {
+
         ClienteException ex = new ClienteException();
-        
-        if(cliente.getCpfCnpj().length()<11){
+
+        if (cliente.getCpfCnpj().length() < 11) {
             ex.setCpfCnpj(Boolean.TRUE);
             ex.setMsg("CPF invalido");
         }
-        if(cliente.getNome().length()== 0){
+        if (cliente.getNome().length() == 0) {
             ex.setNomeRazaoSocial(Boolean.TRUE);
             ex.setMsg("Falta preencher o nome");
         }
-        if(cliente.getNome().length()> 100){
+        if (cliente.getNome().length() > 100) {
             ex.setNomeRazaoSocial(Boolean.TRUE);
             ex.setMsg("Nome grande demais");
         }
-        if(cliente.getSexo()==null){
+        if (cliente.getSexo() == null) {
             ex.setSexo(Boolean.TRUE);
             ex.setMsg("Falta selecionar sexo");
         }
-        if(cliente.getCpfCnpj().length()<=14 && cliente.getDataNascimento()==null){
+        if (cliente.getCpfCnpj().length() <= 14 && cliente.getDataNascimento() == null) {
             ex.setDtNascimento(Boolean.TRUE);
             ex.setMsg("Falta selecionar data nascimento");
         }
-        if(cliente.getTelFixo().length() >0 && cliente.getTelFixo().length()<14){
+        if (cliente.getTelFixo().length() > 0 && cliente.getTelFixo().length() < 14) {
             ex.setTelefoneFixo(Boolean.TRUE);
             ex.setMsg("Telefone invalido");
         }
-        if(cliente.getTelCelular().length()>0 && cliente.getTelCelular().length()<15){
+        if (cliente.getTelCelular().length() > 0 && cliente.getTelCelular().length() < 15) {
             ex.setTelefoneCelular(Boolean.TRUE);
             ex.setMsg("Celular invalido");
         }
-        if(cliente.getTelCelular().length()==0){
-             ex.setTelefoneCelular(Boolean.TRUE);
+        if (cliente.getTelCelular().length() == 0) {
+            ex.setTelefoneCelular(Boolean.TRUE);
             ex.setMsg("falta preencher o celular");
         }
-        if(cliente.getEmail().length()>0){
-            
+        if (cliente.getEmail().length() > 0) {
+
         }
-        
+
         return ex;
     }
-    
-    public static ClienteException save(Cliente cliente){
+
+    public static ClienteException save(Cliente cliente) {
         ClienteException cli_ex = validar(cliente);
-        if(cli_ex.getMsg().trim().length()>0){
-            return cli_ex; 
-        }else{
-            try{
-            GenericoDAO dao = new GenericoDAO();
-            dao.save(Cliente.class, cliente);
-            }catch(Exception ex){
+        if (cli_ex.getMsg().trim().length() > 0) {
+            return cli_ex;
+        } else {
+            try {
+                GenericoDAO dao = new GenericoDAO();
+                dao.save(Cliente.class, cliente);
+            } catch (Exception ex) {
                 cli_ex.setMsg(ex.getMessage());
                 return cli_ex;
             }
-            System.out.println("Passou!");
             return null;
         }
-        
-        
+
     }
 }

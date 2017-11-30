@@ -19,7 +19,7 @@ import util.Message;
 public class GenericoDAO<T extends EntidadeBase> {
 
     Message msg = new Message();
-    public static EntityManager connection = null;
+    public static EntityManager connection;
 
     public GenericoDAO() throws Exception {
         if (connection == null) {
@@ -60,7 +60,7 @@ public class GenericoDAO<T extends EntidadeBase> {
             System.out.println(ex.getMessage());
             throw new Exception(msg.message("err.msg.save"));
         } finally {
-            this.connection.close();
+          //  this.connection.close();
         }
         return t;
     }
