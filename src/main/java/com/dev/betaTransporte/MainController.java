@@ -33,12 +33,10 @@ public class MainController implements Initializable {
     @FXML
     void ItemClienteOnAction(ActionEvent event) {
 
-        System.out.println("Hello World");
-
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/gui/CadastrarCliente.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
-            bdpPrincipal.setCenter(root);            
+            bdpPrincipal.setCenter(root);
 
         } catch (Exception ex) {
             System.err.println(ex);

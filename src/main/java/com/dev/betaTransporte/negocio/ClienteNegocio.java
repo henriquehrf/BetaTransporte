@@ -35,7 +35,10 @@ public class ClienteNegocio {
         }
 
         if (cliente.getCpfCnpj().length() == 14) {
-           // System.out.println(util.ValidarIdade(cliente.getDataCadastro()));
+            if (!util.ValidarIdade(cliente.getDataNascimento())) {
+                ex.setDtNascimento(Boolean.TRUE);
+                ex.setMsg(Message.message("erro.msg.dtNasMenor"));
+            }
         }
 
         if (cliente.getNome().length() == 0) {

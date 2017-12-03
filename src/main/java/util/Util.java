@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -25,12 +23,10 @@ public class Util {
         Instant instant = localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
         return Date.from(instant);
     }
-    
-    public String Date_To_String(Date date){
-        String dt="";
-        
-        
-        return dt;
+
+    public String Date_To_String(Date date) {
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        return f.format(date);
     }
 
     public Boolean ValidarCPFCNPJ(String value) {
@@ -157,7 +153,7 @@ public class Util {
         Calendar dataNasc = Calendar.getInstance();
         Calendar dataAtual = Calendar.getInstance();
         try {
-            dataNasc.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(dt_nascimento.toString()));
+            dataNasc.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(Date_To_String(dt_nascimento)));
             dataNasc.add(Calendar.YEAR, 18);
             if (dataNasc.before(dataAtual)) {
                 return true;
@@ -166,8 +162,7 @@ public class Util {
             }
         } catch (ParseException ex) {
             System.out.println(ex.getMessage());
+            return false;
         }
-
-        return false;
     }
 }

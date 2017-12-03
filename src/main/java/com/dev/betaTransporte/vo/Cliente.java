@@ -106,7 +106,7 @@ public class Cliente implements EntidadeBase , Serializable{
     @Column(length = 100,nullable = false)
     private String nome;
     
-    @Column(length = 18,nullable = false)
+    @Column(length = 20,nullable = false)
     private String cpfCnpj;
     
     
@@ -114,17 +114,17 @@ public class Cliente implements EntidadeBase , Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
     
-    @Column(length = 14,nullable = true)
+    @Column(length = 20,nullable = true)
     private String telFixo;
     
-    @Column(length = 15,nullable = false)
+    @Column(length = 20,nullable = false)
     private String telCelular;
     
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCadastro;
     
-    @Column(length = 50,nullable = true)
+    @Column(length = 100,nullable = true)
     private String email;
     
     @Column(length = 1,nullable = false)

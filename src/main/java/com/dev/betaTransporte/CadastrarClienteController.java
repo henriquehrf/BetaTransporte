@@ -23,6 +23,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import util.BoxInfo;
@@ -154,9 +156,7 @@ public class CadastrarClienteController implements Initializable {
         box.BoxInfo(Alert.AlertType.WARNING, Message.message("err.msg.cadastro"), ex.getMsg());
     }
 
-    @FXML
-    void onSave(ActionEvent event) {
-
+    private void save() {
         Cliente cliente = getCliente();
         loading.start(stpCadastrarCliente);
 
@@ -182,7 +182,7 @@ public class CadastrarClienteController implements Initializable {
                             if (ex == null) {
                                 threadpool.shutdown();
                                 box.BoxInfo(Alert.AlertType.INFORMATION, msg.message("suss.title.Insert"), msg.message("suss.msg.Insert"));
-                                onCancel(event);
+                                cancel();
                             } else {
                                 complete_erros(ex);
                             }
@@ -198,13 +198,21 @@ public class CadastrarClienteController implements Initializable {
                 }
             }
         });
+    }
 
+    @FXML
+    void onSave(ActionEvent event) {
+        save();
+    }
+
+    private void cancel() {
+        Navegation node = new Navegation();
+        node.getFather(this.stpCadastrarCliente);
     }
 
     @FXML
     void onCancel(ActionEvent event) {
-        Navegation node = new Navegation();
-        node.getFather(this.stpCadastrarCliente);
+        cancel();
     }
 
     @FXML
@@ -217,10 +225,12 @@ public class CadastrarClienteController implements Initializable {
             this.rdbFemino.setDisable(true);
             this.rdbMasculino.setDisable(true);
             this.rdbNaoAplica.setSelected(true);
+            this.rdbNaoAplica.setDisable(false);
             this.dtpDataNascimento.setDisable(true);
             this.dtpDataNascimento.setValue(null);
         } else {
             this.rdbFemino.setDisable(false);
+            this.rdbNaoAplica.setDisable(true);
             this.rdbMasculino.setDisable(false);
             this.rdbNaoAplica.setSelected(false);
             this.dtpDataNascimento.setDisable(false);
@@ -239,6 +249,42 @@ public class CadastrarClienteController implements Initializable {
         String txt = mask.TelefoneCelular(this.txtTelefoneCelular.getText());
         this.txtTelefoneCelular.setText(txt);
         this.txtTelefoneCelular.positionCaret(txt.length());
+    }
+
+    @FXML
+    void onKeyPressedFeminino(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            this.rdbFemino.setSelected(true);
+        }
+    }
+
+    @FXML
+    void onKeyPressedMasculino(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            this.rdbMasculino.setSelected(true);
+        }
+    }
+
+    @FXML
+    void onKeyPressedNAplica(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            this.rdbNaoAplica.setSelected(true);
+        }
+    }
+
+    @FXML
+    void onKeyPressedSave(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            save();
+        }
+
+    }
+
+    @FXML
+    void onKeyPressedCancel(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            cancel();
+        }
     }
 
     @Override
