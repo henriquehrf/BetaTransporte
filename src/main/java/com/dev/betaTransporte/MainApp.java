@@ -42,12 +42,11 @@ public class MainApp extends Application {
             //escuta ao finalizar a aplicação fecha a conexão com o banco de dados
             //melhora o desempenho!
             //by adam
-            scene.getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
-                public void handle(WindowEvent ev) {
-                    dao.connection.close();
-                }
-            });
-
+//            scene.getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
+//                public void handle(WindowEvent ev) {
+//                    dao.connection.close();
+//                }
+//            });
             stage.show();
         } catch (Exception ex) {
             box.BoxInfo(Alert.AlertType.ERROR, msg.message("err.title"), ex.getMessage());

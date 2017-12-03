@@ -8,8 +8,8 @@ package com.dev.betaTransporte.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import util.Loader;
 import util.Message;
+import util.TestConnectionServer;
 
 /**
  *
@@ -27,15 +27,15 @@ public class GenericoDAO<T extends EntidadeBase> {
         }
     }
 
-    private void getEM() throws Exception {
+    protected void getEM() throws Exception {
 
         EntityManagerFactory factory = null;
-        //Loader loader = new Loader();
-       // loader.start();
+
         try {
+
             factory = Persistence.createEntityManagerFactory("BetaTransportePU");
             connection = factory.createEntityManager();
-            //loader.stop();
+
         } catch (Exception ex) {
             System.err.println(ex);
             throw new Exception(msg.message("err.msg.BD"));
@@ -43,25 +43,33 @@ public class GenericoDAO<T extends EntidadeBase> {
     }
 
     public T save(Class<T> clazz, T t) throws Exception {
-        try {
-            connection.getTransaction().begin();
-            if (t.getId() == null) {
-                connection.persist(t); // executa insert
-            } else {
-                if (!connection.contains(t)) {
-                    if (connection.find(clazz, t.getId()) == null) {
-                        throw new Exception(msg.message("err.msg.update"));
+
+        getEM();
+        if (!TestConnectionServer.CONNECTION_SERVER) {
+            throw new Exception(Message.message("erro.msg.offline"));
+        } else {
+            try {
+                connection.getTransaction().begin();
+                if (t.getId() == null) {
+                    connection.persist(t); // executa insert
+                    connection.flush();
+                } else {
+                    if (!connection.contains(t)) {
+                        if (connection.find(clazz, t.getId()) == null) {
+                            throw new Exception(msg.message("err.msg.update"));
+                        }
                     }
+                    t = connection.merge(t); // executa update
                 }
-                t = connection.merge(t); // executa update
+                this.connection.getTransaction().commit();
+            } catch (Exception ex) {
+                connection.getTransaction().rollback();
+                throw new Exception(msg.message("err.msg.save"));
+            } finally {
+                this.connection.close();
             }
-            this.connection.getTransaction().commit();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            throw new Exception(msg.message("err.msg.save"));
-        } finally {
-          //  this.connection.close();
         }
+
         return t;
     }
 
@@ -74,6 +82,7 @@ public class GenericoDAO<T extends EntidadeBase> {
             connection.getTransaction().commit();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            connection.getTransaction().rollback();
             throw new Exception(msg.message("err.msg.remove"));
         } finally {
             connection.close();

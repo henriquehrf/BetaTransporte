@@ -15,6 +15,9 @@ import javafx.scene.control.ButtonType;
  */
 public class BoxInfo {
     
+    /** Método requer como entrada (AlertType, String, String)
+     O metodo gera uma caixa de dialogo para o usuário emitindo
+     uma determinada mensagem**/
     public void BoxInfo(Alert.AlertType typeAlert,String title,String content){
         try{
              Alert alert = new Alert(typeAlert);
@@ -26,7 +29,9 @@ public class BoxInfo {
             System.err.println(ex);
         }
     }
-    
+    /**Método requer como entrada (AlertType, String, String, Opção 1, Opção 2)
+     O metodo gera uma caixa de dialogo para o usuário do tipo de esolha de uma opção,
+     o retorno é booleano**/
     public boolean BoxChoice(Alert.AlertType typeAlert,String title,String content,String option1,String option2){
          if (typeAlert.equals(Alert.AlertType.CONFIRMATION)) {
             Alert alert = new Alert(typeAlert);

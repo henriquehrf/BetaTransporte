@@ -5,37 +5,41 @@
  */
 package util;
 
-import javafx.geometry.NodeOrientation;
+import java.util.Collections;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import org.dom4j.util.NodeComparator;
 
 /**
  *
  * @author Henrique
  */
+
+/** Requer um stackPane, o resultado desta classe é o efeito de loading para o usuário**/
 public class Loader {
 
-    protected static ImageView img = null;
+    ImageView img;
 
     public void start(StackPane root) {
-
         Image image = new Image("/img/Spinner.gif");
-        if (img == null) {
-            img = new ImageView(image);
-            img.toFront();
-            root.getChildren().addAll(img);
-            root.setAlignment(img, Pos.CENTER);
-        }
+        img = new ImageView(image);
+        img.toFront();
+
+        root.getChildren().addAll(img);
+        root.setAlignment(img, Pos.CENTER);
+
+        ObservableList<Node> workingCollection = FXCollections.observableArrayList(
+                root.getChildren()
+        );
+        Collections.sort(workingCollection, new NodeComparator());
+
+        root.getChildren().setAll(workingCollection);
+
     }
 
     public void stop(StackPane root) {

@@ -12,6 +12,10 @@ import com.dev.betaTransporte.vo.Cliente;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +30,7 @@ import util.Loader;
 import util.Message;
 import util.Mask;
 import util.Navegation;
+import util.TestConnectionServer;
 import util.Util;
 
 /**
@@ -34,8 +39,6 @@ import util.Util;
  * @author Henrique
  */
 public class CadastrarClienteController implements Initializable {
-
-    Loader loading = new Loader();
 
     @FXML
     private RadioButton rdbNaoAplica;
@@ -72,10 +75,12 @@ public class CadastrarClienteController implements Initializable {
     @FXML
     private StackPane stpCadastrarCliente;
 
+    private ExecutorService threadpool = Executors.newFixedThreadPool(3);
     Util util = new Util();
     BoxInfo box = new BoxInfo();
     Message msg = new Message();
     Mask mask = new Mask();
+    Loader loading = new Loader();
 
     private Cliente getCliente() {
         Cliente cliente = new Cliente();
@@ -146,21 +151,54 @@ public class CadastrarClienteController implements Initializable {
         } else {
             this.txtTelefoneFixo.setStyle(NORMAL);
         }
-        box.BoxInfo(Alert.AlertType.WARNING, "Erro de Preenchimento de Cadastro", ex.getMsg());
-        System.out.println(ex.getMsg());
+        box.BoxInfo(Alert.AlertType.WARNING, Message.message("err.msg.cadastro"), ex.getMsg());
     }
 
     @FXML
     void onSave(ActionEvent event) {
-        Cliente cliente = getCliente();
-        ClienteException ex = ClienteNegocio.save(cliente);
 
-        if (ex == null) {
-            this.box.BoxInfo(Alert.AlertType.INFORMATION, msg.message("suss.title.Insert"), msg.message("suss.msg.Insert"));
-            onCancel(event);
-        } else {
-            complete_erros(ex);
-        }
+        Cliente cliente = getCliente();
+        loading.start(stpCadastrarCliente);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (stpCadastrarCliente) {
+                    TestConnectionServer isOnline = new TestConnectionServer();
+                    Future<Integer> future = threadpool.submit(isOnline);
+                    try {
+
+                        while (!future.isDone()) {
+                            Thread.sleep(1);
+                        }
+                        if (future.isDone()) {
+                            if (!isOnline.CONNECTION_SERVER) {
+                                box.BoxInfo(Alert.AlertType.ERROR, Message.message("err.title.BD"), Message.message("erro.msg.offline"));
+                                return;
+                            }
+                            ClienteException ex = ClienteNegocio.save(cliente);
+                            loading.stop(stpCadastrarCliente);
+
+                            if (ex == null) {
+                                threadpool.shutdown();
+                                box.BoxInfo(Alert.AlertType.INFORMATION, msg.message("suss.title.Insert"), msg.message("suss.msg.Insert"));
+                                onCancel(event);
+                            } else {
+                                complete_erros(ex);
+                            }
+                        }
+
+                    } catch (Exception ex) {
+                        loading.stop(stpCadastrarCliente);
+                        box.BoxInfo(Alert.AlertType.ERROR, Message.message("err.title"), ex.getMessage());
+                        System.out.println(ex.getMessage());
+                    } finally {
+                        loading.stop(stpCadastrarCliente);
+                    }
+                }
+            }
+        });
+
     }
 
     @FXML
@@ -180,6 +218,7 @@ public class CadastrarClienteController implements Initializable {
             this.rdbMasculino.setDisable(true);
             this.rdbNaoAplica.setSelected(true);
             this.dtpDataNascimento.setDisable(true);
+            this.dtpDataNascimento.setValue(null);
         } else {
             this.rdbFemino.setDisable(false);
             this.rdbMasculino.setDisable(false);
@@ -204,8 +243,10 @@ public class CadastrarClienteController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
 
+        // exemplo de evento na perda do foco
+        //loading.start(stpCadastrarCliente);
+        // TODO
 //         this.txtCpfCnpj.focusedProperty().addListener(new ChangeListener<Boolean>() {
 //
 //            @Override

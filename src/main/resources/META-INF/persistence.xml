@@ -4,7 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.dev.betaTransporte.vo.Cliente</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://35.227.75.214:5432/betaTransporte"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://35.227.21.172:5432/betaTransporte"/>
       <property name="javax.persistence.jdbc.user" value="beta"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="B3%a%ran2%3"/>

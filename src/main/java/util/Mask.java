@@ -69,4 +69,8 @@ public class Mask {
         
     }
    
+    public String Desmascarar(String txt){
+        txt = txt.replaceAll("[^a-zA-Z0-9]","");
+        return txt;
+    }
 }

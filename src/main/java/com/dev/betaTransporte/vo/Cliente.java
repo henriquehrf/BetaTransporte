@@ -9,7 +9,6 @@ import com.dev.betaTransporte.dao.EntidadeBase;
 import com.dev.betaTransporteENUM.Sexo;
 import java.io.Serializable;
 import java.util.Date;
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -54,14 +53,6 @@ public class Cliente implements EntidadeBase , Serializable{
 
     public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
     }
 
     public Date getDataNascimento() {
@@ -118,8 +109,6 @@ public class Cliente implements EntidadeBase , Serializable{
     @Column(length = 18,nullable = false)
     private String cpfCnpj;
     
-    @Column(length = 20,nullable = true)
-    private String rg;
     
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
