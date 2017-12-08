@@ -27,6 +27,14 @@
     -fx-background-position:5 5;
     -fx-border-color: gray;
 }
+.btnLogin{
+    -fx-background-image: url('../img/ICON_Login.png');
+    -fx-background-size: 25 25 ;
+    -fx-padding: 2 2 2 4;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:5 5;
+    -fx-border-color: gray;
+}
 .btnCancelar{
     -fx-background-image: url('../img/ICON_Cancel.png');
     -fx-background-size: 25 25 ;
