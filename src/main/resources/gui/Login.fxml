@@ -10,7 +10,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <StackPane fx:id="stcLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.LoginController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -25,7 +24,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Beta Transporte" textAlignment="CENTER">
+                  <Label text="%TituloSistema" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="36.0" />
                      </font>
@@ -49,7 +48,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Login">
+                        <Label text="%lblLogin">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -61,12 +60,12 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <TextField fx:id="txtLogin" prefHeight="25.0" prefWidth="285.0" />
+                        <TextField fx:id="txtLogin" onKeyReleased="#inputLogin" prefHeight="25.0" prefWidth="285.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="Senha">
+                        <Label text="%lblSenha">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -78,7 +77,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <PasswordField fx:id="txtSenha" prefWidth="285.0" />
+                        <PasswordField fx:id="txtSenha" onKeyReleased="#inputSenha" prefWidth="285.0" />
                      </children>
                   </HBox>
                </children>
@@ -105,7 +104,7 @@
                            <children>
                               <HBox prefHeight="38.0" prefWidth="399.0">
                                  <children>
-                                    <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#onActionLogin" text="Entrar">
+                                    <Button fx:id="btnEntrar" mnemonicParsing="false" onAction="#onActionLogin" onKeyPressed="#onKeyPressedLogin" text="%btnEntrar">
                                        <HBox.margin>
                                           <Insets left="35.0" />
                                        </HBox.margin>
@@ -114,7 +113,7 @@
                                           <String fx:value="btnLogin" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onActionSair" text="Sair">
+                                    <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#onActionSair" onKeyPressed="#onKeyPressedSair" text="%btnSair">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -127,7 +126,7 @@
                               </HBox>
                               <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="399.0">
                                  <children>
-                                    <Hyperlink fx:id="hypEsqueceuSenha" text="Esqueceu a Senha?">
+                                    <Hyperlink fx:id="hypEsqueceuSenha" onAction="#hypOnAction" onKeyPressed="#onKeyPressedEsqSenha" text="%hplEsqueceuSenha">
                                        <HBox.margin>
                                           <Insets left="-50.0" />
                                        </HBox.margin>
@@ -136,7 +135,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="39.0" prefWidth="399.0">
                                  <children>
-                                    <Label text="Empresa líder  em transporte de mercadorias">
+                                    <Label text="%lblMissaoTransportadora">
                                        <font>
                                           <Font name="System Bold Italic" size="14.0" />
                                        </font>

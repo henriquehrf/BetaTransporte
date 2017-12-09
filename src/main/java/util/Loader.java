@@ -33,12 +33,12 @@ public class Loader {
         root.getChildren().addAll(img);
         root.setAlignment(img, Pos.CENTER);
 
-        ObservableList<Node> workingCollection = FXCollections.observableArrayList(
-                root.getChildren()
-        );
-        Collections.sort(workingCollection, new NodeComparator());
-
-        root.getChildren().setAll(workingCollection);
+//        ObservableList<Node> workingCollection = FXCollections.observableArrayList(
+//                root.getChildren()
+//        );
+//        Collections.sort(workingCollection, new NodeComparator());
+//
+//        root.getChildren().setAll(workingCollection);
 
     }
 

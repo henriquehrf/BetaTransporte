@@ -3,6 +3,7 @@
   <persistence-unit name="BetaTransportePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.dev.betaTransporte.vo.Cliente</class>
+    <class>com.dev.betaTransporte.vo.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://35.227.21.172:5432/betaTransporte"/>
       <property name="javax.persistence.jdbc.user" value="beta"/>
