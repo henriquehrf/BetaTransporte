@@ -9,35 +9,32 @@ import static com.dev.betaTransporte.dao.GenericoDAO.connection;
 import com.dev.betaTransporte.vo.Cliente;
 import javax.persistence.Query;
 
-
 /**
  *
  * @author Henrique
  *  * @param <T>
  */
-public class ClienteDAO extends GenericoDAO<EntidadeBase>{
-    
+public class ClienteDAO extends GenericoDAO<EntidadeBase> {
 
     public ClienteDAO() throws Exception {
         if (connection == null) {
             getEM();
         }
-    } 
-    
-        
-    public Cliente GetByCPFCNPJ(String cpfCNPJF) {
+    }
+
+    public Cliente GetByCPFCNPJ(String cpfCnpj) {
 
         try {
             if (connection == null) {
                 getEM();
             }
-            Query query = connection.createNamedQuery("cliente.SelectUser", Cliente.class);
-            query.setParameter("login", cpfCNPJF);
+            Query query = connection.createNamedQuery("Cliente.GetCPFCNPJ", Cliente.class);
+            query.setParameter("cpfCnpj", cpfCnpj);
             return (Cliente) query.getSingleResult();
 
         } catch (Exception ex) {
             return null;
         }
     }
-    
+
 }

@@ -16,6 +16,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -25,6 +27,9 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name = "Cliente")
+@NamedQueries({
+    @NamedQuery(name = "Cliente.GetCPFCNPJ", query = "SELECT m FROM Cliente m WHERE m.cpfCnpj = :cpfCnpj"),
+})
 public class Cliente implements EntidadeBase , Serializable{
 
   
