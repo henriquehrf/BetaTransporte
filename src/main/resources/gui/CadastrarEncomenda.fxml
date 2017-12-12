@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="stpCadastrarCliente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.CadastrarEncomendaController">
+   <children>
+      <BorderPane fx:id="bdpCadastroCliente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0">
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onSave" onKeyPressed="#onKeyPressedSave" text="%btnSalvar" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="btnOperation" />
+                        <String fx:value="btnSalvar" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onCancel" onKeyPressed="#onKeyPressedCancel" text="%btnCancelar">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                     <styleClass>
+                        <String fx:value="btnOperation" />
+                        <String fx:value="btnCancelar" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <HBox minHeight="400.0" minWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane minHeight="400.0" minWidth="800.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="%lblCpfCnpjCliente" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <TextField fx:id="txtCpfCnpjCliente" onKeyReleased="#onChangeCPFCNPJCliente" prefHeight="25.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="%lblCpfCnpjDestino" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <TextField fx:id="txtCpfCnpjDestino" onKeyReleased="#onChangeCPFCNPJDestino" prefHeight="25.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                           <children>
+                              <Label text="%lblPlano" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <RadioButton fx:id="rdbCONV" mnemonicParsing="false" onKeyPressed="#onKeyPressedConv" text="%rdbCONV">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="Sexo" />
+                                 </toggleGroup>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rdbGOLD" mnemonicParsing="false" onKeyPressed="#onKeyPressedGold" text="%rdbGOLD" toggleGroup="$Sexo">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rdbPLATINA" mnemonicParsing="false" onKeyPressed="#onKeyPressedPlatiniun" text="%rdbPLATINIUN" toggleGroup="$Sexo">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                           <children>
+                              <Label text="%lblDimensoes" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <Label text="%lblComprimento">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtComprimento" onKeyReleased="#onChangeComprimento" prefHeight="25.0" prefWidth="50.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Label text="%lblLargura">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtLargura" onKeyReleased="#onChangeLargura" prefHeight="25.0" prefWidth="50.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Label text="%lblAltura">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtAltura" onKeyReleased="#onChangeAltura" prefHeight="25.0" prefWidth="50.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                           <children>
+                              <Label text="%lblPeso" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <children>
+                              <TextField fx:id="txtPeso" onKeyReleased="#onChangePeso" prefHeight="25.0" prefWidth="100.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+                           <children>
+                              <Label text="%lblNuNotaFiscal" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <children>
+                              <TextField fx:id="txtNuNotaFiscal" onKeyReleased="#onChangeNuNotaFiscal" prefHeight="25.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+                           <children>
+                              <Label text="%lblValorDeclarado" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <children>
+                              <TextField fx:id="txtValorDeclarado" onKeyReleased="#onChangeValorDeclarado" prefHeight="25.0" prefWidth="400.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+                           <children>
+                              <Label text="%lblCidadeDestino" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <children>
+                              <ComboBox fx:id="cmbCidadeDestino" prefHeight="25.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="513.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </children>
+            </HBox>
+         </center>
+         <top>
+            <HBox alignment="TOP_CENTER" minHeight="100.0" minWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="%lblTitleEncomenda">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>

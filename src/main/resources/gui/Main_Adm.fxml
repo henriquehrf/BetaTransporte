@@ -16,7 +16,7 @@
           <Menu mnemonicParsing="false" text="%mnuBar.Cadastro">
             <items>
               <MenuItem fx:id="mnuItenCliente" mnemonicParsing="false" onAction="#ItemClienteOnAction" text="%mnuItem.Cliente" />
-                  <MenuItem mnemonicParsing="false" text="%mnuItem.Encomenda" />
+                  <MenuItem fx:id="mnuItenEncomenda" mnemonicParsing="false" onAction="#ItemEncomendaOnAction" text="%mnuItem.Encomenda" />
                   <MenuItem fx:id="mnuItemUsuario" mnemonicParsing="false" onAction="#ItemUsuarioOnAction" text="%mnuItem.Usuario" />
             </items>
           </Menu>

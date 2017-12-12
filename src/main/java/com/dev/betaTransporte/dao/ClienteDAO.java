@@ -5,6 +5,10 @@
  */
 package com.dev.betaTransporte.dao;
 
+import static com.dev.betaTransporte.dao.GenericoDAO.connection;
+import com.dev.betaTransporte.vo.Cliente;
+import javax.persistence.Query;
+
 
 /**
  *
@@ -19,4 +23,21 @@ public class ClienteDAO extends GenericoDAO<EntidadeBase>{
             getEM();
         }
     } 
+    
+        
+    public Cliente GetByCPFCNPJ(String cpfCNPJF) {
+
+        try {
+            if (connection == null) {
+                getEM();
+            }
+            Query query = connection.createNamedQuery("cliente.SelectUser", Cliente.class);
+            query.setParameter("login", cpfCNPJF);
+            return (Cliente) query.getSingleResult();
+
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    
 }

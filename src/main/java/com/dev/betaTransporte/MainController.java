@@ -31,11 +31,26 @@ public class MainController implements Initializable {
     private BorderPane bdpPrincipal;
 
     @FXML
+    private MenuItem mnuItenEncomenda;
+    
+    @FXML
     void ItemClienteOnAction(ActionEvent event) {
 
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/gui/CadastrarCliente.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            bdpPrincipal.setCenter(root);
+
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+    }
+    
+    @FXML
+    void ItemEncomendaOnAction(ActionEvent event) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/CadastrarEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
             bdpPrincipal.setCenter(root);
 
         } catch (Exception ex) {
