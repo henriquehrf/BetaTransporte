@@ -101,6 +101,20 @@ public class CadastrarUsuarioController implements Initializable {
 
     }
 
+    @FXML
+    void onChangeTelefoneFixo() {
+        String txt = mask.TelefoneFixo(this.txtTelefoneFixo.getText());
+        this.txtTelefoneFixo.setText(txt);
+        this.txtTelefoneFixo.positionCaret(txt.length());
+    }
+
+    @FXML
+    void onChangeTelefoneCelular() {
+        String txt = mask.TelefoneCelular(this.txtTelefoneCelular.getText());
+        this.txtTelefoneCelular.setText(txt);
+        this.txtTelefoneCelular.positionCaret(txt.length());
+    }
+
     private ExecutorService threadpool = Executors.newFixedThreadPool(3);
     Util util = new Util();
     BoxInfo box = new BoxInfo();
@@ -112,12 +126,12 @@ public class CadastrarUsuarioController implements Initializable {
         Usuario usuario = new Usuario();
         if (this.rdbAtendente.isSelected()) {
             usuario.setTipoFuncionario(1);
-        }
-        if (this.rdbCarregador.isSelected()) {
+        } else if (this.rdbCarregador.isSelected()) {
             usuario.setTipoFuncionario(2);
-        }
-        if (this.rdbDescarregador.isSelected()) {
+        } else if (this.rdbDescarregador.isSelected()) {
             usuario.setTipoFuncionario(2);
+        } else {
+            usuario.setTipoFuncionario(3);
         }
         usuario.setNome(this.txtNome.getText());
         usuario.setTelefone(this.txtTelefoneFixo.getText());
@@ -141,21 +155,19 @@ public class CadastrarUsuarioController implements Initializable {
         final String NORMAL = "-fx-border-color:darkgrey";
         final String NONE = "-fx-border-color:none";
 
-
-
         if (ex.getTipoFuncionario()) {
-            this.rdbAtendente.setStyle(COR);
-            this.rdbCarregador.setStyle(COR);
-            this.rdbDescarregador.setStyle(COR);
-        } else {
             this.rdbAtendente.setStyle(NONE);
             this.rdbCarregador.setStyle(NONE);
             this.rdbDescarregador.setStyle(NONE);
+        } else {
+            this.rdbAtendente.setStyle(COR);
+            this.rdbCarregador.setStyle(COR);
+            this.rdbDescarregador.setStyle(COR);
         }
         if (ex.getNome()) {
-            this.txtTelefoneCelular.setStyle(COR);
+            this.txtNome.setStyle(COR);
         } else {
-            this.txtTelefoneCelular.setStyle(NORMAL);
+            this.txtNome.setStyle(NORMAL);
         }
 
         box.BoxInfo(Alert.AlertType.WARNING, Message.message("err.msg.cadastro"), ex.getMsg());

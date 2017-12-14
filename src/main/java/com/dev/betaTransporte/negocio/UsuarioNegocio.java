@@ -58,20 +58,25 @@ public class UsuarioNegocio {
         UsuarioException ex = new UsuarioException();
         Util util = new Util();
 
-//        if (usuario.getNome().length() == 0) {
-//            ex.setNomeRazaoSocial(Boolean.TRUE);
-//            ex.setMsg(Message.message("err.msg.nomePreencher"));
-//        }
-//        if (usuario.getNome().length() > 100) {
-//            ex.setNomeRazaoSocial(Boolean.TRUE);
-//            ex.setMsg(Message.message("err.msg.nomeMaior"));
-//        }
-//
-//        if (usuario.getTelFixo().length() > 0 && usuario.getTelFixo().length() < 14) {
+        if (usuario.getTipoFuncionario() == 3) {
+            ex.setNome(Boolean.TRUE);
+            ex.setMsg(Message.message("err.msg.tipoFuncionario"));
+        }
+
+        if (usuario.getNome().length() == 0) {
+            ex.setNome(Boolean.TRUE);
+            ex.setMsg(Message.message("err.msg.nomePreencher"));
+        }
+        if (usuario.getNome().length() > 100) {
+            ex.setNome(Boolean.TRUE);
+            ex.setMsg(Message.message("err.msg.nomeMaior"));
+        }
+
+//        if (usuario.getTelefone().length() > 0 && usuario.getTelefone().length() < 14) {
 //            ex.setTelefoneFixo(Boolean.TRUE);
 //            ex.setMsg(Message.message("err.msg.telefoneInvalido"));
 //        }
-//        if (usuario.getTelCelular().length() > 0 && cliente.getTelCelular().length() < 15) {
+//        if (usuario.getTelefone().length() > 0 && usuario.getCelular().length() < 15) {
 //            ex.setTelefoneCelular(Boolean.TRUE);
 //            ex.setMsg(Message.message("err.msg.celularInvalido"));
 //        }
