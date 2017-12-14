@@ -58,7 +58,7 @@ public class UsuarioNegocio {
         Util util = new Util();
 
         if (usuario.getTipoFuncionario() == 3) {
-            ex.setNome(Boolean.TRUE);
+            ex.setTipoFuncionario(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.tipoFuncionario"));
         }
 

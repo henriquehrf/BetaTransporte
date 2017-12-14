@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.input.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -17,8 +15,9 @@
         <menus>
           <Menu mnemonicParsing="false" text="%mnuBar.Cadastro">
             <items>
-              <MenuItem fx:id="mnuItemCliente" mnemonicParsing="false" onAction="#ItemClienteOnAction" text="%mnuItem.Cliente" />
+              <MenuItem fx:id="mnuItenCliente" mnemonicParsing="false" onAction="#ItemClienteOnAction" text="%mnuItem.Cliente" />
                   <MenuItem fx:id="mnuItenEncomenda" mnemonicParsing="false" onAction="#ItemEncomendaOnAction" text="%mnuItem.Encomenda" />
+                  <MenuItem fx:id="mnuItemUsuario" mnemonicParsing="false" onAction="#ItemUsuarioOnAction" text="%mnuItem.Usuario" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="%mnuBar.Ratreio">
@@ -32,9 +31,6 @@
             </items>
           </Menu>
         </menus>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
       </MenuBar>
    </top>
    <center>
