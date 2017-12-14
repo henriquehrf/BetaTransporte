@@ -6,9 +6,7 @@
 package com.dev.betaTransporte;
 
 import com.dev.betaTransporte.negocio.EncomendaNegocio;
-import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporte.negocio.exception.EncomendaException;
-import com.dev.betaTransporte.vo.Cliente;
 import com.dev.betaTransporte.vo.Encomenda;
 import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
@@ -107,14 +105,47 @@ public class CadastrarEncomendaController {
         Encomenda encomenda = new Encomenda();
         encomenda.setCpfCnpjDestinatario(this.txtCpfCnpjDestino.getText());
         encomenda.getClienteVO().setCpfCnpj(this.txtCpfCnpjCliente.getText());
-        encomenda.setComprimento(Integer.parseInt(this.txtComprimento.getText()));
+        
+        if ("".equals(this.txtComprimento.getText())){
+            encomenda.setComprimento(0);
+        }else{
+            encomenda.setComprimento(Integer.parseInt(this.txtComprimento.getText()));
+        }
+        
         encomenda.setDataCadastro(new Date());
-        encomenda.setAltura(Integer.parseInt(this.txtAltura.getText()));
+        
+        if ("".equals(this.txtAltura.getText())){
+            encomenda.setAltura(0);
+        }else{
+            encomenda.setAltura(Integer.parseInt(this.txtAltura.getText()));
+        }
+        
         encomenda.setCidadeDestino(this.cmbCidadeDestino.getValue());
-        encomenda.setLargura(Integer.parseInt(this.txtLargura.getText()));
-        encomenda.setNumNotaFiscal(Integer.parseInt(this.txtNuNotaFiscal.getText()));
-        encomenda.setPeso(Integer.parseInt(this.txtPeso.getText()));
-        encomenda.setValorDeclarado(Float.parseFloat(this.txtValorDeclarado.getText()));
+        
+        if ("".equals(this.txtLargura.getText())){
+            encomenda.setLargura(0);
+        }else{
+            encomenda.setLargura(Integer.parseInt(this.txtLargura.getText()));
+        }
+        
+        if ("".equals(this.txtNuNotaFiscal.getText())){
+            encomenda.setNumNotaFiscal(0);
+        }else{
+            encomenda.setNumNotaFiscal(Integer.parseInt(this.txtNuNotaFiscal.getText()));
+        }
+        
+        if ("".equals(this.txtPeso.getText())){
+            encomenda.setPeso(0);
+        }else{
+            encomenda.setPeso(Integer.parseInt(this.txtPeso.getText()));
+        }
+        
+        if ("".equals(this.txtValorDeclarado.getText())){
+            encomenda.setValorDeclarado(0);
+        }else{
+            encomenda.setValorDeclarado(Float.parseFloat(this.txtValorDeclarado.getText()));
+        }
+        
         if (this.rdbCONV.isSelected()) {
             encomenda.setPlano(Plano.BETA_CONV);
         }
@@ -266,14 +297,14 @@ public class CadastrarEncomendaController {
     }
 
     @FXML
-    void onChangeCPFCNPJCliente() {
+    void onKeyCPFCNPJCliente() {
         String txt = mask.CpfCnpj(this.txtCpfCnpjCliente.getText());
         this.txtCpfCnpjCliente.setText(txt);
         this.txtCpfCnpjCliente.positionCaret(txt.length());
     }
 
     @FXML
-    void onChangeCPFCNPJDestino() {
+    void onKeyCPFCNPJDestino() {
         String txt = mask.CpfCnpj(this.txtCpfCnpjDestino.getText());
         this.txtCpfCnpjDestino.setText(txt);
         this.txtCpfCnpjDestino.positionCaret(txt.length());
@@ -301,33 +332,45 @@ public class CadastrarEncomendaController {
     }
 
     @FXML
-    void onChangeComprimento() {
-
+    void onKeyComprimento() {
+        String txt = mask.OnlyInt(this.txtComprimento.getText());
+        this.txtComprimento.setText(txt);
+        this.txtComprimento.positionCaret(txt.length());
     }
 
     @FXML
-    void onChangeLargura() {
-
+    void onKeyLargura() {
+        String txt = mask.OnlyInt(this.txtLargura.getText());
+        this.txtLargura.setText(txt);
+        this.txtLargura.positionCaret(txt.length());
     }
 
     @FXML
-    void onChangeAltura() {
-
+    void onKeyAltura() {
+        String txt = mask.OnlyInt(this.txtAltura.getText());
+        this.txtAltura.setText(txt);
+        this.txtAltura.positionCaret(txt.length());
     }
 
     @FXML
-    void onChangePeso() {
-
+    void onKeyPeso() {
+        String txt = mask.OnlyFloat(this.txtPeso.getText());
+        this.txtPeso.setText(txt);
+        this.txtPeso.positionCaret(txt.length());
     }
 
     @FXML
-    void onChangeNuNotaFiscal() {
-
+    void onKeyNuNotaFiscal() {
+        String txt = mask.OnlyInt(this.txtNuNotaFiscal.getText());
+        this.txtNuNotaFiscal.setText(txt);
+        this.txtNuNotaFiscal.positionCaret(txt.length());
     }
 
     @FXML
-    void onChangeValorDeclarado() {
-
+    void onKeyValorDeclarado() {
+        String txt = mask.Monetaria(this.txtValorDeclarado.getText());
+        this.txtValorDeclarado.setText(txt);
+        this.txtValorDeclarado.positionCaret(txt.length());
     }
 
 }

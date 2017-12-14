@@ -70,7 +70,7 @@ public class Mask {
         return txt;
     }
 
-    public static String Monetaria(String txt) {
+    public String Monetaria(String txt) {
 
         if (txt == null) {
             return "";
@@ -95,7 +95,7 @@ public class Mask {
         return txt;
     }
 
-    public static String OnlyFloat(String txt) {
+    public String OnlyFloat(String txt) {
 
         if (txt == null) {
             return "";
@@ -120,7 +120,7 @@ public class Mask {
         return txt;
     }
 
-    public static String OnlyInt(String txt) {
+    public String OnlyInt(String txt) {
         if (txt == null) {
             return "";
         }
@@ -130,7 +130,6 @@ public class Mask {
 
         txt = txt.replaceAll("[^0-9]", "");
 
-        System.out.println(txt);
         return txt;
     }
 }

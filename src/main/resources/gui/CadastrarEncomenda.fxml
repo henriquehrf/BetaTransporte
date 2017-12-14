@@ -48,7 +48,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="txtCpfCnpjCliente" onKeyReleased="#onChangeCPFCNPJCliente" prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtCpfCnpjCliente" onKeyReleased="#onKeyCPFCNPJCliente" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -62,7 +62,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <TextField fx:id="txtCpfCnpjDestino" onKeyReleased="#onChangeCPFCNPJDestino" prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtCpfCnpjDestino" onKeyReleased="#onKeyCPFCNPJDestino" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -108,7 +108,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="txtComprimento" onKeyReleased="#onChangeComprimento" prefHeight="25.0" prefWidth="50.0">
+                              <TextField fx:id="txtComprimento" onKeyReleased="#onKeyComprimento" prefHeight="25.0" prefWidth="50.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -118,7 +118,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="txtLargura" onKeyReleased="#onChangeLargura" prefHeight="25.0" prefWidth="50.0">
+                              <TextField fx:id="txtLargura" onKeyReleased="#onKeyLargura" prefHeight="25.0" prefWidth="50.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -128,7 +128,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="txtAltura" onKeyReleased="#onChangeAltura" prefHeight="25.0" prefWidth="50.0">
+                              <TextField fx:id="txtAltura" onKeyReleased="#onKeyAltura" prefHeight="25.0" prefWidth="50.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -142,7 +142,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
-                              <TextField fx:id="txtPeso" onKeyReleased="#onChangePeso" prefHeight="25.0" prefWidth="100.0">
+                              <TextField fx:id="txtPeso" onKeyReleased="#onKeyPeso" prefHeight="25.0" prefWidth="100.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -156,7 +156,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
-                              <TextField fx:id="txtNuNotaFiscal" onKeyReleased="#onChangeNuNotaFiscal" prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtNuNotaFiscal" onKeyReleased="#onKeyNuNotaFiscal" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -170,7 +170,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <children>
-                              <TextField fx:id="txtValorDeclarado" onKeyReleased="#onChangeValorDeclarado" prefHeight="25.0" prefWidth="400.0">
+                              <TextField fx:id="txtValorDeclarado" onKeyReleased="#onKeyValorDeclarado" prefHeight="25.0" prefWidth="400.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
