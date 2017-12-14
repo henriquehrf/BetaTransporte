@@ -34,12 +34,12 @@ public class ClienteNegocio {
             }
         }
 
-        if (cliente.getCpfCnpj().length() == 14) {
-            if (!util.ValidarIdade(cliente.getDataNascimento())) {
-                ex.setDtNascimento(Boolean.TRUE);
-                ex.setMsg(Message.message("erro.msg.dtNasMenor"));
-            }
-        }
+//        if (cliente.getCpfCnpj().length() == 14) {
+//            if (!util.ValidarIdade(cliente.getDataNascimento())) {
+//                ex.setDtNascimento(Boolean.TRUE);
+//                ex.setMsg(Message.message("erro.msg.dtNasMenor"));
+//            }
+//        }
 
         if (cliente.getNome().length() == 0) {
             ex.setNomeRazaoSocial(Boolean.TRUE);
