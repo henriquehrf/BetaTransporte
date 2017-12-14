@@ -110,7 +110,7 @@ public class Usuario implements EntidadeBase, Serializable {
     @Column(length = 100, nullable = true)
     private String email;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 100, nullable = false)
     private String Login;
 
     @Column(length = 100, nullable = false)
