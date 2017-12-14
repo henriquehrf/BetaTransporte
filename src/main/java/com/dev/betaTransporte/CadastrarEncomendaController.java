@@ -5,7 +5,6 @@
  */
 package com.dev.betaTransporte;
 
-import com.dev.betaTransporte.negocio.ClienteNegocio;
 import com.dev.betaTransporte.negocio.EncomendaNegocio;
 import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporte.negocio.exception.EncomendaException;

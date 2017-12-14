@@ -19,33 +19,34 @@ import util.Util;
  * @author Daniel
  */
 public class EncomendaNegocio {
-    
-    
+
     private static EncomendaException validar(Encomenda encomenda) throws Exception {
         ClienteDAO clienteN = new ClienteDAO();
-        
+
         EncomendaException ex = new EncomendaException();
-        
+
         Util util = new Util();
 
         if (encomenda.getClienteVO().getCpfCnpj().length() == 0) {
             ex.setClienteVo(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.remetentePreencher"));
-        }else{
+        } else {
             Cliente cliente;
             System.out.println(encomenda.getClienteVO().getCpfCnpj());
-            cliente= clienteN.GetByCPFCNPJ(encomenda.getClienteVO().getCpfCnpj());
-            if (cliente==null){
+            cliente = clienteN.GetByCPFCNPJ(encomenda.getClienteVO().getCpfCnpj());
+            if (cliente == null) {
                 ex.setClienteVo(Boolean.TRUE);
                 ex.setMsg(Message.message("err.msg.remetenteInvalido"));
+            } else {
+                encomenda.setClienteVO(cliente);
             }
-            
+
         }
-        
+
         if (encomenda.getCpfCnpjDestinatario().length() == 0) {
             ex.setCpfCnpjDestinatario(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.cpfCnpjPreencherDestinatario"));
-        }else {
+        } else {
             if (!util.ValidarCPFCNPJ(encomenda.getCpfCnpjDestinatario())) {
                 ex.setCpfCnpjDestinatario(Boolean.TRUE);
                 ex.setMsg(Message.message("err.msg.cpfCnpjInvalidoDestinatario"));
@@ -56,46 +57,45 @@ public class EncomendaNegocio {
             ex.setPlano(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.planoPreencher"));
         }
-        
+
         if (encomenda.getComprimento() == 0) {
             ex.setComprimento(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.comprimentoPreencher"));
         }
-        
+
         if (encomenda.getAltura() == 0) {
             ex.setAltura(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.alturaPreencher"));
         }
-        
+
         if (encomenda.getLargura() == 0) {
             ex.setLargura(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.larguraPreencher"));
         }
-        
-        if (encomenda.getPeso()== 0) {
+
+        if (encomenda.getPeso() == 0) {
             ex.setPeso(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.pesoPreencher"));
         }
-        
-        
-        if (encomenda.getNumNotaFiscal() ==0) {
+
+        if (encomenda.getNumNotaFiscal() == 0) {
             ex.setNumNotaFiscal(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.numNotaFiscalPreencher"));
         }
-        
-        if (encomenda.getValorDeclarado()==0) {
+
+        if (encomenda.getValorDeclarado() == 0) {
             ex.setValorDeclarado(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.valorDeclaradoPreencher"));
         }
-        
-        if (encomenda.getCidadeDestino()==null) {
+
+        if (encomenda.getCidadeDestino() == null) {
             ex.setCidadeDestino(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.cidadeDestinoPreencher"));
         }
-        
+
         return ex;
     }
-    
+
     public static EncomendaException save(Encomenda encomenda) throws Exception {
         EncomendaException cli_ex = validar(encomenda);
         if (cli_ex.getMsg().trim().length() > 0) {
@@ -126,5 +126,5 @@ public class EncomendaNegocio {
         }
 
     }
-    
+
 }
