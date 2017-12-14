@@ -9,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane fx:id="stpCadastrarCliente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.CadastrarEncomendaController">
+<StackPane fx:id="stpCadastrarEncomenda" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.CadastrarEncomendaController">
    <children>
-      <BorderPane fx:id="bdpCadastroCliente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0">
+      <BorderPane fx:id="bdpCadastroEncomenda" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0">
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -78,18 +78,18 @@
                            <children>
                               <RadioButton fx:id="rdbCONV" mnemonicParsing="false" onKeyPressed="#onKeyPressedConv" text="%rdbCONV">
                                  <toggleGroup>
-                                    <ToggleGroup fx:id="Sexo" />
+                                    <ToggleGroup fx:id="plano" />
                                  </toggleGroup>
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                               </RadioButton>
-                              <RadioButton fx:id="rdbGOLD" mnemonicParsing="false" onKeyPressed="#onKeyPressedGold" text="%rdbGOLD" toggleGroup="$Sexo">
+                              <RadioButton fx:id="rdbGOLD" mnemonicParsing="false" onKeyPressed="#onKeyPressedGold" text="%rdbGOLD" toggleGroup="$plano">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
                               </RadioButton>
-                              <RadioButton fx:id="rdbPLATINA" mnemonicParsing="false" onKeyPressed="#onKeyPressedPlatiniun" text="%rdbPLATINIUN" toggleGroup="$Sexo">
+                              <RadioButton fx:id="rdbPLATINA" mnemonicParsing="false" onKeyPressed="#onKeyPressedPlatiniun" text="%rdbPLATINIUN" toggleGroup="$plano">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>

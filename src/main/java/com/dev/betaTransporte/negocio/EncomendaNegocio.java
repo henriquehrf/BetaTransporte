@@ -33,6 +33,7 @@ public class EncomendaNegocio {
             ex.setMsg(Message.message("err.msg.remetentePreencher"));
         }else{
             Cliente cliente;
+            System.out.println(encomenda.getClienteVO().getCpfCnpj());
             cliente= clienteN.GetByCPFCNPJ(encomenda.getClienteVO().getCpfCnpj());
             if (cliente==null){
                 ex.setClienteVo(Boolean.TRUE);
@@ -106,6 +107,8 @@ public class EncomendaNegocio {
 
                     public void run() {
                         try {
+                            System.out.println("Entrei aqui");
+                            System.out.println(encomenda.getCpfCnpjDestinatario());
                             dao.save(Encomenda.class, encomenda);
                         } catch (Exception ex) {
                             cli_ex.setMsg(ex.getMessage());

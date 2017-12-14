@@ -27,8 +27,22 @@ import javax.persistence.Temporal;
  * @author Daniel
  */
 @Entity
-@Table(name = "Cliente")
+@Table(name = "Encomenda")
 public class Encomenda implements EntidadeBase , Serializable {
+
+    public Encomenda() {
+        this.ClienteVO = new Cliente();
+        this.Plano = null;
+        this.CidadeDestino = null;
+        this.Comprimento = 0;
+        this.Largura = 0;
+        this.Altura = 0;
+        this.ValorDeclarado = 0;
+        this.dataCadastro = null;
+        this.cpfCnpjDestinatario = "";
+        this.Peso = 0;
+        this.NumNotaFiscal = 0;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -69,7 +83,7 @@ public class Encomenda implements EntidadeBase , Serializable {
     
     @Column(nullable = false)
     private int NumNotaFiscal;
-    
+       
     public void setID(Long ID) {
         this.ID = ID;
     }
