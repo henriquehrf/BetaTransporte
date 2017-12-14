@@ -23,11 +23,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Usuario")
 @NamedQueries({
-    @NamedQuery(name = "Usuario.SelectUser", query = "SELECT m FROM Usuario m WHERE m.Login = :login"),
-})
-public class Usuario  implements EntidadeBase , Serializable{
+    @NamedQuery(name = "Usuario.SelectUser", query = "SELECT m FROM Usuario m WHERE m.Login = :login"),})
+public class Usuario implements EntidadeBase, Serializable {
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idUsuario;
@@ -88,26 +86,34 @@ public class Usuario  implements EntidadeBase , Serializable{
     public void setTipoFuncionario(int TipoFuncionario) {
         this.TipoFuncionario = TipoFuncionario;
     }
-    
-    @Column(length = 20,nullable = false)
-    private String Login;
-    
-    @Column(length = 100,nullable = false)
-    private String Nome;
-    
-    @Column(length = 20,nullable = true)
-    private String Telefone;
-    
-    @Column(length = 20,nullable = false)
-    private String Celular;
-    
-    @Column(length = 100,nullable = false)
-    private String Senha;
-    
-    @Column(length = 20,nullable = false)
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(length = 20, nullable = false)
     private int TipoFuncionario;
-    
-    
-    
-    
+
+    @Column(length = 100, nullable = false)
+    private String Nome;
+
+    @Column(length = 20, nullable = true)
+    private String Telefone;
+
+    @Column(length = 20, nullable = true)
+    private String Celular;
+
+    @Column(length = 100, nullable = true)
+    private String email;
+
+    @Column(length = 20, nullable = false)
+    private String Login;
+
+    @Column(length = 100, nullable = false)
+    private String Senha;
+
 }

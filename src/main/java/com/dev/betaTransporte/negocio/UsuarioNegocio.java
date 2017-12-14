@@ -5,11 +5,16 @@
  */
 package com.dev.betaTransporte.negocio;
 
+import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.dao.UsuarioDAO;
+import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporte.negocio.exception.LoginException;
+import com.dev.betaTransporte.negocio.exception.UsuarioException;
 import com.dev.betaTransporte.vo.Usuario;
 import util.BoxInfo;
 import util.Criptografia;
+import util.Message;
+import util.Util;
 
 /**
  *
@@ -46,5 +51,66 @@ public class UsuarioNegocio {
             loginEx.setMsg(ex.getMessage());
         }
         return loginEx;
+    }
+
+    private static UsuarioException validar(Usuario usuario) {
+
+        UsuarioException ex = new UsuarioException();
+        Util util = new Util();
+
+//        if (usuario.getNome().length() == 0) {
+//            ex.setNomeRazaoSocial(Boolean.TRUE);
+//            ex.setMsg(Message.message("err.msg.nomePreencher"));
+//        }
+//        if (usuario.getNome().length() > 100) {
+//            ex.setNomeRazaoSocial(Boolean.TRUE);
+//            ex.setMsg(Message.message("err.msg.nomeMaior"));
+//        }
+//
+//        if (usuario.getTelFixo().length() > 0 && usuario.getTelFixo().length() < 14) {
+//            ex.setTelefoneFixo(Boolean.TRUE);
+//            ex.setMsg(Message.message("err.msg.telefoneInvalido"));
+//        }
+//        if (usuario.getTelCelular().length() > 0 && cliente.getTelCelular().length() < 15) {
+//            ex.setTelefoneCelular(Boolean.TRUE);
+//            ex.setMsg(Message.message("err.msg.celularInvalido"));
+//        }
+//        if (usuario.getTelCelular().length() == 0) {
+//            ex.setTelefoneCelular(Boolean.TRUE);
+//            ex.setMsg(Message.message("err.msg.celularPreencher"));
+//        }
+//        if (usuario.getEmail().length() == 0) {
+//            ex.setEmail(Boolean.TRUE);
+//            ex.setMsg(Message.message("err.msg.emailPreencher"));
+//        }
+        return ex;
+    }
+
+    public static UsuarioException save(Usuario usuario) {
+        UsuarioException usu_ex = validar(usuario);
+        if (usu_ex.getMsg().trim().length() > 0) {
+            return usu_ex;
+        } else {
+            try {
+                Thread t = new Thread() {
+                    GenericoDAO dao = new UsuarioDAO();
+
+                    public void run() {
+                        try {
+                            dao.save(Usuario.class, usuario);
+                        } catch (Exception ex) {
+                            usu_ex.setMsg(ex.getMessage());
+                        }
+                    }
+                };
+                t.start();
+
+            } catch (Exception ex) {
+
+                usu_ex.setMsg(ex.getMessage());
+                return usu_ex;
+            }
+            return null;
+        }
     }
 }
