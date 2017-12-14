@@ -7,7 +7,6 @@ package com.dev.betaTransporte.negocio;
 
 import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.dao.UsuarioDAO;
-import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporte.negocio.exception.LoginException;
 import com.dev.betaTransporte.negocio.exception.UsuarioException;
 import com.dev.betaTransporte.vo.Usuario;

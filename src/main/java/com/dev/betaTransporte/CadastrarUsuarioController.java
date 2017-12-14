@@ -6,7 +6,6 @@
 package com.dev.betaTransporte;
 
 import com.dev.betaTransporte.negocio.UsuarioNegocio;
-import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporte.negocio.exception.UsuarioException;
 import com.dev.betaTransporte.vo.Usuario;
 import java.net.URL;
@@ -133,11 +132,12 @@ public class CadastrarUsuarioController implements Initializable {
         } else {
             usuario.setTipoFuncionario(3);
         }
+
         usuario.setNome(this.txtNome.getText());
         usuario.setTelefone(this.txtTelefoneFixo.getText());
         usuario.setCelular(this.txtTelefoneCelular.getText());
         usuario.setEmail(this.txtEmail.getText());
-
+ 
         //Código responsável por quebrar o nome para gerar o login = nome.sobrenome
         SeparaNome nomeSeparado = new SeparaNome(this.txtNome.getText().toLowerCase());
         //Código responsável por criptografar a senha do usuário
@@ -167,7 +167,7 @@ public class CadastrarUsuarioController implements Initializable {
         if (ex.getNome()) {
             this.txtNome.setStyle(COR);
         } else {
-            this.txtNome.setStyle(NORMAL);
+            this.txtNome.setStyle(NONE);
         }
 
         box.BoxInfo(Alert.AlertType.WARNING, Message.message("err.msg.cadastro"), ex.getMsg());
