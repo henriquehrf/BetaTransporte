@@ -151,23 +151,25 @@ public class CadastrarUsuarioController implements Initializable {
     }
 
     void complete_erros(UsuarioException ex) {
+        
+        System.out.println(ex.getMsg());
         final String COR = "-fx-border-color:red";
         final String NORMAL = "-fx-border-color:darkgrey";
         final String NONE = "-fx-border-color:none";
 
         if (ex.getTipoFuncionario()) {
-            this.rdbAtendente.setStyle(NONE);
-            this.rdbCarregador.setStyle(NONE);
-            this.rdbDescarregador.setStyle(NONE);
-        } else {
             this.rdbAtendente.setStyle(COR);
             this.rdbCarregador.setStyle(COR);
             this.rdbDescarregador.setStyle(COR);
+        } else {
+            this.rdbAtendente.setStyle(NORMAL);
+            this.rdbCarregador.setStyle(NORMAL);
+            this.rdbDescarregador.setStyle(NORMAL);
         }
         if (ex.getNome()) {
             this.txtNome.setStyle(COR);
         } else {
-            this.txtNome.setStyle(NONE);
+            this.txtNome.setStyle(NORMAL);
         }
 
         box.BoxInfo(Alert.AlertType.WARNING, Message.message("err.msg.cadastro"), ex.getMsg());

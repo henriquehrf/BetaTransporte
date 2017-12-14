@@ -99,7 +99,7 @@ public class LoginController implements Initializable {
             if (isValid.getMsg().length() == 0) {
 
 //                Parent root = FXMLLoader.load(getClass().getResource("/gui/Main.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
-                Parent root = FXMLLoader.load(getClass().getResource("/gui/Main_Adm.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/Main.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setMaximized(true);
