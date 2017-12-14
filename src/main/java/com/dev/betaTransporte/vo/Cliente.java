@@ -28,20 +28,29 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "Cliente")
 @NamedQueries({
-    @NamedQuery(name = "Cliente.GetCPFCNPJ", query = "SELECT m FROM Cliente m WHERE m.cpfCnpj = :cpfCnpj"),
-})
-public class Cliente implements EntidadeBase , Serializable{
+    @NamedQuery(name = "Cliente.GetCPFCNPJ", query = "SELECT m FROM Cliente m WHERE m.cpfCnpj = :cpfCnpj"),})
+public class Cliente implements EntidadeBase, Serializable {
 
-  
+    public Cliente() {
+        this.idCliente = null;
+        this.nome = null;
+        this.cpfCnpj = null;
+        this.dataNascimento = null;
+        this.telFixo = null;
+        this.telCelular = null;
+        this.dataCadastro = null;
+        this.email = null;
+        this.sexo = null;
+    }
+
     public String getNome() {
         return nome;
     }
 
-   
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idCliente;
@@ -109,37 +118,36 @@ public class Cliente implements EntidadeBase , Serializable{
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
-    
-    @Column(length = 100,nullable = false)
+
+    @Column(length = 100, nullable = false)
     private String nome;
-    
-    @Column(length = 20,nullable = false)
+
+    @Column(length = 20, nullable = false)
     private String cpfCnpj;
-    
-    
+
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
-    
-    @Column(length = 20,nullable = true)
+
+    @Column(length = 20, nullable = true)
     private String telFixo;
-    
-    @Column(length = 20,nullable = false)
+
+    @Column(length = 20, nullable = false)
     private String telCelular;
-    
+
     @Column(nullable = true)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataCadastro;
-    
-    @Column(length = 100,nullable = true)
+
+    @Column(length = 100, nullable = true)
     private String email;
-    
-    @Column(length = 1,nullable = false)
+
+    @Column(length = 1, nullable = false)
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
-    
+
     @Override
-    public Long getId(){
+    public Long getId() {
         return idCliente;
     }
 }

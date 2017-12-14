@@ -150,8 +150,13 @@ public class Util {
 
     public Boolean ValidarIdade(Date dt_nascimento) {
 
+        if (dt_nascimento == null) {
+            return false;
+        }
+
         Calendar dataNasc = Calendar.getInstance();
         Calendar dataAtual = Calendar.getInstance();
+
         try {
             dataNasc.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(Date_To_String(dt_nascimento)));
             dataNasc.add(Calendar.YEAR, 18);

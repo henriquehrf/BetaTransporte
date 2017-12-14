@@ -18,61 +18,84 @@ import util.Util;
  */
 public class ClienteNegocio {
 
-    private static ClienteException validar(Cliente cliente) {
+    public static ClienteException validar(Cliente cliente) {
 
         ClienteException ex = new ClienteException();
         Util util = new Util();
 
-        if (cliente.getCpfCnpj().length() == 0) {
+        if (cliente.getCpfCnpj() != null) {
+            if (cliente.getCpfCnpj().length() == 0) {
+                ex.setCpfCnpj(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.cpfCnpjPreencher"));
+            }
+            if (cliente.getCpfCnpj().length() > 0) {
+                if (!util.ValidarCPFCNPJ(cliente.getCpfCnpj())) {
+                    ex.setCpfCnpj(Boolean.TRUE);
+                    ex.setMsg(Message.message("err.msg.cpfCnpjInvalido"));
+                }
+            }
+            if (cliente.getCpfCnpj().length() == 14) {
+                if (!util.ValidarIdade(cliente.getDataNascimento())) {
+                    ex.setDtNascimento(Boolean.TRUE);
+                    ex.setMsg(Message.message("erro.msg.dtNasMenor"));
+                }
+            }
+            if (cliente.getCpfCnpj().length() <= 14 && cliente.getDataNascimento() == null) {
+                ex.setDtNascimento(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.dtNascimento"));
+            }
+        } else {
             ex.setCpfCnpj(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.cpfCnpjPreencher"));
         }
-        if (cliente.getCpfCnpj().length() > 0) {
-            if (!util.ValidarCPFCNPJ(cliente.getCpfCnpj())) {
-                ex.setCpfCnpj(Boolean.TRUE);
-                ex.setMsg(Message.message("err.msg.cpfCnpjInvalido"));
+        if (cliente.getNome() != null) {
+            if (cliente.getNome().length() == 0) {
+                ex.setNomeRazaoSocial(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.nomePreencher"));
             }
-        }
-
-//        if (cliente.getCpfCnpj().length() == 14) {
-//            if (!util.ValidarIdade(cliente.getDataNascimento())) {
-//                ex.setDtNascimento(Boolean.TRUE);
-//                ex.setMsg(Message.message("erro.msg.dtNasMenor"));
-//            }
-//        }
-
-        if (cliente.getNome().length() == 0) {
+            if (cliente.getNome().length() > 100) {
+                ex.setNomeRazaoSocial(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.nomeMaior"));
+            }
+        } else {
             ex.setNomeRazaoSocial(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.nomePreencher"));
         }
-        if (cliente.getNome().length() > 100) {
-            ex.setNomeRazaoSocial(Boolean.TRUE);
-            ex.setMsg(Message.message("err.msg.nomeMaior"));
-        }
+
         if (cliente.getSexo() == null) {
             ex.setSexo(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.sexoPreencher"));
         }
-        if (cliente.getCpfCnpj().length() <= 14 && cliente.getDataNascimento() == null) {
-            ex.setDtNascimento(Boolean.TRUE);
-            ex.setMsg(Message.message("err.msg.dtNascimento"));
+        if (cliente.getTelFixo() != null) {
+            if (cliente.getTelFixo().length() > 0 && cliente.getTelFixo().length() < 14) {
+                ex.setTelefoneFixo(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.telefoneInvalido"));
+            }
         }
-        if (cliente.getTelFixo().length() > 0 && cliente.getTelFixo().length() < 14) {
-            ex.setTelefoneFixo(Boolean.TRUE);
-            ex.setMsg(Message.message("err.msg.telefoneInvalido"));
-        }
-        if (cliente.getTelCelular().length() > 0 && cliente.getTelCelular().length() < 15) {
-            ex.setTelefoneCelular(Boolean.TRUE);
-            ex.setMsg(Message.message("err.msg.celularInvalido"));
-        }
-        if (cliente.getTelCelular().length() == 0) {
+        if (cliente.getTelCelular() != null) {
+            if (cliente.getTelCelular().length() > 0 && cliente.getTelCelular().length() < 15) {
+                ex.setTelefoneCelular(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.celularInvalido"));
+            }
+            if (cliente.getTelCelular().length() == 0) {
+                ex.setTelefoneCelular(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.celularPreencher"));
+            }
+        } else {
             ex.setTelefoneCelular(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.celularPreencher"));
         }
-        if (cliente.getEmail().length() == 0) {
+
+        if (cliente.getEmail() != null) {
+            if (cliente.getEmail().length() == 0) {
+                ex.setEmail(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.emailPreencher"));
+            }
+        } else {
             ex.setEmail(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.emailPreencher"));
         }
+
         return ex;
     }
 
