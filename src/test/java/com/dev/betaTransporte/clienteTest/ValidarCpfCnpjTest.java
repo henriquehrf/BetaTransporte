@@ -23,6 +23,8 @@ public class ValidarCpfCnpjTest {
 
     private String value;
     private Boolean expected;
+    
+    // teste
 
     @Parameters
     public static Collection data() {
