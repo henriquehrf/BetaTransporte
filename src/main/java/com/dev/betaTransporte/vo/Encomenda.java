@@ -48,8 +48,18 @@ public class Encomenda implements EntidadeBase , Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long ID;
 
+  
+
     @OneToOne(fetch = FetchType.EAGER)
     private Cliente ClienteVO;
+
+    public Cliente getClienteVO() {
+        return ClienteVO;
+    }
+
+    public void setClienteVO(Cliente ClienteVO) {
+        this.ClienteVO = ClienteVO;
+    }
     
     @Column(nullable = false)
     @Enumerated(EnumType.ORDINAL)
@@ -91,20 +101,6 @@ public class Encomenda implements EntidadeBase , Serializable {
     @Override
     public Long getId() {
         return ID;
-    }
-
-    /**
-     * @return the ClienteVO
-     */
-    public Cliente getClienteVO() {
-        return ClienteVO;
-    }
-
-    /**
-     * @param ClienteVO the ClienteVO to set
-     */
-    public void setClienteVO(Cliente ClienteVO) {
-        this.ClienteVO = ClienteVO;
     }
 
     /**

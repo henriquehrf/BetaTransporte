@@ -5,12 +5,10 @@
  */
 package com.dev.betaTransporte.clienteTest;
 
-import com.dev.betaTransporte.dao.ClienteDAO;
 import com.dev.betaTransporte.negocio.ClienteNegocio;
 import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporte.vo.Cliente;
 import com.dev.betaTransporteENUM.Sexo;
-import java.time.LocalDate;
 import java.util.Date;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
