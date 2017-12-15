@@ -52,7 +52,7 @@ public class UsuarioNegocio {
         return loginEx;
     }
 
-    private static UsuarioException validar(Usuario usuario) {
+    public static UsuarioException validar(Usuario usuario) {
 
         UsuarioException ex = new UsuarioException();
         Util util = new Util();
@@ -62,31 +62,20 @@ public class UsuarioNegocio {
             ex.setMsg(Message.message("err.msg.tipoFuncionario"));
         }
 
-        if (usuario.getNome().length() == 0) {
+        if (usuario.getNome() != null) {
+            if (usuario.getNome().length() == 0) {
+                ex.setNome(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.nomePreencher"));
+            }
+            if (usuario.getNome().length() > 100) {
+                ex.setNome(Boolean.TRUE);
+                ex.setMsg(Message.message("err.msg.nomeMaior"));
+            }
+        } else {
             ex.setNome(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.nomePreencher"));
         }
-        if (usuario.getNome().length() > 100) {
-            ex.setNome(Boolean.TRUE);
-            ex.setMsg(Message.message("err.msg.nomeMaior"));
-        }
 
-//        if (usuario.getTelefone().length() > 0 && usuario.getTelefone().length() < 14) {
-//            ex.setTelefoneFixo(Boolean.TRUE);
-//            ex.setMsg(Message.message("err.msg.telefoneInvalido"));
-//        }
-//        if (usuario.getTelefone().length() > 0 && usuario.getCelular().length() < 15) {
-//            ex.setTelefoneCelular(Boolean.TRUE);
-//            ex.setMsg(Message.message("err.msg.celularInvalido"));
-//        }
-//        if (usuario.getTelCelular().length() == 0) {
-//            ex.setTelefoneCelular(Boolean.TRUE);
-//            ex.setMsg(Message.message("err.msg.celularPreencher"));
-//        }
-//        if (usuario.getEmail().length() == 0) {
-//            ex.setEmail(Boolean.TRUE);
-//            ex.setMsg(Message.message("err.msg.emailPreencher"));
-//        }
         return ex;
     }
 
