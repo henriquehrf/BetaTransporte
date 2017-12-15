@@ -20,7 +20,7 @@ import util.Util;
  */
 public class EncomendaNegocio {
 
-    private static EncomendaException validar(Encomenda encomenda) throws Exception {
+    public static EncomendaException validar(Encomenda encomenda) throws Exception {
         ClienteDAO clienteN = new ClienteDAO();
 
         EncomendaException ex = new EncomendaException();
