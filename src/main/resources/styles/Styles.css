@@ -43,6 +43,38 @@
     -fx-padding: 2 2 2 25;
     -fx-border-color: gray;
 }
+.btnAdicionar{
+    -fx-background-image: url('../img/ICON_Add.png');
+    -fx-background-size: 25 25 ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:5 5;
+    -fx-padding: 2 2 2 25;
+    -fx-border-color: gray;
+}
+.btnAlterar{
+    -fx-background-image: url('../img/ICON_Alteration.png');
+    -fx-background-size: 25 25 ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:5 5;
+    -fx-padding: 2 2 2 25;
+    -fx-border-color: gray;
+}
+.btnRemover{
+    -fx-background-image: url('../img/ICON_Remove.png');
+    -fx-background-size: 25 25 ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:5 5;
+    -fx-padding: 2 2 2 25;
+    -fx-border-color: gray;
+}
+.btnVoltar{
+    -fx-background-image: url('../img/ICON_Back.png');
+    -fx-background-size: 25 25 ;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:5 5;
+    -fx-padding: 2 2 2 25;
+    -fx-border-color: gray;
+}
 .text-field{
     -fx-border-color:darkgrey;
     -fx-background-color:#f0f8ff;
