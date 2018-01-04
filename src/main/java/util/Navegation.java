@@ -17,6 +17,15 @@ import javafx.scene.layout.BorderPane;
 public class Navegation {
 
     private static Node family;
+    public static BorderPane Main;
+
+    public BorderPane getMain() {
+        return Main;
+    }
+
+    public void setMain(BorderPane Main) {
+        Navegation.Main = Main;
+    }
 
     public static Node getFamily() {
         return family;

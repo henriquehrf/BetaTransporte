@@ -9,6 +9,7 @@ import com.dev.betaTransporte.dao.ClienteDAO;
 import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporte.vo.Cliente;
+import java.util.List;
 import util.Message;
 import util.Util;
 
@@ -126,5 +127,29 @@ public class ClienteNegocio {
             return null;
         }
 
+    }
+
+    public List<Cliente> searchCliente(String content, String type) {
+        List<Cliente> result;
+        try {
+            ClienteDAO clienteList = new ClienteDAO();
+            if (content.length() > 0) {
+                if (type.equalsIgnoreCase("cpfCnpj")) {
+                    result = clienteList.GetAllByCPFCNPJ(content);
+                    return result;
+                } else {
+                    result = clienteList.GetAllByNome(content);
+                    return result;
+                }
+
+            } else {
+                result = clienteList.GetAll();
+                return result;
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

@@ -28,7 +28,13 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "Cliente")
 @NamedQueries({
-    @NamedQuery(name = "Cliente.GetCPFCNPJ", query = "SELECT m FROM Cliente m WHERE m.cpfCnpj = :cpfCnpj"),})
+    @NamedQuery(name = "Cliente.GetCPFCNPJ", query = "SELECT m FROM Cliente m WHERE m.cpfCnpj = :cpfCnpj")
+    ,
+    @NamedQuery(name = "Cliente.GetAll", query = "SELECT m FROM Cliente m ORDER BY m.nome ASC")
+    ,
+    @NamedQuery(name = "Cliente.GetAllByNome", query = "SELECT m FROM Cliente m WHERE  UPPER(m.nome) LIKE UPPER(:nome) ORDER BY m.nome ASC")
+    ,
+    @NamedQuery(name = "Cliente.GetAllByCpfCnpj", query = "SELECT m FROM Cliente m WHERE m.cpfCnpj LIKE :cpfCnpj ORDER BY m.nome ASC")})
 public class Cliente implements EntidadeBase, Serializable {
 
     public Cliente() {

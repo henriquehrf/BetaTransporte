@@ -7,6 +7,8 @@ package com.dev.betaTransporte.dao;
 
 import static com.dev.betaTransporte.dao.GenericoDAO.connection;
 import com.dev.betaTransporte.vo.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Query;
 
 /**
@@ -33,6 +35,59 @@ public class ClienteDAO extends GenericoDAO<EntidadeBase> {
             return (Cliente) query.getSingleResult();
 
         } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    public List<Cliente> GetAll() {
+
+        try {
+            if (connection == null) {
+                getEM();
+            }
+
+            Query query = connection.createNamedQuery("Cliente.GetAll", Cliente.class);
+
+            List<Cliente> cliente = query.getResultList();
+            return cliente;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
+    }
+
+    public List<Cliente> GetAllByNome(String nome) {
+        try {
+            if (connection == null) {
+                getEM();
+            }
+
+            Query query = connection.createNamedQuery("Cliente.GetAllByNome", Cliente.class);
+            query.setParameter("nome", nome);
+            List<Cliente> cliente = query.getResultList();
+            return cliente;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    public List<Cliente> GetAllByCPFCNPJ(String cpfCnpj) {
+        try {
+            if (connection == null) {
+                getEM();
+            }
+
+            Query query = connection.createNamedQuery("Cliente.GetAllByCpfCnpj", Cliente.class);
+            query.setParameter("cpfCnpj", cpfCnpj);
+            List<Cliente> cliente = query.getResultList();
+            return cliente;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             return null;
         }
     }

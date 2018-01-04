@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="stpConsultarCliente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.ConsultarClienteController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -35,17 +35,20 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="400.0" />
+                              <TextField fx:id="txtPesquisa" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" onKeyPressed="#isPressed" onKeyReleased="#onChangePesquisa" prefHeight="25.0" prefWidth="400.0" />
                            </children>
                         </HBox>
                         <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="%lblNomeRazaoSocial">
+                              <RadioButton fx:id="rdbNome" mnemonicParsing="false" onAction="#rdbNomeOnAction" text="%lblNomeRazaoSocial">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="TipoBusca" />
+                                 </toggleGroup>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="%lblCpfCnpj">
+                              <RadioButton fx:id="rdbCfpCnpj" mnemonicParsing="false" onAction="#rdbCpfCnpjOnAction" text="%lblCpfCnpj" toggleGroup="$TipoBusca">
                                  <HBox.margin>
                                     <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
@@ -58,12 +61,12 @@
             </VBox>
          </top>
          <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tbvPesquisa" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn minWidth="150.0" prefWidth="-1.0" text="%lblCpfCnpj" />
-                <TableColumn minWidth="250.0" prefWidth="-1.0" text="%lblNomeRazaoSocial" />
-                  <TableColumn minWidth="200.0" prefWidth="-1.0" text="%lblEmail" />
-                  <TableColumn minWidth="100.0" prefWidth="-1.0" text="%lblTelefoneCelular" />
+                <TableColumn fx:id="tbcCpfCnpj" minWidth="150.0" prefWidth="-1.0" text="%lblCpfCnpj" />
+                <TableColumn fx:id="tbcNome" minWidth="250.0" prefWidth="-1.0" text="%lblNomeRazaoSocial" />
+                  <TableColumn fx:id="tbcEmail" minWidth="200.0" prefWidth="-1.0" text="%lblEmail" />
+                  <TableColumn fx:id="tbcCelular" minWidth="100.0" prefWidth="-1.0" text="%lblTelefoneCelular" />
               </columns>
                <BorderPane.margin>
                   <Insets left="50.0" right="50.0" />
@@ -75,7 +78,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="%btnCadastrar">
+                        <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#CadastrarOnAction" onKeyPressed="#CadastraronKeyPressed" text="%btnCadastrar">
                            <styleClass>
                               <String fx:value="btnOperation" />
                               <String fx:value="btnAdicionar" />
@@ -84,7 +87,7 @@
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="%btnAlterar">
+                        <Button fx:id="btnAlterar" mnemonicParsing="false" onAction="#AlterarOnAction" onKeyPressed="#AlteraronKeyPressed" text="%btnAlterar">
                            <styleClass>
                               <String fx:value="btnOperation" />
                               <String fx:value="btnAlterar" />
@@ -93,7 +96,7 @@
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="%btnExcluir">
+                        <Button fx:id="btnExcluir" mnemonicParsing="false" onAction="#ExcluirOnAction" onKeyPressed="#ExcluironKeyPressed" text="%btnExcluir">
                            <styleClass>
                               <String fx:value="btnOperation" />
                               <String fx:value="btnRemover" />
@@ -106,7 +109,7 @@
                   </HBox>
                   <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="%btnVoltar">
+                        <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#VoltarOnAction" onKeyPressed="#VoltaronKeyPressed" text="%btnVoltar">
                            <styleClass>
                               <String fx:value="btnOperation" />
                               <String fx:value="btnVoltar" />

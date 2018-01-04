@@ -6,7 +6,6 @@
 package com.dev.betaTransporte;
 
 import static com.dev.betaTransporte.negocio.UsuarioNegocio.user;
-import com.dev.betaTransporte.vo.Usuario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import util.Navegation;
 
 /**
  * FXML Controller class
@@ -43,7 +43,7 @@ public class MainController implements Initializable {
 
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/CadastrarCliente.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/ConsultarCliente.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
             bdpPrincipal.setCenter(root);
 
         } catch (Exception ex) {
@@ -81,6 +81,8 @@ public class MainController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Navegation nav = new Navegation();
+        nav.setMain(bdpPrincipal);
         if(user.getTipoFuncionario() == 1){
             mnuItemUsuario.setVisible(false);
         }
