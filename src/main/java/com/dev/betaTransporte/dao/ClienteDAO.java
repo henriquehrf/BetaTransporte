@@ -7,7 +7,6 @@ package com.dev.betaTransporte.dao;
 
 import static com.dev.betaTransporte.dao.GenericoDAO.connection;
 import com.dev.betaTransporte.vo.Cliente;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -19,7 +18,7 @@ import javax.persistence.Query;
 public class ClienteDAO extends GenericoDAO<EntidadeBase> {
 
     public ClienteDAO() throws Exception {
-        if (connection == null) {
+        if (connection == null || !connection.isOpen()) {
             getEM();
         }
     }
@@ -27,7 +26,7 @@ public class ClienteDAO extends GenericoDAO<EntidadeBase> {
     public Cliente GetByCPFCNPJ(String cpfCnpj) {
 
         try {
-            if (connection == null) {
+            if (connection == null || !connection.isOpen()) {
                 getEM();
             }
             Query query = connection.createNamedQuery("Cliente.GetCPFCNPJ", Cliente.class);
@@ -42,7 +41,7 @@ public class ClienteDAO extends GenericoDAO<EntidadeBase> {
     public List<Cliente> GetAll() {
 
         try {
-            if (connection == null) {
+            if (connection == null || !connection.isOpen()) {
                 getEM();
             }
 
@@ -60,7 +59,7 @@ public class ClienteDAO extends GenericoDAO<EntidadeBase> {
 
     public List<Cliente> GetAllByNome(String nome) {
         try {
-            if (connection == null) {
+            if (connection == null || !connection.isOpen()) {
                 getEM();
             }
 
@@ -77,7 +76,7 @@ public class ClienteDAO extends GenericoDAO<EntidadeBase> {
 
     public List<Cliente> GetAllByCPFCNPJ(String cpfCnpj) {
         try {
-            if (connection == null) {
+            if (connection == null || !connection.isOpen()) {
                 getEM();
             }
 

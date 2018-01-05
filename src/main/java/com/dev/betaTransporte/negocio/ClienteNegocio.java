@@ -10,6 +10,10 @@ import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.negocio.exception.ClienteException;
 import com.dev.betaTransporte.vo.Cliente;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import util.BoxInfo;
 import util.Message;
 import util.Util;
 
@@ -18,6 +22,8 @@ import util.Util;
  * @author Henrique
  */
 public class ClienteNegocio {
+
+    BoxInfo boxInfo = new BoxInfo();
 
     public static ClienteException validar(Cliente cliente) {
 
@@ -151,5 +157,20 @@ public class ClienteNegocio {
             System.out.println(ex.getMessage());
             return null;
         }
+    }
+
+    public int excluirCliente(Cliente cliente) {
+
+        try {
+            GenericoDAO dao = new GenericoDAO();
+            dao.remove(Cliente.class, cliente);
+        } catch (Exception ex) {
+
+            boxInfo.BoxInfo(Alert.AlertType.ERROR, Message.message("err.msg.exclusãoRegistro"), ex.getMessage());
+            System.out.println(ex.getMessage());
+            return -1;
+        }
+
+        return 1;
     }
 }

@@ -58,7 +58,7 @@ public class Cliente implements EntidadeBase, Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCliente;
 
     public Long getIdCliente() {

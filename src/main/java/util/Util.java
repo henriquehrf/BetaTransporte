@@ -24,6 +24,15 @@ public class Util {
         return Date.from(instant);
     }
 
+    public LocalDate Date_To_LocalDate(Date dt) {
+        try {
+            return dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return null;
+    }
+
     public String Date_To_String(Date date) {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         return f.format(date);

@@ -35,7 +35,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="txtPesquisa" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" onKeyPressed="#isPressed" onKeyReleased="#onChangePesquisa" prefHeight="25.0" prefWidth="400.0" />
+                              <TextField fx:id="txtPesquisa" onKeyPressed="#isPressed" onKeyReleased="#onChangePesquisa" prefHeight="25.0" prefWidth="400.0" />
                            </children>
                         </HBox>
                         <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0">
@@ -61,12 +61,12 @@
             </VBox>
          </top>
          <center>
-            <TableView fx:id="tbvPesquisa" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tbvPesquisa" onKeyPressed="#onKeySelected" onMouseClicked="#onMouseSelected" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="tbcCpfCnpj" minWidth="150.0" prefWidth="-1.0" text="%lblCpfCnpj" />
-                <TableColumn fx:id="tbcNome" minWidth="250.0" prefWidth="-1.0" text="%lblNomeRazaoSocial" />
-                  <TableColumn fx:id="tbcEmail" minWidth="200.0" prefWidth="-1.0" text="%lblEmail" />
-                  <TableColumn fx:id="tbcCelular" minWidth="100.0" prefWidth="-1.0" text="%lblTelefoneCelular" />
+                <TableColumn fx:id="tbcCpfCnpj" editable="false" minWidth="135.0" prefWidth="-1.0" sortable="false" text="%lblCpfCnpj" />
+                <TableColumn fx:id="tbcNome" editable="false" minWidth="240.0" prefWidth="-1.0" sortable="false" text="%lblNomeRazaoSocial" />
+                  <TableColumn fx:id="tbcEmail" editable="false" minWidth="190.0" prefWidth="-1.0" sortable="false" text="%lblEmail" />
+                  <TableColumn fx:id="tbcCelular" editable="false" minWidth="135.0" prefWidth="-1.0" sortable="false" text="%lblTelefoneCelular" />
               </columns>
                <BorderPane.margin>
                   <Insets left="50.0" right="50.0" />
@@ -76,6 +76,11 @@
          <bottom>
             <VBox prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
+                  <HBox alignment="CENTER" prefHeight="25.0">
+                     <children>
+                        <Label fx:id="lblInfoTable" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#CadastrarOnAction" onKeyPressed="#CadastraronKeyPressed" text="%btnCadastrar">
@@ -115,7 +120,7 @@
                               <String fx:value="btnVoltar" />
                            </styleClass>
                            <HBox.margin>
-                              <Insets right="50.0" />
+                              <Insets right="50.0" top="-10.0" />
                            </HBox.margin>
                         </Button>
                      </children>

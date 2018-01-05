@@ -45,7 +45,7 @@ public class Encomenda implements EntidadeBase , Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
 
   

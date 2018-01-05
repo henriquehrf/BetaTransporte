@@ -27,7 +27,7 @@ import javax.persistence.Table;
 public class Usuario implements EntidadeBase, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUsuario;
 
     @Override

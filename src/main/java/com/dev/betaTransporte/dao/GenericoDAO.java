@@ -74,6 +74,8 @@ public class GenericoDAO<T extends EntidadeBase> {
     }
 
     public void remove(Class<T> clazz, T tt) throws Exception {
+
+        getEM();
         T t = connection.find(clazz, tt.getId());
 
         try {
