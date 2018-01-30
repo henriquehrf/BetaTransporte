@@ -72,26 +72,29 @@ public class Mask {
 
     public String Monetaria(String txt) {
 
-        if (txt == null) {
+           if (txt == null) {
             return "";
         }
         if (txt.length() == 0) {
             return "";
         }
-
         txt = txt.replaceAll("[^0-9]", "");
-        int pos = 0;
-        if (txt.length() < 0) {
-            pos = 0;
-        } else if (txt.length() > 2) {
-            pos = txt.length() - 2;
+
+        if (txt.length() > 14) {
+            txt = txt.substring(0, 14);
         }
 
-        txt = txt.replaceFirst("(\\d{" + pos + "})(\\d)", "$1,$2");
+        try {
 
-        if (pos == 0) {
-            txt = "0" + txt;
+            txt = txt.replaceFirst("\\d{1}(\\d{14})$", "$1.$2");
+            txt = txt.replaceFirst("(\\d{1})(\\d{11})$", "$1.$2");
+            txt = txt.replaceFirst("(\\d{1})(\\d{8})$", "$1.$2");
+            txt = txt.replaceFirst("(\\d{1})(\\d{5})$", "$1.$2");
+            txt = txt.replaceFirst("(\\d{1})(\\d{1,2})$", "$1,$2");
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
+
         return txt;
     }
 
@@ -105,17 +108,10 @@ public class Mask {
         }
 
         txt = txt.replaceAll("[^0-9]", "");
-        int pos = 0;
-        if (txt.length() < 0) {
-            pos = 0;
-        } else if (txt.length() > 3) {
-            pos = txt.length() - 3;
-        }
-
-        txt = txt.replaceFirst("(\\d{" + pos + "})(\\d)", "$1.$2");
-
-        if (pos == 0) {
-            txt = "0" + txt;
+        txt=txt.replaceFirst("^0*", "");
+        txt = txt.replaceFirst("(\\d{1})(\\d{3})$", "$1.$2");
+        if (txt.length() <= 3 && txt.length()!=0) {
+            txt = "0." + txt;
         }
         return txt;
     }
