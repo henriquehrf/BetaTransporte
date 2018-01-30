@@ -55,7 +55,7 @@ public class MainController implements Initializable {
     void ItemUsuarioOnAction(ActionEvent event) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/CadastrarUsuario.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/ConsultarUsuario.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
             bdpPrincipal.setCenter(root);
 
         } catch (Exception ex) {

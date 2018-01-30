@@ -16,7 +16,9 @@ import java.util.concurrent.Future;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -71,6 +73,12 @@ public class CadastrarUsuarioController implements Initializable {
 
     @FXML
     private RadioButton rdbDescarregador;
+    
+    public static int NextPage;
+    
+    Navegation navegation = new Navegation();
+    
+    public static Usuario usuarioAlter;
 
     @FXML
     void onSave(ActionEvent event) {
@@ -83,8 +91,16 @@ public class CadastrarUsuarioController implements Initializable {
     }
 
     private void cancel() {
-        Navegation node = new Navegation();
-        node.getFather(this.stpCadastrarUsuario);
+        if (NextPage == 0) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/ConsultarUsuario.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+                navegation.getMain().setCenter(root);
+                usuarioAlter = null;
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
+            
+        }
     }
 
     @FXML
@@ -219,6 +235,18 @@ public class CadastrarUsuarioController implements Initializable {
         });
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Initializes the controller class.
      */

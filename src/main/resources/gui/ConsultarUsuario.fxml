@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="stpConsultarUsuario" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.ConsultarUsuarioController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <VBox prefHeight="200.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="%lblTitleConsultarUsuario" textAlignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="100.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="%lblPesquisar">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField prefHeight="25.0" prefWidth="400.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </top>
+         <bottom>
+            <VBox prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="25.0">
+                     <children>
+                        <Label fx:id="lblTable" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#CadastrarOnAction" text="%btnCadastrar">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnAdicionar" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnAlterar" mnemonicParsing="false" onAction="#AlterarOnAction" text="%btnAlterar">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnAlterar" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnExcluir" mnemonicParsing="false" onAction="#ExcluirOnAction" text="%btnExcluir">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnRemover" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#VoltarOnAction" text="%btnVoltar">
+                           <HBox.margin>
+                              <Insets right="50.0" top="-10.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnVoltar" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </bottom>
+         <center>
+            <TableView fx:id="tbvPesquisa" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="tbcFuncionario" editable="false" minWidth="135.0" prefWidth="-1.0" sortable="false" text="%lblTipoFuncionario" />
+                <TableColumn fx:id="tbcNome" editable="false" minWidth="240.0" prefWidth="-1.0" sortable="false" text="%lblNome" />
+                  <TableColumn fx:id="tbcCelular" editable="false" minWidth="135.0" prefWidth="-1.0" sortable="false" text="%lblTelefoneCelular" />
+                  <TableColumn fx:id="tbcEmail" editable="false" minWidth="190.0" prefWidth="-1.0" sortable="false" text="%lblEmail" />
+              </columns>
+               <BorderPane.margin>
+                  <Insets left="50.0" right="50.0" />
+               </BorderPane.margin>
+            </TableView>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>
