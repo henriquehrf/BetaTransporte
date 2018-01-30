@@ -99,10 +99,10 @@
          <center>
             <TableView fx:id="tbvPesquisa" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="tbcFuncionario" editable="false" minWidth="135.0" prefWidth="-1.0" sortable="false" text="%lblTipoFuncionario" />
-                <TableColumn fx:id="tbcNome" editable="false" minWidth="240.0" prefWidth="-1.0" sortable="false" text="%lblNome" />
-                  <TableColumn fx:id="tbcCelular" editable="false" minWidth="135.0" prefWidth="-1.0" sortable="false" text="%lblTelefoneCelular" />
-                  <TableColumn fx:id="tbcCidadeOrigem" editable="false" minWidth="190.0" prefWidth="-1.0" sortable="false" text="%lblCidade" />
+                <TableColumn fx:id="tbcFuncionario" editable="false" minWidth="185.0" prefWidth="-1.0" sortable="false" text="%lblTipoFuncionario" />
+                <TableColumn fx:id="tbcNome" editable="false" minWidth="160.0" prefWidth="-1.0" sortable="false" text="%lblNome" />
+                  <TableColumn fx:id="tbcCelular" editable="false" minWidth="125.0" prefWidth="-1.0" sortable="false" text="%lblTelefoneCelular" />
+                  <TableColumn fx:id="tbcCidadeOrigem" editable="false" minWidth="230.0" prefWidth="-1.0" sortable="false" text="%lblCidade" />
               </columns>
                <BorderPane.margin>
                   <Insets left="50.0" right="50.0" />
