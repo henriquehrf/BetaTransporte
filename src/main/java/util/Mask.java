@@ -49,6 +49,17 @@ public class Mask {
         }
     }
 
+    public double Monetaria_To_Double(String txt) {
+        Double value = 0.0;
+
+        txt = txt.replaceAll("[^0-9]", "");
+        txt = txt.replaceFirst("(\\d{1})(\\d{1,2})$", "$1.$2");
+
+        value = Double.parseDouble(txt);
+
+        return value;
+    }
+
     public String TelefoneCelular(String txt) {
 
         txt = txt.replaceAll("[^0-9]", "");
@@ -72,7 +83,7 @@ public class Mask {
 
     public String Monetaria(String txt) {
 
-           if (txt == null) {
+        if (txt == null) {
             return "";
         }
         if (txt.length() == 0) {
@@ -108,9 +119,9 @@ public class Mask {
         }
 
         txt = txt.replaceAll("[^0-9]", "");
-        txt=txt.replaceFirst("^0*", "");
+        txt = txt.replaceFirst("^0*", "");
         txt = txt.replaceFirst("(\\d{1})(\\d{3})$", "$1.$2");
-        if (txt.length() <= 3 && txt.length()!=0) {
+        if (txt.length() <= 3 && txt.length() != 0) {
             txt = "0." + txt;
         }
         return txt;
