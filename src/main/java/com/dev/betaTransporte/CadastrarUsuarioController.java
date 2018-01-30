@@ -8,18 +8,22 @@ package com.dev.betaTransporte;
 import com.dev.betaTransporte.negocio.UsuarioNegocio;
 import com.dev.betaTransporte.negocio.exception.UsuarioException;
 import com.dev.betaTransporte.vo.Usuario;
+import com.dev.betaTransporteENUM.Cidade;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -73,6 +77,9 @@ public class CadastrarUsuarioController implements Initializable {
 
     @FXML
     private RadioButton rdbDescarregador;
+    
+    @FXML
+    private ComboBox<Cidade> cmbOrigem;
     
     public static int NextPage;
     
@@ -148,11 +155,14 @@ public class CadastrarUsuarioController implements Initializable {
         } else {
             usuario.setTipoFuncionario(3);
         }
-
+        
+        usuario.setCidade(this.cmbOrigem.getValue());
+        
         usuario.setNome(this.txtNome.getText());
         usuario.setTelefone(this.txtTelefoneFixo.getText());
         usuario.setCelular(this.txtTelefoneCelular.getText());
         usuario.setEmail(this.txtEmail.getText());
+        usuario.setCidade(this.cmbOrigem.getValue());
  
         //Código responsável por quebrar o nome para gerar o login = nome.sobrenome
         SeparaNome nomeSeparado = new SeparaNome(this.txtNome.getText().toLowerCase());
@@ -254,6 +264,8 @@ public class CadastrarUsuarioController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ObservableList<Cidade> combo= FXCollections.observableArrayList(Cidade.values());
+        this.cmbOrigem.setItems(combo);
     }
 
 }

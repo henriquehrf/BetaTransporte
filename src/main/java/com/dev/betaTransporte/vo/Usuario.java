@@ -6,9 +6,12 @@
 package com.dev.betaTransporte.vo;
 
 import com.dev.betaTransporte.dao.EntidadeBase;
+import com.dev.betaTransporteENUM.Cidade;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,9 +26,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Usuario")
 @NamedQueries({
-    @NamedQuery(name = "Usuario.SelectUser", query = "SELECT m FROM Usuario m WHERE m.Login = :login"),})
+    @NamedQuery(name = "Usuario.SelectUser", query = "SELECT m FROM Usuario m WHERE m.Login = :login")
+    ,
+    @NamedQuery(name = "Usuario.GetAllUser",  query = "SELECT m FROM Usuario m ORDER BY m.Nome ASC")})
+//    @NamedQuery(name = "Usuario.GetAll", query = "SELECT m FROM Usuario m ")})
 public class Usuario implements EntidadeBase, Serializable {
-
+    
+    
+    
+    public Usuario() {
+        this.idUsuario = null;
+        this.Nome = null;
+    }
+    
+    
+    
+    
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idUsuario;
@@ -94,6 +112,8 @@ public class Usuario implements EntidadeBase, Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    
 
     @Column(length = 20, nullable = false)
     private int TipoFuncionario;
@@ -115,5 +135,23 @@ public class Usuario implements EntidadeBase, Serializable {
 
     @Column(length = 100, nullable = false)
     private String Senha;
+    
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Cidade Cidade;
+
+    /**
+     * @return the Cidade
+     */
+    public Cidade getCidade() {
+        return Cidade;
+    }
+
+    /**
+     * @param Cidade the Cidade to set
+     */
+    public void setCidade(Cidade Cidade) {
+        this.Cidade = Cidade;
+    }
 
 }
