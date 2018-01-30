@@ -34,6 +34,7 @@ public class Encomenda implements EntidadeBase , Serializable {
         this.ClienteVO = new Cliente();
         this.Plano = null;
         this.CidadeDestino = null;
+        this.CidadeOrigem = null;
         this.Comprimento = 0;
         this.Largura = 0;
         this.Altura = 0;
@@ -68,6 +69,10 @@ public class Encomenda implements EntidadeBase , Serializable {
     @Column(nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Cidade CidadeDestino;
+    
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Cidade CidadeOrigem;
     
     @Column(nullable = false)
     private int Comprimento;
@@ -241,6 +246,20 @@ public class Encomenda implements EntidadeBase , Serializable {
      */
     public void setNumNotaFiscal(int NumNotaFiscal) {
         this.NumNotaFiscal = NumNotaFiscal;
+    }
+
+    /**
+     * @return the CidadeOrigem
+     */
+    public Cidade getCidadeOrigem() {
+        return CidadeOrigem;
+    }
+
+    /**
+     * @param CidadeOrigem the CidadeOrigem to set
+     */
+    public void setCidadeOrigem(Cidade CidadeOrigem) {
+        this.CidadeOrigem = CidadeOrigem;
     }
     
 }

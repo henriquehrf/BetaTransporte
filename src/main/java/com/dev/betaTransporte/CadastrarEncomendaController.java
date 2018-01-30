@@ -6,8 +6,10 @@
 package com.dev.betaTransporte;
 
 import com.dev.betaTransporte.negocio.EncomendaNegocio;
+import com.dev.betaTransporte.negocio.UsuarioNegocio;
 import com.dev.betaTransporte.negocio.exception.EncomendaException;
 import com.dev.betaTransporte.vo.Encomenda;
+import com.dev.betaTransporte.vo.Usuario;
 import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
 import java.util.Date;
@@ -100,11 +102,17 @@ public class CadastrarEncomendaController {
     void initialize(){
         ObservableList<Cidade> combo= FXCollections.observableArrayList(Cidade.values());
         this.cmbCidadeDestino.setItems(combo);
+        
+        
     }
     private Encomenda getEncomenda() {
+        
         Encomenda encomenda = new Encomenda();
         encomenda.setCpfCnpjDestinatario(this.txtCpfCnpjDestino.getText());
         encomenda.getClienteVO().setCpfCnpj(this.txtCpfCnpjCliente.getText());
+        
+        
+        encomenda.setCidadeOrigem(UsuarioNegocio.user.getCidade());
         
         if ("".equals(this.txtComprimento.getText())){
             encomenda.setComprimento(0);
@@ -143,7 +151,7 @@ public class CadastrarEncomendaController {
         if ("".equals(this.txtValorDeclarado.getText())){
             encomenda.setValorDeclarado(0);
         }else{
-            encomenda.setValorDeclarado(Float.parseFloat(this.txtValorDeclarado.getText()));
+            encomenda.setValorDeclarado((float) mask.Monetaria_To_Double(this.txtValorDeclarado.getText()));
         }
         
         if (this.rdbCONV.isSelected()) {
