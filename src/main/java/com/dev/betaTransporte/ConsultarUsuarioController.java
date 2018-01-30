@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,7 +40,7 @@ public class ConsultarUsuarioController implements Initializable {
     private Label lblTable;
 
     @FXML
-    private TableColumn<Usuario, String> tbcFuncionario;
+    private TableColumn<Usuario, Integer> tbcFuncionario;
 
     @FXML
     private StackPane stpConsultarUsuario;
@@ -63,7 +64,7 @@ public class ConsultarUsuarioController implements Initializable {
     private TableColumn<Usuario, String> tbcCelular;
 
     @FXML
-    private TableColumn<Usuario, String> tbcEmail;
+    private TableColumn<Usuario, Enum> tbcCidade;
 
     @FXML
     void AlterarOnAction(ActionEvent event) {
@@ -87,8 +88,35 @@ public class ConsultarUsuarioController implements Initializable {
 
 //        UsuarioList.remove(0, UsuarioList.size());
         UsuarioList.addAll(list);
-        this.tbcNome.setCellValueFactory(new PropertyValueFactory<Usuario, String>("login"));
-        
+        // System.out.println("Aqui ->"+UsuarioList.get(0).getTipoFuncionario());
+        this.tbcFuncionario.setCellValueFactory(new PropertyValueFactory<Usuario, Integer>("tipoFuncionario"));
+        this.tbcNome.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nome"));
+        this.tbcCelular.setCellValueFactory(new PropertyValueFactory<Usuario, String>("celular"));
+        this.tbcCidade.setCellValueFactory(new PropertyValueFactory<Usuario, Enum>("cidade"));
+
+        tbcFuncionario.setCellFactory(tc -> new TableCell<Usuario, Integer>() {
+            String conversor;
+
+            @Override
+            protected void updateItem(Integer value, boolean empty) {
+                super.updateItem(value, empty);
+                if (value == null || empty) {
+                    setText("");
+                } else {
+                    if (value == 0) {
+                        setText("Administrador");
+                    }
+                    if (value == 1) {
+                        setText("Atendente");
+                    }
+                    if (value == 2) {
+                        setText("Carregador/Descarrgador");
+                    }
+                }
+            }
+        }
+        );
+
         tbvPesquisa.setItems(UsuarioList);
 
         if (UsuarioList.size() == 0) {

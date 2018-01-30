@@ -37,6 +37,9 @@ public class Usuario implements EntidadeBase, Serializable {
     public Usuario() {
         this.idUsuario = null;
         this.Nome = null;
+        this.TipoFuncionario = 0;
+        this.Celular = null;
+        this.Cidade = null;
     }
     
     
