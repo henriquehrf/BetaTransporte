@@ -64,7 +64,7 @@ public class ConsultarUsuarioController implements Initializable {
     private TableColumn<Usuario, String> tbcCelular;
 
     @FXML
-    private TableColumn<Usuario, Enum> tbcCidade;
+    private TableColumn<Usuario, Enum> tbcCidadeOrigem;
 
     @FXML
     void AlterarOnAction(ActionEvent event) {
@@ -89,10 +89,10 @@ public class ConsultarUsuarioController implements Initializable {
 //        UsuarioList.remove(0, UsuarioList.size());
         UsuarioList.addAll(list);
         // System.out.println("Aqui ->"+UsuarioList.get(0).getTipoFuncionario());
-        this.tbcFuncionario.setCellValueFactory(new PropertyValueFactory<Usuario, Integer>("tipoFuncionario"));
-        this.tbcNome.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nome"));
-        this.tbcCelular.setCellValueFactory(new PropertyValueFactory<Usuario, String>("celular"));
-        this.tbcCidade.setCellValueFactory(new PropertyValueFactory<Usuario, Enum>("cidade"));
+        this.tbcFuncionario.setCellValueFactory(new PropertyValueFactory<Usuario, Integer>("TipoFuncionario"));
+        this.tbcNome.setCellValueFactory(new PropertyValueFactory<Usuario, String>("Nome"));
+        this.tbcCelular.setCellValueFactory(new PropertyValueFactory<Usuario, String>("Celular"));
+        this.tbcCidadeOrigem.setCellValueFactory(new PropertyValueFactory<Usuario, Enum>("Cidade"));
 
         tbcFuncionario.setCellFactory(tc -> new TableCell<Usuario, Integer>() {
             String conversor;

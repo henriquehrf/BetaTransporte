@@ -67,7 +67,7 @@ public class CadastrarUsuarioController implements Initializable {
     private TextField txtTelefoneFixo;
 
     @FXML
-    private RadioButton rdbCarregador;
+    private RadioButton rdbCarregadorDescarregador;
 
     @FXML
     private TextField txtNome;
@@ -75,9 +75,6 @@ public class CadastrarUsuarioController implements Initializable {
     @FXML
     private TextField txtEmail;
 
-    @FXML
-    private RadioButton rdbDescarregador;
-    
     @FXML
     private ComboBox<Cidade> cmbOrigem;
     
@@ -148,9 +145,9 @@ public class CadastrarUsuarioController implements Initializable {
         Usuario usuario = new Usuario();
         if (this.rdbAtendente.isSelected()) {
             usuario.setTipoFuncionario(1);
-        } else if (this.rdbCarregador.isSelected()) {
+        } else if (this.rdbCarregadorDescarregador.isSelected()) {
             usuario.setTipoFuncionario(2);
-        } else if (this.rdbDescarregador.isSelected()) {
+        } else if (this.rdbCarregadorDescarregador.isSelected()) {
             usuario.setTipoFuncionario(2);
         } else {
             usuario.setTipoFuncionario(3);
@@ -185,12 +182,12 @@ public class CadastrarUsuarioController implements Initializable {
 
         if (ex.getTipoFuncionario()) {
             this.rdbAtendente.setStyle(COR);
-            this.rdbCarregador.setStyle(COR);
-            this.rdbDescarregador.setStyle(COR);
+            this.rdbCarregadorDescarregador.setStyle(COR);
+            this.rdbCarregadorDescarregador.setStyle(COR);
         } else {
             this.rdbAtendente.setStyle(NORMAL);
-            this.rdbCarregador.setStyle(NORMAL);
-            this.rdbDescarregador.setStyle(NORMAL);
+            this.rdbCarregadorDescarregador.setStyle(NORMAL);
+            this.rdbCarregadorDescarregador.setStyle(NORMAL);
         }
         if (ex.getNome()) {
             this.txtNome.setStyle(COR);
