@@ -40,6 +40,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
@@ -117,6 +118,20 @@
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin></TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+                           <children>
+                              <Label text="%lblCidade" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <children>
+                              <ComboBox fx:id="cmbOrigem" prefHeight="25.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ComboBox>
                            </children>
                         </HBox>
                      </children>

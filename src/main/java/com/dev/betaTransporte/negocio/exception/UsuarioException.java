@@ -22,7 +22,7 @@ public class UsuarioException {
     public Boolean getNome() {
         return nome;
     }
-
+    
     public void setNome(Boolean nome) {
         this.nome = nome;
     }
@@ -50,6 +50,8 @@ public class UsuarioException {
     public void setEmail(Boolean email) {
         this.email = email;
     }
+    
+
 
     public String getMsg() {
         return msg;
@@ -74,6 +76,7 @@ public class UsuarioException {
         this.telefoneCelular = false;
         this.email = false;
         this.msg = "";
+        this.cidade = false;
     }
 
     private Boolean TipoFuncionario;
@@ -81,7 +84,21 @@ public class UsuarioException {
     private Boolean telefoneFixo;
     private Boolean telefoneCelular;
     private Boolean email;
-
+    private Boolean cidade;
     private String msg;
+
+    /**
+     * @return the cidade
+     */
+    public Boolean getCidade() {
+        return cidade;
+    }
+
+    /**
+     * @param cidade the cidade to set
+     */
+    public void setCidade(Boolean cidade) {
+        this.cidade = cidade;
+    }
 
 }

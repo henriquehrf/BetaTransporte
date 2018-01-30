@@ -5,16 +5,17 @@
  */
 package com.dev.betaTransporte;
 
+import com.dev.betaTransporte.negocio.UsuarioNegocio;
 import com.dev.betaTransporte.vo.Usuario;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
-
-
 //
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,9 +23,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
+import util.Message;
 import util.Navegation;
-
 
 /**
  * FXML Controller class
@@ -32,7 +34,7 @@ import util.Navegation;
  * @author Adam
  */
 public class ConsultarUsuarioController implements Initializable {
-    
+
     @FXML
     private Label lblTable;
 
@@ -58,12 +60,10 @@ public class ConsultarUsuarioController implements Initializable {
     private Button btnExcluir;
 
     @FXML
-    private TableColumn<?, ?> tbcCelular;
+    private TableColumn<Usuario, String> tbcCelular;
 
     @FXML
-    private TableColumn<?, ?> tbcEmail;
-
-    
+    private TableColumn<Usuario, String> tbcEmail;
 
     @FXML
     void AlterarOnAction(ActionEvent event) {
@@ -74,21 +74,43 @@ public class ConsultarUsuarioController implements Initializable {
     void ExcluirOnAction(ActionEvent event) {
 
     }
-    
-    
+
+    //Aqui
+    private ObservableList<Usuario> UsuarioList = FXCollections.observableArrayList();
+
+    @FXML
+    Label lblInfoTable;
+
+    UsuarioNegocio UsuarioNegocio = new UsuarioNegocio();
+
+    void completeTable(List<Usuario> list) {
+
+//        UsuarioList.remove(0, UsuarioList.size());
+        UsuarioList.addAll(list);
+        this.tbcNome.setCellValueFactory(new PropertyValueFactory<Usuario, String>("login"));
+        
+        tbvPesquisa.setItems(UsuarioList);
+
+        if (UsuarioList.size() == 0) {
+            lblInfoTable.setText(Message.message("lblTableInfo1"));
+        } else if (UsuarioList.size() == 1) {
+            lblInfoTable.setText(Message.message("lblTableInfo2") + " " + UsuarioList.size() + " " + Message.message("lblTableInfo3"));
+        } else {
+            lblInfoTable.setText(Message.message("lblTableInfo5") + " " + UsuarioList.size() + " " + Message.message("lblTableInfo4"));
+        }
+    }
 
     //Ok
-    
     @FXML
     void VoltarOnAction(ActionEvent event) {
-         navegation.getFather(stpConsultarUsuario);
+        navegation.getFather(stpConsultarUsuario);
     }
-    
+
     @FXML
     void CadastrarOnAction(ActionEvent event) {
         editOrCreateUsuario();
     }
-    
+
     void editOrCreateUsuario() {
         try {
             CadastrarUsuarioController.NextPage = 0;
@@ -98,16 +120,30 @@ public class ConsultarUsuarioController implements Initializable {
             System.err.println(ex);
         }
     }
-    
-   
+
     Navegation navegation = new Navegation();
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+
+        try {
+            // TODO
+
+            btnAlterar.setDisable(true);
+            btnExcluir.setDisable(true);
+
+            tbcCelular.setStyle(" -fx-alignment:center");
+
+            completeTable(UsuarioNegocio.searchUsuario("", ""));
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
 }

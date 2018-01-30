@@ -10,6 +10,7 @@ import com.dev.betaTransporte.dao.UsuarioDAO;
 import com.dev.betaTransporte.negocio.exception.LoginException;
 import com.dev.betaTransporte.negocio.exception.UsuarioException;
 import com.dev.betaTransporte.vo.Usuario;
+import java.util.List;
 import util.BoxInfo;
 import util.Criptografia;
 import util.Message;
@@ -75,6 +76,11 @@ public class UsuarioNegocio {
             ex.setNome(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.nomePreencher"));
         }
+        
+        if (usuario.getCidade()== null) {
+            ex.setCidade(Boolean.TRUE);
+            ex.setMsg(Message.message("err.msg.cidade"));
+        }
 
         return ex;
     }
@@ -106,4 +112,18 @@ public class UsuarioNegocio {
             return null;
         }
     }
+
+    public List<Usuario> searchUsuario(String content, String type) {
+        List<Usuario> result=null;
+        try {
+            UsuarioDAO UsuarioList = new UsuarioDAO();
+            result = UsuarioList.GetAll();
+            return result;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
 }
