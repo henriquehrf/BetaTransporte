@@ -89,7 +89,7 @@ public class Encomenda implements EntidadeBase , Serializable {
     private String cpfCnpjDestinatario;
     
     @Column(nullable = false)
-    private int Peso;
+    private float Peso;
     
     @Column(nullable = false)
     private int NumNotaFiscal;
@@ -218,14 +218,14 @@ public class Encomenda implements EntidadeBase , Serializable {
     /**
      * @return the Peso
      */
-    public int getPeso() {
+    public float getPeso() {
         return Peso;
     }
 
     /**
      * @param Peso the Peso to set
      */
-    public void setPeso(int Peso) {
+    public void setPeso(float Peso) {
         this.Peso = Peso;
     }
 

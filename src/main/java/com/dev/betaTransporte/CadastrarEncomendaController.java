@@ -137,7 +137,7 @@ public class CadastrarEncomendaController {
         if ("".equals(this.txtPeso.getText())){
             encomenda.setPeso(0);
         }else{
-            encomenda.setPeso(Integer.parseInt(this.txtPeso.getText()));
+            encomenda.setPeso(Float.parseFloat(this.txtPeso.getText()));
         }
         
         if ("".equals(this.txtValorDeclarado.getText())){
