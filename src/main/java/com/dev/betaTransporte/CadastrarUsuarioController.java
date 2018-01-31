@@ -192,6 +192,12 @@ public class CadastrarUsuarioController implements Initializable {
         } else {
             this.txtNome.setStyle(NORMAL);
         }
+        
+        if (ex.getCidade()) {
+            this.cmbOrigem.setStyle(COR);
+        } else {
+            this.cmbOrigem.setStyle(NORMAL);
+        }
 
         box.BoxInfo(Alert.AlertType.WARNING, Message.message("err.msg.cadastro"), ex.getMsg());
     }
