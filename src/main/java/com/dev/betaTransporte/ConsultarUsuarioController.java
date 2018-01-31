@@ -29,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -123,7 +124,15 @@ public class ConsultarUsuarioController implements Initializable {
         editOrCreateUsuario();
     }
     
- 
+    @FXML
+    void isPressed(KeyEvent event) {
+
+        if (event.getCode() == KeyCode.ENTER) {
+           completeTable(usuarioNegocio.searchUsuario("%" + this.txtPesquisa.getText() + "%", "nome"));
+
+        }
+    }
+
     
     
      void excluir() {
@@ -179,14 +188,6 @@ public class ConsultarUsuarioController implements Initializable {
         );
 
         tbvPesquisa.setItems(UsuarioList);
-
-        if (UsuarioList.size() == 0) {
-            lblInfoTable.setText(Message.message("lblTableInfo1"));
-        } else if (UsuarioList.size() == 1) {
-            lblInfoTable.setText(Message.message("lblTableInfo2") + " " + UsuarioList.size() + " " + Message.message("lblTableInfo3"));
-        } else {
-            lblInfoTable.setText(Message.message("lblTableInfo5") + " " + UsuarioList.size() + " " + Message.message("lblTableInfo4"));
-        }
     }
 
     //Ok
@@ -209,6 +210,13 @@ public class ConsultarUsuarioController implements Initializable {
             System.err.println(ex);
         }
     }
+    
+    
+//    @FXML
+//    void isPressed(KeyEvent event) {
+//
+////        ompleteTable(clienteNegocio.searchCliente("%" + this.txtPesquisa.getText() + "%", "nome"));
+//    }
 
     Navegation navegation = new Navegation();
 

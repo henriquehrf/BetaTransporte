@@ -55,7 +55,22 @@ public class UsuarioDAO extends GenericoDAO<EntidadeBase> {
 
     }
     
-    
+    public List<Usuario> GetAllByNome(String nome) {
+        try {
+            if (connection == null || !connection.isOpen()) {
+                getEM();
+            }
+
+            Query query = connection.createNamedQuery("Usuario.GetAllByNome2", Usuario.class);
+            query.setParameter("Nome", nome);
+            List<Usuario> usuario = query.getResultList();
+            return usuario;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
     
     
     

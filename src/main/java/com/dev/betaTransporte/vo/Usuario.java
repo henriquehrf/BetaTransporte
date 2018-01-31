@@ -28,12 +28,12 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Usuario.SelectUser", query = "SELECT m FROM Usuario m WHERE m.Login = :login")
     ,
-    @NamedQuery(name = "Usuario.GetAllUser",  query = "SELECT m FROM Usuario m ORDER BY m.Nome ASC")})
-//    @NamedQuery(name = "Usuario.GetAll", query = "SELECT m FROM Usuario m ")})
+    @NamedQuery(name = "Usuario.GetAllUser", query = "SELECT m FROM Usuario m ORDER BY m.Nome ASC")
+    ,
+//    @NamedQuery(name = "Usuario.GetAllByNome", query = "SELECT m FROM Usuario m WHERE  UPPER(m.nome) LIKE UPPER(:nome) ORDER BY m.nome ASC")})
+ @NamedQuery(name = "Usuario.GetAllByNome2", query = "SELECT m FROM Usuario m WHERE  UPPER(m.Nome) LIKE UPPER(:Nome) ORDER BY m.Nome ASC")})   
 public class Usuario implements EntidadeBase, Serializable {
-    
-    
-    
+
     public Usuario() {
         this.idUsuario = null;
         this.TipoFuncionario = 0;
@@ -43,7 +43,6 @@ public class Usuario implements EntidadeBase, Serializable {
         this.email = null;
         this.Cidade = null;
     }
-    
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -113,8 +112,6 @@ public class Usuario implements EntidadeBase, Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
 
     @Column(length = 20, nullable = false)
     private int TipoFuncionario;
@@ -136,7 +133,7 @@ public class Usuario implements EntidadeBase, Serializable {
 
     @Column(length = 100, nullable = false)
     private String Senha;
-    
+
     @Column(nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Cidade Cidade;

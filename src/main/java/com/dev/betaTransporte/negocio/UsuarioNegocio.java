@@ -118,8 +118,15 @@ public class UsuarioNegocio {
         List<Usuario> result;
         try {
             UsuarioDAO usuarioList = new UsuarioDAO();
-            result = usuarioList.GetAll();
-            return result;
+            if (content.length() > 0) {
+                result = usuarioList.GetAllByNome(content);
+                    return result;
+
+            } else {
+                result = usuarioList.GetAll();
+                return result;
+
+            }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return null;

@@ -33,7 +33,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="txtPesquisa" prefHeight="25.0" prefWidth="400.0" />
+                              <TextField fx:id="txtPesquisa" onKeyPressed="#isPressed" prefHeight="25.0" prefWidth="400.0" />
                            </children>
                         </HBox>
                      </children>
