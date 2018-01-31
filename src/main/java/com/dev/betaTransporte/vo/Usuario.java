@@ -36,17 +36,15 @@ public class Usuario implements EntidadeBase, Serializable {
     
     public Usuario() {
         this.idUsuario = null;
-        this.Nome = null;
         this.TipoFuncionario = 0;
+        this.Nome = null;
+        this.Telefone = null;
         this.Celular = null;
+        this.email = null;
         this.Cidade = null;
     }
     
-    
-    
-    
-    
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idUsuario;

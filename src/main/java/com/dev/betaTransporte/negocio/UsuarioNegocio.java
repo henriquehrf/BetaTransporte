@@ -11,6 +11,7 @@ import com.dev.betaTransporte.negocio.exception.LoginException;
 import com.dev.betaTransporte.negocio.exception.UsuarioException;
 import com.dev.betaTransporte.vo.Usuario;
 import java.util.List;
+import javafx.scene.control.Alert;
 import util.BoxInfo;
 import util.Criptografia;
 import util.Message;
@@ -22,7 +23,7 @@ import util.Util;
  */
 public class UsuarioNegocio {
 
-    BoxInfo box = new BoxInfo();
+    BoxInfo boxInfo = new BoxInfo();
 
     public static Usuario user = null;
 
@@ -76,8 +77,8 @@ public class UsuarioNegocio {
             ex.setNome(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.nomePreencher"));
         }
-        
-        if (usuario.getCidade()== null) {
+
+        if (usuario.getCidade() == null) {
             ex.setCidade(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.cidade"));
         }
@@ -114,16 +115,30 @@ public class UsuarioNegocio {
     }
 
     public List<Usuario> searchUsuario(String content, String type) {
-        List<Usuario> result=null;
+        List<Usuario> result;
         try {
-            UsuarioDAO UsuarioList = new UsuarioDAO();
-            result = UsuarioList.GetAll();
+            UsuarioDAO usuarioList = new UsuarioDAO();
+            result = usuarioList.GetAll();
             return result;
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return null;
         }
+    }
+
+    public int excluirUsuario(Usuario usuario) {
+
+        try {
+            GenericoDAO dao = new GenericoDAO();
+            dao.remove(Usuario.class, usuario);
+        } catch (Exception ex) {
+
+            boxInfo.BoxInfo(Alert.AlertType.ERROR, Message.message("err.msg.exclusãoRegistro"), ex.getMessage());
+            System.out.println(ex.getMessage());
+            return -1;
+        }
+
+        return 1;
     }
 
 }

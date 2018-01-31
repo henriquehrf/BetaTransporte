@@ -152,9 +152,7 @@ public class CadastrarUsuarioController implements Initializable {
         } else {
             usuario.setTipoFuncionario(3);
         }
-        
-        usuario.setCidade(this.cmbOrigem.getValue());
-        
+       
         usuario.setNome(this.txtNome.getText());
         usuario.setTelefone(this.txtTelefoneFixo.getText());
         usuario.setCelular(this.txtTelefoneCelular.getText());
@@ -201,7 +199,11 @@ public class CadastrarUsuarioController implements Initializable {
     private void save() {
         Usuario usuario = getUsuario();
         loading.start(stpCadastrarUsuario);
-
+        
+        if (usuarioAlter != null) {
+            usuario.setIdUsuario(usuarioAlter.getId());
+        }
+        
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -244,7 +246,19 @@ public class CadastrarUsuarioController implements Initializable {
 
     
     
-    
+    void completeInfo(Usuario usuario) {
+        if(usuario.getTipoFuncionario() == 1){
+          this.rdbAtendente.setSelected(true);  
+        }
+        else if(usuario.getTipoFuncionario() == 2){
+            this.rdbCarregadorDescarregador.setSelected(true);
+        }
+        this.txtNome.setText(usuario.getNome());
+        this.txtTelefoneFixo.setText(usuario.getTelefone());
+        this.txtTelefoneCelular.setText(usuario.getCelular());
+        this.txtEmail.setText(usuario.getEmail());
+        this.cmbOrigem.setValue(usuario.getCidade());
+    }
     
     
     
@@ -263,6 +277,10 @@ public class CadastrarUsuarioController implements Initializable {
         // TODO
         ObservableList<Cidade> combo= FXCollections.observableArrayList(Cidade.values());
         this.cmbOrigem.setItems(combo);
+        
+        if (usuarioAlter != null) {
+            completeInfo(usuarioAlter);
+        }
     }
 
 }

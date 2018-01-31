@@ -10,6 +10,8 @@ import com.dev.betaTransporte.vo.Usuario;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,13 +21,18 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import util.BoxInfo;
 import util.Message;
 import util.Navegation;
 
@@ -65,15 +72,13 @@ public class ConsultarUsuarioController implements Initializable {
 
     @FXML
     private TableColumn<Usuario, Enum> tbcCidadeOrigem;
-
+    
     @FXML
-    void AlterarOnAction(ActionEvent event) {
-
-    }
+    private TextField txtPesquisa;
 
     @FXML
     void ExcluirOnAction(ActionEvent event) {
-
+         excluir();
     }
 
     //Aqui
@@ -82,11 +87,67 @@ public class ConsultarUsuarioController implements Initializable {
     @FXML
     Label lblInfoTable;
 
-    UsuarioNegocio UsuarioNegocio = new UsuarioNegocio();
+    UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
+    BoxInfo boxInfo = new BoxInfo();
+    public static Usuario usuarioAlter;
+    
+    
+    @FXML
+    void onKeySelected(KeyEvent event) {
+        if (tbvPesquisa.getSelectionModel().getSelectedItem() != null) {
+            btnAlterar.setDisable(false);
+            btnExcluir.setDisable(false);
+        } else {
+            btnAlterar.setDisable(true);
+            btnExcluir.setDisable(true);
+        }
+    }
+    
+    
+    @FXML
+    void onMouseSelected(MouseEvent event) {
+        if (tbvPesquisa.getSelectionModel().getSelectedItem() != null) {
+            btnAlterar.setDisable(false);
+            btnExcluir.setDisable(false);
+        } else {
+            btnAlterar.setDisable(true);
+            btnExcluir.setDisable(true);
+        }
+    }
+    
+    
+    @FXML
+    void AlterarOnAction(ActionEvent event) {
 
+        CadastrarUsuarioController.usuarioAlter = tbvPesquisa.getSelectionModel().getSelectedItem();
+        editOrCreateUsuario();
+    }
+    
+ 
+    
+    
+     void excluir() {
+        Usuario usuario = tbvPesquisa.getSelectionModel().getSelectedItem();
+        if (usuario != null) {
+            if (boxInfo.BoxChoice(Alert.AlertType.CONFIRMATION, Message.message("conf.title.msg"), Message.message("conf.remocao.msg.part1") + " " + usuario.getNome() + " " + Message.message("conf.remocao.msg.part2"), Message.message("conf.opacao.confirmacao"), Message.message("conf.opcao.desitencia"))) {
+                if (usuarioNegocio.excluirUsuario(usuario) > 0) {
+                    completeTable(usuarioNegocio.searchUsuario("", ""));
+                    this.txtPesquisa.setText("");
+                    btnAlterar.setDisable(true);
+                    btnExcluir.setDisable(true);
+                }
+            }
+            
+        }
+    }
+    
+    
+
+    
+    
     void completeTable(List<Usuario> list) {
 
-//        UsuarioList.remove(0, UsuarioList.size());
+        UsuarioList.remove(0, UsuarioList.size());
         UsuarioList.addAll(list);
         // System.out.println("Aqui ->"+UsuarioList.get(0).getTipoFuncionario());
         this.tbcFuncionario.setCellValueFactory(new PropertyValueFactory<Usuario, Integer>("TipoFuncionario"));
@@ -157,21 +218,45 @@ public class ConsultarUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
         try {
             // TODO
 
             btnAlterar.setDisable(true);
             btnExcluir.setDisable(true);
-
+            
             tbcCelular.setStyle(" -fx-alignment:center");
 
-            completeTable(UsuarioNegocio.searchUsuario("", ""));
+            completeTable(usuarioNegocio.searchUsuario("", ""));
+
+            this.tbvPesquisa.focusedProperty().addListener(new ChangeListener<Boolean>() {
+
+                @Override
+                public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+                    if (t1) {
+                        if (tbvPesquisa.getSelectionModel().getSelectedItem() != null) {
+                            btnAlterar.setDisable(false);
+                            btnExcluir.setDisable(false);
+                        } else {
+                            btnAlterar.setDisable(true);
+                            btnExcluir.setDisable(true);
+                        }
+                    } else {
+                        if (tbvPesquisa.getSelectionModel().getSelectedItem() != null) {
+                            btnAlterar.setDisable(false);
+                            btnExcluir.setDisable(false);
+                        } else {
+                            btnAlterar.setDisable(true);
+                            btnExcluir.setDisable(true);
+                        }
+                    }
+
+                }
+            });
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
+        
     }
 
 }

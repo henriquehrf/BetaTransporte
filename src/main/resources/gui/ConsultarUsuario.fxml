@@ -33,7 +33,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="25.0" prefWidth="400.0" />
+                              <TextField fx:id="txtPesquisa" prefHeight="25.0" prefWidth="400.0" />
                            </children>
                         </HBox>
                      </children>
@@ -97,7 +97,7 @@
             </VBox>
          </bottom>
          <center>
-            <TableView fx:id="tbvPesquisa" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tbvPesquisa" onKeyPressed="#onKeySelected" onMouseClicked="#onMouseSelected" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="tbcFuncionario" editable="false" minWidth="185.0" prefWidth="-1.0" sortable="false" text="%lblTipoFuncionario" />
                 <TableColumn fx:id="tbcNome" editable="false" minWidth="160.0" prefWidth="-1.0" sortable="false" text="%lblNome" />
