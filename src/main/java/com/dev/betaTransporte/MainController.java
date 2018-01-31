@@ -36,8 +36,6 @@ public class MainController implements Initializable {
     @FXML
     private MenuItem mnuItenEncomenda;
 
-
-
     @FXML
     void ItemClienteOnAction(ActionEvent event) {
 
@@ -83,13 +81,16 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Navegation nav = new Navegation();
         nav.setMain(bdpPrincipal);
-        if(user.getTipoFuncionario() == 1){
+
+        if (user.getFuncionario().equals(user.getFuncionario().Atendente)) {
             mnuItemUsuario.setVisible(false);
         }
-        if(user.getTipoFuncionario() == 2){
+
+        if (user.getFuncionario().equals(user.getFuncionario().CarregadorDescarregador)) {
             mnuItemUsuario.setVisible(false);
             mnuItenCliente.setVisible(false);
         }
+
     }
 
 }

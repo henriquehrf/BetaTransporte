@@ -7,6 +7,7 @@ package com.dev.betaTransporte.vo;
 
 import com.dev.betaTransporte.dao.EntidadeBase;
 import com.dev.betaTransporteENUM.Cidade;
+import com.dev.betaTransporteENUM.Funcionario;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,12 +32,12 @@ import javax.persistence.Table;
     @NamedQuery(name = "Usuario.GetAllUser", query = "SELECT m FROM Usuario m ORDER BY m.Nome ASC")
     ,
 //    @NamedQuery(name = "Usuario.GetAllByNome", query = "SELECT m FROM Usuario m WHERE  UPPER(m.nome) LIKE UPPER(:nome) ORDER BY m.nome ASC")})
- @NamedQuery(name = "Usuario.GetAllByNome2", query = "SELECT m FROM Usuario m WHERE  UPPER(m.Nome) LIKE UPPER(:Nome) ORDER BY m.Nome ASC")})   
+ @NamedQuery(name = "Usuario.GetAllByNome2", query = "SELECT m FROM Usuario m WHERE  UPPER(m.Nome) LIKE UPPER(:Nome) ORDER BY m.Nome ASC")})
 public class Usuario implements EntidadeBase, Serializable {
 
     public Usuario() {
         this.idUsuario = null;
-        this.TipoFuncionario = 0;
+        this.Funcionario = null;
         this.Nome = null;
         this.Telefone = null;
         this.Celular = null;
@@ -97,14 +98,6 @@ public class Usuario implements EntidadeBase, Serializable {
         this.Senha = Senha;
     }
 
-    public int getTipoFuncionario() {
-        return TipoFuncionario;
-    }
-
-    public void setTipoFuncionario(int TipoFuncionario) {
-        this.TipoFuncionario = TipoFuncionario;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -112,9 +105,6 @@ public class Usuario implements EntidadeBase, Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @Column(length = 20, nullable = false)
-    private int TipoFuncionario;
 
     @Column(length = 100, nullable = false)
     private String Nome;
@@ -138,6 +128,10 @@ public class Usuario implements EntidadeBase, Serializable {
     @Enumerated(EnumType.ORDINAL)
     private Cidade Cidade;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Funcionario Funcionario;
+
     /**
      * @return the Cidade
      */
@@ -150,6 +144,20 @@ public class Usuario implements EntidadeBase, Serializable {
      */
     public void setCidade(Cidade Cidade) {
         this.Cidade = Cidade;
+    }
+
+    /**
+     * @return the Funcionario
+     */
+    public Funcionario getFuncionario() {
+        return Funcionario;
+    }
+
+    /**
+     * @param Funcionario the Funcionario to set
+     */
+    public void setFuncionario(Funcionario Funcionario) {
+        this.Funcionario = Funcionario;
     }
 
 }

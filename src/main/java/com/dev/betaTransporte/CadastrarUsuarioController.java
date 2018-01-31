@@ -77,11 +77,11 @@ public class CadastrarUsuarioController implements Initializable {
 
     @FXML
     private ComboBox<Cidade> cmbOrigem;
-    
+
     public static int NextPage;
-    
+
     Navegation navegation = new Navegation();
-    
+
     public static Usuario usuarioAlter;
 
     @FXML
@@ -103,7 +103,7 @@ public class CadastrarUsuarioController implements Initializable {
             } catch (Exception ex) {
                 System.err.println(ex);
             }
-            
+
         }
     }
 
@@ -144,21 +144,19 @@ public class CadastrarUsuarioController implements Initializable {
     private Usuario getUsuario() {
         Usuario usuario = new Usuario();
         if (this.rdbAtendente.isSelected()) {
-            usuario.setTipoFuncionario(1);
+            usuario.setFuncionario(usuario.getFuncionario().Atendente);
         } else if (this.rdbCarregadorDescarregador.isSelected()) {
-            usuario.setTipoFuncionario(2);
-        } else if (this.rdbCarregadorDescarregador.isSelected()) {
-            usuario.setTipoFuncionario(2);
+            usuario.setFuncionario(usuario.getFuncionario().CarregadorDescarregador);
         } else {
-            usuario.setTipoFuncionario(3);
+            usuario.setFuncionario(null);
         }
-       
+
         usuario.setNome(this.txtNome.getText());
         usuario.setTelefone(this.txtTelefoneFixo.getText());
         usuario.setCelular(this.txtTelefoneCelular.getText());
         usuario.setEmail(this.txtEmail.getText());
         usuario.setCidade(this.cmbOrigem.getValue());
- 
+
         //Código responsável por quebrar o nome para gerar o login = nome.sobrenome
         SeparaNome nomeSeparado = new SeparaNome(this.txtNome.getText().toLowerCase());
         //Código responsável por criptografar a senha do usuário
@@ -172,13 +170,13 @@ public class CadastrarUsuarioController implements Initializable {
     }
 
     void complete_erros(UsuarioException ex) {
-        
+
         System.out.println(ex.getMsg());
         final String COR = "-fx-border-color:red";
         final String NORMAL = "-fx-border-color:darkgrey";
         final String NONE = "-fx-border-color:none";
 
-        if (ex.getTipoFuncionario()) {
+        if (ex.getFuncionario()) {
             this.rdbAtendente.setStyle(COR);
             this.rdbCarregadorDescarregador.setStyle(COR);
             this.rdbCarregadorDescarregador.setStyle(COR);
@@ -192,7 +190,7 @@ public class CadastrarUsuarioController implements Initializable {
         } else {
             this.txtNome.setStyle(NORMAL);
         }
-        
+
         if (ex.getCidade()) {
             this.cmbOrigem.setStyle(COR);
         } else {
@@ -205,11 +203,11 @@ public class CadastrarUsuarioController implements Initializable {
     private void save() {
         Usuario usuario = getUsuario();
         loading.start(stpCadastrarUsuario);
-        
+
         if (usuarioAlter != null) {
             usuario.setIdUsuario(usuarioAlter.getId());
         }
-        
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -250,30 +248,24 @@ public class CadastrarUsuarioController implements Initializable {
         });
     }
 
-    
-    
     void completeInfo(Usuario usuario) {
-        if(usuario.getTipoFuncionario() == 1){
-          this.rdbAtendente.setSelected(true);  
-        }
-        else if(usuario.getTipoFuncionario() == 2){
+
+        if (usuario.getFuncionario().equals(usuario.getFuncionario().Atendente)) {
+            this.rdbAtendente.setSelected(true);
+        } else if (usuario.getFuncionario().equals(usuario.getFuncionario().CarregadorDescarregador)) {
             this.rdbCarregadorDescarregador.setSelected(true);
+        }else{
+            usuario.getFuncionario().equals(null);
         }
+
+        System.out.println(usuario.getFuncionario());
         this.txtNome.setText(usuario.getNome());
         this.txtTelefoneFixo.setText(usuario.getTelefone());
         this.txtTelefoneCelular.setText(usuario.getCelular());
         this.txtEmail.setText(usuario.getEmail());
         this.cmbOrigem.setValue(usuario.getCidade());
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * Initializes the controller class.
      */
@@ -281,9 +273,9 @@ public class CadastrarUsuarioController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ObservableList<Cidade> combo= FXCollections.observableArrayList(Cidade.values());
+        ObservableList<Cidade> combo = FXCollections.observableArrayList(Cidade.values());
         this.cmbOrigem.setItems(combo);
-        
+
         if (usuarioAlter != null) {
             completeInfo(usuarioAlter);
         }

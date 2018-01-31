@@ -59,8 +59,8 @@ public class UsuarioNegocio {
         UsuarioException ex = new UsuarioException();
         Util util = new Util();
 
-        if (usuario.getTipoFuncionario() == 3) {
-            ex.setTipoFuncionario(Boolean.TRUE);
+        if (usuario.getFuncionario() == null) {
+            ex.setFuncionario(Boolean.TRUE);
             ex.setMsg(Message.message("err.msg.tipoFuncionario"));
         }
 
@@ -120,7 +120,7 @@ public class UsuarioNegocio {
             UsuarioDAO usuarioList = new UsuarioDAO();
             if (content.length() > 0) {
                 result = usuarioList.GetAllByNome(content);
-                    return result;
+                return result;
 
             } else {
                 result = usuarioList.GetAll();

@@ -11,18 +11,10 @@ package com.dev.betaTransporte.negocio.exception;
  */
 public class UsuarioException {
 
-    public Boolean getTipoFuncionario() {
-        return TipoFuncionario;
-    }
-
-    public void setTipoFuncionario(Boolean TipoFuncionario) {
-        this.TipoFuncionario = TipoFuncionario;
-    }
-
     public Boolean getNome() {
         return nome;
     }
-    
+
     public void setNome(Boolean nome) {
         this.nome = nome;
     }
@@ -50,8 +42,6 @@ public class UsuarioException {
     public void setEmail(Boolean email) {
         this.email = email;
     }
-    
-
 
     public String getMsg() {
         return msg;
@@ -70,7 +60,7 @@ public class UsuarioException {
     }
 
     public UsuarioException() {
-        this.TipoFuncionario = false;
+        this.Funcionario = false;
         this.nome = false;
         this.telefoneFixo = false;
         this.telefoneCelular = false;
@@ -79,7 +69,7 @@ public class UsuarioException {
         this.cidade = false;
     }
 
-    private Boolean TipoFuncionario;
+    private Boolean Funcionario;
     private Boolean nome;
     private Boolean telefoneFixo;
     private Boolean telefoneCelular;
@@ -99,6 +89,20 @@ public class UsuarioException {
      */
     public void setCidade(Boolean cidade) {
         this.cidade = cidade;
+    }
+
+    /**
+     * @return the Funcionario
+     */
+    public Boolean getFuncionario() {
+        return Funcionario;
+    }
+
+    /**
+     * @param Funcionario the Funcionario to set
+     */
+    public void setFuncionario(Boolean Funcionario) {
+        this.Funcionario = Funcionario;
     }
 
 }

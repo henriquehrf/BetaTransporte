@@ -48,7 +48,7 @@ public class ConsultarUsuarioController implements Initializable {
     private Label lblTable;
 
     @FXML
-    private TableColumn<Usuario, Integer> tbcFuncionario;
+    private TableColumn<Usuario, Enum> tbcFuncionario;
 
     @FXML
     private StackPane stpConsultarUsuario;
@@ -149,43 +149,16 @@ public class ConsultarUsuarioController implements Initializable {
             
         }
     }
-    
-    
 
-    
-    
     void completeTable(List<Usuario> list) {
 
         UsuarioList.remove(0, UsuarioList.size());
         UsuarioList.addAll(list);
         // System.out.println("Aqui ->"+UsuarioList.get(0).getTipoFuncionario());
-        this.tbcFuncionario.setCellValueFactory(new PropertyValueFactory<Usuario, Integer>("TipoFuncionario"));
+        this.tbcFuncionario.setCellValueFactory(new PropertyValueFactory<Usuario, Enum>("Funcionario"));
         this.tbcNome.setCellValueFactory(new PropertyValueFactory<Usuario, String>("Nome"));
         this.tbcCelular.setCellValueFactory(new PropertyValueFactory<Usuario, String>("Celular"));
         this.tbcCidadeOrigem.setCellValueFactory(new PropertyValueFactory<Usuario, Enum>("Cidade"));
-
-        tbcFuncionario.setCellFactory(tc -> new TableCell<Usuario, Integer>() {
-            String conversor;
-
-            @Override
-            protected void updateItem(Integer value, boolean empty) {
-                super.updateItem(value, empty);
-                if (value == null || empty) {
-                    setText("");
-                } else {
-                    if (value == 0) {
-                        setText("Administrador");
-                    }
-                    if (value == 1) {
-                        setText("Atendente");
-                    }
-                    if (value == 2) {
-                        setText("Carregador/Descarrgador");
-                    }
-                }
-            }
-        }
-        );
 
         tbvPesquisa.setItems(UsuarioList);
     }
