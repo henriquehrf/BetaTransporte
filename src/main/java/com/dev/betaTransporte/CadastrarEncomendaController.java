@@ -9,10 +9,10 @@ import com.dev.betaTransporte.negocio.EncomendaNegocio;
 import com.dev.betaTransporte.negocio.UsuarioNegocio;
 import com.dev.betaTransporte.negocio.exception.EncomendaException;
 import com.dev.betaTransporte.vo.Encomenda;
-import com.dev.betaTransporte.vo.Usuario;
 import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
 import java.util.Date;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -21,6 +21,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
@@ -97,13 +99,20 @@ public class CadastrarEncomendaController {
     Message msg = new Message();
     Mask mask = new Mask();
     Loader loading = new Loader();
+    public static int NextPage;
+    public static Encomenda encomendaAlter;
+    
+    Navegation navegation = new Navegation();
     
     @FXML
     void initialize(){
+        
         ObservableList<Cidade> combo= FXCollections.observableArrayList(Cidade.values());
         this.cmbCidadeDestino.setItems(combo);
         
-        
+        if (encomendaAlter != null) {
+            completeInfo(encomendaAlter);
+        }
     }
     private Encomenda getEncomenda() {
         
@@ -231,8 +240,32 @@ public class CadastrarEncomendaController {
         box.BoxInfo(Alert.AlertType.WARNING, Message.message("err.msg.cadastro"), ex.getMsg());
     }
     
+    void completeInfo(Encomenda encomenda) {
+        this.txtAltura.setText(String.valueOf(encomenda.getAltura()));
+        this.txtComprimento.setText(String.valueOf(encomenda.getComprimento()));
+        this.txtCpfCnpjCliente.setText(encomenda.getClienteVO().getCpfCnpj());
+        this.txtCpfCnpjDestino.setText(encomenda.getCpfCnpjDestinatario());
+        this.txtLargura.setText(String.valueOf(encomenda.getLargura()));
+        this.txtNuNotaFiscal.setText(String.valueOf(encomenda.getNumNotaFiscal()));
+        this.txtPeso.setText(String.valueOf(encomenda.getPeso()));
+        this.txtValorDeclarado.setText(String.valueOf(encomenda.getValorDeclarado()));
+        if (encomenda.getPlano()== Plano.BETA_CONV) {
+            this.rdbCONV.setSelected(true);
+        } else if (encomenda.getPlano()== Plano.BETA_GOLD) {
+            this.rdbGOLD.setSelected(true);
+        } else {
+            this.rdbPLATINA.setSelected(true);
+        }
+        this.cmbCidadeDestino.getSelectionModel().select(encomenda.getCidadeDestino());        
+    }
+    
     private void save() {
         Encomenda encomenda = getEncomenda();
+        
+        if (encomendaAlter != null) {
+            encomenda.setID(encomendaAlter.getId());
+        }
+        
         loading.start(stpCadastrarEncomenda);
 
         Platform.runLater(new Runnable() {
@@ -276,8 +309,16 @@ public class CadastrarEncomendaController {
     }
     
     private void cancel() {
-        Navegation node = new Navegation();
-        node.getFather(this.stpCadastrarEncomenda);
+        if (NextPage == 0) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/ConsultarEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+                navegation.getMain().setCenter(root);
+                encomendaAlter = null;
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
+            
+        }
     }
     
     @FXML

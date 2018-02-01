@@ -66,7 +66,7 @@ public class MainController implements Initializable {
     void ItemEncomendaOnAction(ActionEvent event) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/gui/CadastrarEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/ConsultarEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
             bdpPrincipal.setCenter(root);
 
         } catch (Exception ex) {

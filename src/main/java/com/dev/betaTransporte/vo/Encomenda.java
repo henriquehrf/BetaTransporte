@@ -18,6 +18,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,6 +30,12 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Table(name = "Encomenda")
+@NamedQueries({
+    @NamedQuery(name = "Encomenda.GetAllCPFCNPJDestinatario", query = "SELECT m FROM Encomenda m WHERE UPPER(m.cpfCnpjDestinatario) LIKE UPPER(:cspfCnpj) ORDER BY m.cpfCnpjDestinatario ASC")
+    ,
+    @NamedQuery(name = "Encomenda.GetAllEnc", query = "SELECT m FROM Encomenda m ORDER BY m.cpfCnpjDestinatario ASC")
+    ,
+    @NamedQuery(name = "Encomenda.GetAllByPlano", query = "SELECT m FROM Encomenda m WHERE m.Plano = :plano ORDER BY m.cpfCnpjDestinatario ASC")})
 public class Encomenda implements EntidadeBase , Serializable {
 
     public Encomenda() {

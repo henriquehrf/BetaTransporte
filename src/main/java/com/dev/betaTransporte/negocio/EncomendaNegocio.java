@@ -11,6 +11,9 @@ import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.negocio.exception.EncomendaException;
 import com.dev.betaTransporte.vo.Cliente;
 import com.dev.betaTransporte.vo.Encomenda;
+import java.util.List;
+import javafx.scene.control.Alert;
+import util.BoxInfo;
 import util.Message;
 import util.Util;
 
@@ -20,6 +23,8 @@ import util.Util;
  */
 public class EncomendaNegocio {
 
+    BoxInfo boxInfo = new BoxInfo();
+    
     public static EncomendaException validar(Encomenda encomenda) throws Exception {
         ClienteDAO clienteN = new ClienteDAO();
 
@@ -107,8 +112,8 @@ public class EncomendaNegocio {
 
                     public void run() {
                         try {
-                            System.out.println("Entrei aqui");
-                            System.out.println(encomenda.getCpfCnpjDestinatario());
+                            //System.out.println("Entrei aqui");
+                            //System.out.println(encomenda.getCpfCnpjDestinatario());
                             dao.save(Encomenda.class, encomenda);
                         } catch (Exception ex) {
                             cli_ex.setMsg(ex.getMessage());
@@ -124,7 +129,43 @@ public class EncomendaNegocio {
             }
             return null;
         }
-
     }
 
+    public List<Encomenda> searchEncomenda(String content, String type) {
+        List<Encomenda> result;
+        try {
+            EncomendaDAO encomendaList = new EncomendaDAO();
+            if (content.length() > 0) {
+                if (type.equalsIgnoreCase("cpfCnpj")) {
+                    result = encomendaList.GetAllCPFCNPJDestinatario(content);
+                    return result;
+                } else {
+                    result = encomendaList.GetAllByPlano(content);
+                    return result;
+                }
+            } else {
+                result = encomendaList.GetAllEnc();
+                return result;
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    public int excluirEncomenda(Encomenda encomenda) {
+
+        try {
+            GenericoDAO dao = new GenericoDAO();
+            dao.remove(Encomenda.class, encomenda);
+        } catch (Exception ex) {
+
+            boxInfo.BoxInfo(Alert.AlertType.ERROR, Message.message("err.msg.exclusãoRegistro"), ex.getMessage());
+            System.out.println(ex.getMessage());
+            return -1;
+        }
+
+        return 1;
+    }
 }

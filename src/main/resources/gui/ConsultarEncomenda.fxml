@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="stpConsultarEncomenda" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../Documents/engenharia%20de%20software/BetaTransporte/src/main/resources/styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.ConsultarEncomendaController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <VBox prefHeight="200.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="%lblTitleConsultarEncomenda" textAlignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="100.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="800.0">
+                           <children>
+                              <Label text="%lblPesquisar">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtPesquisa" onKeyPressed="#isPressed" onKeyReleased="#onChangePesquisa" prefHeight="25.0" prefWidth="400.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="200.0">
+                           <children>
+                              <RadioButton fx:id="rdbCfpCnpjDestinatario" mnemonicParsing="false" onAction="#rdbCpfCnpjDestinatarioOnAction" text="%lblCpfCnpjDestino">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="TipoBusca" />
+                                 </toggleGroup>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <Label text="%lblPlanoo">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <RadioButton fx:id="rdbCONV" mnemonicParsing="false" onAction="#rdbConvOnAction" text="%rdbCONV" toggleGroup="$TipoBusca">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rdbGOLD" mnemonicParsing="false" onAction="#rdbGoldOnAction" text="%rdbGOLD">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rdbPLATINIUN" mnemonicParsing="false" onAction="#rdbPlatiniuumOnAction" text="%rdbPLATINIUN">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <TableView fx:id="tbvPesquisa" onKeyPressed="#onKeySelected" onMouseClicked="#onMouseSelected" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="tbcCpfCnpj" editable="false" minWidth="135.0" prefWidth="165.0" sortable="false" text="%lblCpfCnpjDestino" />
+                <TableColumn fx:id="tbcPlano" editable="false" minWidth="153.0" prefWidth="178.0" sortable="false" text="%lblPlano" />
+                  <TableColumn fx:id="tbcCidadeOrigen" editable="false" minWidth="186.0" prefWidth="186.0" sortable="false" text="%lblCidadeOrigen" />
+                  <TableColumn fx:id="tbcCidadeDestino" editable="false" minWidth="135.0" prefWidth="171.0" sortable="false" text="%lblCidadeDestino" />
+              </columns>
+               <BorderPane.margin>
+                  <Insets left="50.0" right="50.0" />
+               </BorderPane.margin>
+            </TableView>
+         </center>
+         <bottom>
+            <VBox prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="25.0">
+                     <children>
+                        <Label fx:id="lblInfoTable" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnCadastrar" mnemonicParsing="false" onAction="#CadastrarOnAction" onKeyPressed="#CadastraronKeyPressed" text="%btnCadastrar">
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnAdicionar" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnAlterar" mnemonicParsing="false" onAction="#AlterarOnAction" onKeyPressed="#AlteraronKeyPressed" text="%btnAlterar">
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnAlterar" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btnExcluir" mnemonicParsing="false" onAction="#ExcluirOnAction" onKeyPressed="#ExcluironKeyPressed" text="%btnExcluir">
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnRemover" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#VoltarOnAction" onKeyPressed="#VoltaronKeyPressed" text="%btnVoltar">
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnVoltar" />
+                           </styleClass>
+                           <HBox.margin>
+                              <Insets right="50.0" top="-10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</StackPane>
