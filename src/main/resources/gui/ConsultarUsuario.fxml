@@ -44,9 +44,9 @@
          <bottom>
             <VBox prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="25.0">
+                  <HBox alignment="CENTER" prefHeight="25.0">
                      <children>
-                        <Label fx:id="lblTable" />
+                        <Label fx:id="lblInfoTable" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">

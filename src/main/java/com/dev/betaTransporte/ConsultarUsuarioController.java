@@ -45,7 +45,7 @@ import util.Navegation;
 public class ConsultarUsuarioController implements Initializable {
 
     @FXML
-    private Label lblTable;
+    Label lblInfoTable;
 
     @FXML
     private TableColumn<Usuario, Enum> tbcFuncionario;
@@ -73,26 +73,22 @@ public class ConsultarUsuarioController implements Initializable {
 
     @FXML
     private TableColumn<Usuario, Enum> tbcCidadeOrigem;
-    
+
     @FXML
     private TextField txtPesquisa;
 
     @FXML
     void ExcluirOnAction(ActionEvent event) {
-         excluir();
+        excluir();
     }
 
     //Aqui
     private ObservableList<Usuario> UsuarioList = FXCollections.observableArrayList();
 
-    @FXML
-    Label lblInfoTable;
-
     UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
     BoxInfo boxInfo = new BoxInfo();
     public static Usuario usuarioAlter;
-    
-    
+
     @FXML
     void onKeySelected(KeyEvent event) {
         if (tbvPesquisa.getSelectionModel().getSelectedItem() != null) {
@@ -103,8 +99,7 @@ public class ConsultarUsuarioController implements Initializable {
             btnExcluir.setDisable(true);
         }
     }
-    
-    
+
     @FXML
     void onMouseSelected(MouseEvent event) {
         if (tbvPesquisa.getSelectionModel().getSelectedItem() != null) {
@@ -115,27 +110,24 @@ public class ConsultarUsuarioController implements Initializable {
             btnExcluir.setDisable(true);
         }
     }
-    
-    
+
     @FXML
     void AlterarOnAction(ActionEvent event) {
 
         CadastrarUsuarioController.usuarioAlter = tbvPesquisa.getSelectionModel().getSelectedItem();
         editOrCreateUsuario();
     }
-    
+
     @FXML
     void isPressed(KeyEvent event) {
 
         if (event.getCode() == KeyCode.ENTER) {
-           completeTable(usuarioNegocio.searchUsuario("%" + this.txtPesquisa.getText() + "%", "nome"));
+            completeTable(usuarioNegocio.searchUsuario("%" + this.txtPesquisa.getText() + "%", "nome"));
 
         }
     }
 
-    
-    
-     void excluir() {
+    void excluir() {
         Usuario usuario = tbvPesquisa.getSelectionModel().getSelectedItem();
         if (usuario != null) {
             if (boxInfo.BoxChoice(Alert.AlertType.CONFIRMATION, Message.message("conf.title.msg"), Message.message("conf.remocao.msg.part1") + " " + usuario.getNome() + " " + Message.message("conf.remocao.msg.part2"), Message.message("conf.opacao.confirmacao"), Message.message("conf.opcao.desitencia"))) {
@@ -146,7 +138,7 @@ public class ConsultarUsuarioController implements Initializable {
                     btnExcluir.setDisable(true);
                 }
             }
-            
+
         }
     }
 
@@ -161,6 +153,15 @@ public class ConsultarUsuarioController implements Initializable {
         this.tbcCidadeOrigem.setCellValueFactory(new PropertyValueFactory<Usuario, Enum>("Cidade"));
 
         tbvPesquisa.setItems(UsuarioList);
+
+        if (UsuarioList.size() == 0) {
+            lblInfoTable.setText(Message.message("lblTableInfo1"));
+        } else if (UsuarioList.size() == 1) {
+            lblInfoTable.setText(Message.message("lblTableInfo2") + " " + UsuarioList.size() + " " + Message.message("lblTableInfo3"));
+        } else {
+            lblInfoTable.setText(Message.message("lblTableInfo5") + " " + UsuarioList.size() + " " + Message.message("lblTableInfo4"));
+        }
+
     }
 
     //Ok
@@ -183,14 +184,12 @@ public class ConsultarUsuarioController implements Initializable {
             System.err.println(ex);
         }
     }
-    
-    
+
 //    @FXML
 //    void isPressed(KeyEvent event) {
 //
 ////        ompleteTable(clienteNegocio.searchCliente("%" + this.txtPesquisa.getText() + "%", "nome"));
 //    }
-
     Navegation navegation = new Navegation();
 
     /**
@@ -204,7 +203,7 @@ public class ConsultarUsuarioController implements Initializable {
 
             btnAlterar.setDisable(true);
             btnExcluir.setDisable(true);
-            
+
             tbcCelular.setStyle(" -fx-alignment:center");
 
             completeTable(usuarioNegocio.searchUsuario("", ""));
@@ -237,7 +236,7 @@ public class ConsultarUsuarioController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        
+
     }
 
 }
