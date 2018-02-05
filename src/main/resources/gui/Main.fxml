@@ -18,6 +18,7 @@
               <MenuItem fx:id="mnuItenCliente" mnemonicParsing="false" onAction="#ItemClienteOnAction" text="%mnuItem.Cliente" />
                   <MenuItem fx:id="mnuItenEncomenda" mnemonicParsing="false" onAction="#ItemEncomendaOnAction" text="%mnuItem.Encomenda" />
                   <MenuItem fx:id="mnuItemUsuario" mnemonicParsing="false" onAction="#ItemUsuarioOnAction" text="%mnuItem.Usuario" />
+                  <MenuItem fx:id="mnuItemRegistraPagamentoEncomenda" mnemonicParsing="false" onAction="#ItemRegistraPagamentoEncomendaOnAction" text="%mnuItem.RegistraPagamentoEncomenda" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="%mnuBar.Ratreio">

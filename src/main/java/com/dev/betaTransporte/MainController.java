@@ -35,6 +35,16 @@ public class MainController implements Initializable {
 
     @FXML
     private MenuItem mnuItenEncomenda;
+    
+    @FXML
+    private MenuItem mnuItemRegistraPagamentoEncomenda;
+
+    
+    
+    
+    
+    
+    
 
     @FXML
     void ItemClienteOnAction(ActionEvent event) {
@@ -73,6 +83,22 @@ public class MainController implements Initializable {
             System.err.println(ex);
         }
     }
+    
+    @FXML
+    void ItemRegistraPagamentoEncomendaOnAction(ActionEvent event) {
+try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/RegistroPagamentoEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            bdpPrincipal.setCenter(root);
+
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+    }
+    
+    
+    
+    
 
     /**
      * Initializes the controller class.
