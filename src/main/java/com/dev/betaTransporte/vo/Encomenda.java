@@ -8,6 +8,7 @@ package com.dev.betaTransporte.vo;
 import com.dev.betaTransporte.dao.EntidadeBase;
 import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
+import com.dev.betaTransporteENUM.Status;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -51,13 +52,16 @@ public class Encomenda implements EntidadeBase , Serializable {
         this.cpfCnpjDestinatario = "";
         this.Peso = 0;
         this.NumNotaFiscal = 0;
+        this.Status=Status.Encomenda_aguardando_transporte_na_cidade_de_origem;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long ID;
 
-  
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Status Status;
 
     @OneToOne(fetch = FetchType.EAGER)
     private Cliente ClienteVO;
