@@ -25,6 +25,11 @@
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="%mnuBar.Transporte">
+              <items>
+                <MenuItem fx:id="mnuItenConsultarEncomenda" mnemonicParsing="false" onAction="#ConsultarEncomendaOnAction" text="%mnuItem.ConsultarEncomenda" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="%mnuBar.Ajuda">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />

@@ -31,6 +31,9 @@ public class MainController implements Initializable {
     private BorderPane bdpPrincipal;
 
     @FXML
+    private MenuItem mnuItenConsultarEncomenda;
+    
+    @FXML
     private MenuItem mnuItenCliente;
 
     @FXML
@@ -84,6 +87,7 @@ public class MainController implements Initializable {
 
         if (user.getFuncionario().equals(user.getFuncionario().Atendente)) {
             mnuItemUsuario.setVisible(false);
+            mnuItenConsultarEncomenda.setVisible(false);
         }
 
         if (user.getFuncionario().equals(user.getFuncionario().CarregadorDescarregador)) {
@@ -93,4 +97,15 @@ public class MainController implements Initializable {
 
     }
 
+    @FXML
+    void ConsultarEncomendaOnAction(ActionEvent event) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/ConsultarEncomendaTransporte.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            bdpPrincipal.setCenter(root);
+
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+    }
 }
