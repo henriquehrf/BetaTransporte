@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.CalcularRotaTransporteController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="81.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnGerarRelatorio" mnemonicParsing="false" onAction="#btnGerarRelatorioOnAction" onKeyPressed="#btnGerarRelatorioOnKeyPressed" prefHeight="30.0" prefWidth="100.0" text="%btnGerarRelatório">
+               <HBox.margin>
+                  <Insets right="25.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarOnAction" onKeyPressed="#btnVoltarOnKeyPressed" prefHeight="30.0" prefWidth="100.0" text="%btnVoltar">
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <top>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="%lblTitleCalcularRota">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="394.0" prefWidth="400.0">
+                     <children>
+                        <VBox prefHeight="394.0" prefWidth="424.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
+                                 <children>
+                                    <Label text="%Listagem das Encomendas" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="341.0" prefWidth="400.0">
+                                 <children>
+                                    <TableView fx:id="tbvListaEncomenda" prefHeight="328.0" prefWidth="368.0">
+                                      <columns>
+                                          <TableColumn fx:id="tbcCodigo" prefWidth="51.0" text="%lblCodigo" />
+                                        <TableColumn fx:id="tbcNumNotaFiscal" prefWidth="92.0" text="%lblNuNotaFiscal" />
+                                        <TableColumn fx:id="tbcCpfCnpj" prefWidth="91.0" text="%lblCpfCnpj" />
+                                          <TableColumn fx:id="tbcDestino" prefWidth="77.0" text="%lblDestino" />
+                                          <TableColumn fx:id="tbcRotaEncomenda" prefWidth="53.0" text="%lblRota" />
+                                      </columns>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </TableView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="394.0" prefWidth="40.0">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <HBox prefHeight="394.0" prefWidth="400.0">
+                     <children>
+                        <VBox prefHeight="394.0" prefWidth="424.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
+                                 <children>
+                                    <Label text="%lblListagemRota" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="340.0" prefWidth="387.0">
+                                 <children>
+                                    <VBox prefHeight="328.0" prefWidth="367.0">
+                                       <children>
+                                          <TableView fx:id="tbvRotas" prefHeight="258.0" prefWidth="372.0">
+                                             <columns>
+                                                <TableColumn fx:id="tbcRota" prefWidth="62.0" text="%lblRota" />
+                                                <TableColumn fx:id="tbcOrigemRota" prefWidth="85.0" text="%lblOrigem" />
+                                                <TableColumn fx:id="tbcDestinoRota" prefWidth="74.0" text="%lblDestino" />
+                                                <TableColumn fx:id="tbcDistancia" prefWidth="75.0" text="%lblDistancia" />
+                                                <TableColumn fx:id="tbcTempo" minWidth="0.0" prefWidth="70.0" text="%lblTempo" />
+                                             </columns>
+                                          </TableView>
+                                          <VBox prefHeight="42.0" prefWidth="367.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="80.0" text="%lblTotalItem">
+                                                         <HBox.margin>
+                                                            <Insets right="5.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <TextField fx:id="txtTotalItem" editable="false" prefHeight="25.0" prefWidth="40.0">
+                                                         <HBox.margin>
+                                                            <Insets right="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <Label prefHeight="17.0" prefWidth="85.0" text="%lblDestinoFinal">
+                                                         <HBox.margin>
+                                                            <Insets right="5.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <TextField fx:id="txtDestinoFinal" editable="false" prefHeight="25.0" prefWidth="159.0">
+                                                         <HBox.margin>
+                                                            <Insets />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="%lblTempo">
+                                                         <HBox.margin>
+                                                            <Insets right="5.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <TextField fx:id="txtTempo" prefHeight="25.0" prefWidth="80.0">
+                                                         <HBox.margin>
+                                                            <Insets right="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <Label text="%lblGaragem">
+                                                         <HBox.margin>
+                                                            <Insets right="5.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <TextField fx:id="txtGaragem" prefHeight="25.0" prefWidth="112.0">
+                                                         <HBox.margin>
+                                                            <Insets />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>
