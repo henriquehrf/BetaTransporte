@@ -98,6 +98,11 @@
             <version>1.7.25</version>
         </dependency>
         <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.0.6</version>
+        </dependency>
+        <dependency>
             <groupId>org.ancoron.postgresql</groupId>
             <artifactId>org.postgresql</artifactId>
             <version>9.1.901.jdbc4.1-rc9</version>

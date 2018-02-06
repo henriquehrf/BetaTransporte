@@ -9,8 +9,11 @@ package com.dev.betaTransporte;
  *
  * @author Daniel
  */
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -18,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import util.Navegation;
 
 public class ConsultarEncomendaTransporteController {
 
@@ -89,9 +93,19 @@ public class ConsultarEncomendaTransporteController {
 
     @FXML
     private TableView<?> tbvTransporte;
+    
+    Navegation navegation = new Navegation();
 
     @FXML
     void CalcularRotaOnAction(ActionEvent event) {
+        
+         try {
+           // CadastrarClienteController.NextPage = 0;
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/CalcularRotaTransporte.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            navegation.getMain().setCenter(root);
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
 
     }
 

@@ -46,7 +46,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
                                  <children>
-                                    <Label text="%Listagem das Encomendas" />
+                                    <Label text="%lblListagemEncomenda" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="341.0" prefWidth="400.0">
@@ -89,10 +89,10 @@
                                        <children>
                                           <TableView fx:id="tbvRotas" prefHeight="258.0" prefWidth="372.0">
                                              <columns>
-                                                <TableColumn fx:id="tbcRota" prefWidth="62.0" text="%lblRota" />
-                                                <TableColumn fx:id="tbcOrigemRota" prefWidth="85.0" text="%lblOrigem" />
-                                                <TableColumn fx:id="tbcDestinoRota" prefWidth="74.0" text="%lblDestino" />
-                                                <TableColumn fx:id="tbcDistancia" prefWidth="75.0" text="%lblDistancia" />
+                                                <TableColumn fx:id="tbcRota" prefWidth="44.0" text="%lblRota" />
+                                                <TableColumn fx:id="tbcOrigemRota" prefWidth="90.0" text="%lblOrigem" />
+                                                <TableColumn fx:id="tbcDestinoRota" prefWidth="90.0" text="%lblDestino" />
+                                                <TableColumn fx:id="tbcDistancia" prefWidth="70.0" text="%lblDistancia" />
                                                 <TableColumn fx:id="tbcTempo" minWidth="0.0" prefWidth="70.0" text="%lblTempo" />
                                              </columns>
                                           </TableView>

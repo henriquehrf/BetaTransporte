@@ -19,6 +19,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -110,6 +111,33 @@ public class Encomenda implements EntidadeBase , Serializable {
     
     @Column(nullable = false)
     private int NumNotaFiscal;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Rota id_rota= null;
+
+    public Status getStatus() {
+        return Status;
+    }
+
+    public void setStatus(Status Status) {
+        this.Status = Status;
+    }
+
+    public Rota getId_rota() {
+        return id_rota;
+    }
+    
+    public String getRotaCodigo(){
+        return ""+id_rota.getId();
+    }
+    
+    public String getCodigo(){
+        return ""+ID;
+    }
+
+    public void setId_rota(Rota id_rota) {
+        this.id_rota = id_rota;
+    }
        
     public void setID(Long ID) {
         this.ID = ID;
