@@ -6,7 +6,9 @@
 package com.dev.betaTransporte.dao;
 
 import com.dev.betaTransporte.vo.Encomenda;
+import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
+import com.dev.betaTransporteENUM.Status;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -37,6 +39,23 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
         }
     }
     
+    public List<Encomenda> GetAllEncCitStatus (Cidade cidade, Status status) {
+        try {
+            if (connection == null || !connection.isOpen()) {
+                getEM();
+            }
+            Query query = connection.createNamedQuery("Encomenda.GetAllEncCitStatus", Encomenda.class);
+            query.setParameter("cidadeOrigem", cidade);
+            query.setParameter("status", status);
+            List<Encomenda> encomenda = query.getResultList();
+            return encomenda;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
     public List<Encomenda> GetAllEnc() {
 
         try {
@@ -55,6 +74,8 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
         }
 
     }
+    
+    
     
     public List<Encomenda> GetAllByPlano(String plano) {
         try {

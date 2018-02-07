@@ -11,7 +11,10 @@ import com.dev.betaTransporte.dao.GenericoDAO;
 import com.dev.betaTransporte.negocio.exception.EncomendaException;
 import com.dev.betaTransporte.vo.Cliente;
 import com.dev.betaTransporte.vo.Encomenda;
+import com.dev.betaTransporteENUM.Cidade;
+import com.dev.betaTransporteENUM.Status;
 import java.util.List;
+import javafx.animation.Animation;
 import javafx.scene.control.Alert;
 import util.BoxInfo;
 import util.Message;
@@ -145,6 +148,27 @@ public class EncomendaNegocio {
                 }
             } else {
                 result = encomendaList.GetAllEnc();
+                return result;
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    public List<Encomenda> searchEncomenda2 (int aux, Cidade cidadeOrigem, Status status, Status status2) {
+        List<Encomenda> result;
+        try {
+            EncomendaDAO encomendaList = new EncomendaDAO();
+            result = encomendaList.GetAllEncCitStatus(cidadeOrigem, status);
+            if (aux == 1) {
+                return result;
+
+            } else {
+                List<Encomenda> result2;
+                result2 = encomendaList.GetAllEncCitStatus(cidadeOrigem, status2);
+                result.addAll(result);
                 return result;
 
             }

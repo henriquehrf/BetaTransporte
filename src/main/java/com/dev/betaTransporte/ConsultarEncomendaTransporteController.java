@@ -9,69 +9,66 @@ package com.dev.betaTransporte;
  *
  * @author Daniel
  */
+import com.dev.betaTransporte.negocio.EncomendaNegocio;
+import com.dev.betaTransporte.negocio.UsuarioNegocio;
+import com.dev.betaTransporte.vo.Encomenda;
+import com.dev.betaTransporteENUM.Cidade;
+import com.dev.betaTransporteENUM.Plano;
+import com.dev.betaTransporteENUM.Status;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import util.Message;
 import util.Navegation;
 
 public class ConsultarEncomendaTransporteController {
 
-    @FXML
+      @FXML
     private TextField txtPeso;
 
     @FXML
     private Button btnCalcularRota;
 
     @FXML
-    private RadioButton rbdDestinoRecebida;
-
-    @FXML
     private TextField txtCustoEfetivo;
 
     @FXML
-    private TextField txtDisponibilidade;
+    private TableColumn<Encomenda, Date> tbcPrevisaoTransporte;
 
     @FXML
-    private RadioButton rbdCodigoReceber;
+    private TableColumn<Encomenda, Cidade> tbcDestinoTransporte;
 
     @FXML
-    private TableColumn<?, ?> tbcPrevisaoTransporte;
+    private TableView<Encomenda> tbvAguardando;
 
     @FXML
-    private TableColumn<?, ?> tbcPlanoAguardando;
+    private TableColumn<Encomenda, Plano> tbcPlanoTransporte;
 
     @FXML
-    private TableColumn<?, ?> tbcDestinoTransporte;
-
-    @FXML
-    private TableView<?> tbvAguardando;
-
-    @FXML
-    private TableColumn<?, ?> tbcDestinoAguardando;
-
-    @FXML
-    private TableColumn<?, ?> tbcPlanoTransporte;
-
-    @FXML
-    private TableColumn<?, ?> tbcCodigoTransporte;
+    private TableColumn<Encomenda, Long> tbcCodigoTransporte;
 
     @FXML
     private Button btnVoltar;
-
-    @FXML
-    private TableColumn<?, ?> tbcPrevisaoAguardando;
-
-    @FXML
-    private TableColumn<?, ?> tbcCodigoAguardando;
 
     @FXML
     private TextField txtVolume;
@@ -89,17 +86,99 @@ public class ConsultarEncomendaTransporteController {
     private TextField txtCategoriaCaminhao;
 
     @FXML
-    private RadioButton rbdCodigoRecebida;
+    private TextField txtPesquisarEncomendaReceber;
 
     @FXML
-    private TableView<?> tbvTransporte;
+    private TextField txtDisponibilidade;
+
+    @FXML
+    private RadioButton rbdCodigoReceber;
+
+    @FXML
+    private TableColumn<Encomenda, Plano> tbcPlanoAguardando;
+
+    @FXML
+    private TableColumn<Encomenda, Cidade> tbcDestinoAguardando;
+
+    @FXML
+    private TableColumn<Encomenda, Date> tbcPrevisaoAguardando;
+
+    @FXML
+    private TableColumn<Encomenda, Long> tbcCodigoAguardando;
+
+    @FXML
+    private StackPane stpConsultarEncomendaTransporte;
+    
+    @FXML
+    private Label lblInfoTable;
+
+    @FXML
+    private TableView<Encomenda> tbvTransporte;
     
     Navegation navegation = new Navegation();
+    EncomendaNegocio encomendaNegocio = new EncomendaNegocio();
+    private ObservableList<Encomenda> EncomendaList = FXCollections.observableArrayList();
+    private ObservableList<Encomenda> EncomendaList1 = FXCollections.observableArrayList();
+    public static ObservableList<Encomenda> EncomendaList2 = FXCollections.observableArrayList();
 
+    @FXML
+    void initialize() {
+        
+        this.btnCalcularRota.setDisable(true);
+        this.rbdCodigoReceber.setSelected(true);
+        this.rbdDestinoReceber.setSelected(false);
+        
+        try {     
+            tbcCodigoAguardando.setStyle(" -fx-alignment:center");
+            tbcCodigoTransporte.setStyle(" -fx-alignment:center");
+            tbcPlanoAguardando.setStyle(" -fx-alignment:center");
+            tbcPlanoTransporte.setStyle(" -fx-alignment:center");
+            EncomendaList1.remove(0, EncomendaList1.size());
+            EncomendaList1.addAll(encomendaNegocio.searchEncomenda2(centroDistribuicao(),UsuarioNegocio.user.getCidade(),Status.Encomenda_aguardando_transporte_na_cidade_de_origem,Status.Encomenda_descarregada_no_centro_de_distribuição_e_aguardando_o_despacho_para_a_cidade_destino));
+            completeTableAguardando();
+ 
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public int centroDistribuicao() {
+        if (UsuarioNegocio.user.getCidade()== Cidade.CUIABA){
+            return 0;
+        }else {
+            return 1;
+        }
+    }
+    
+    void completeTableAguardando() {
+        this.tbcCodigoAguardando.setCellValueFactory(new PropertyValueFactory<>("id"));
+        this.tbcDestinoAguardando.setCellValueFactory(new PropertyValueFactory<>("cidadeDestino"));
+        this.tbcPlanoAguardando.setCellValueFactory(new PropertyValueFactory<>("plano"));
+        this.tbcPrevisaoAguardando.setCellValueFactory(new PropertyValueFactory<>("dataEntregaString"));
+        tbvAguardando.setItems(EncomendaList1);
+
+        if (EncomendaList1.size() == 0) {
+            lblInfoTable.setText(Message.message("lblTableInfo1"));
+        } else if (EncomendaList1.size() == 1) {
+            lblInfoTable.setText(Message.message("lblTableInfo2") + " " + EncomendaList1.size() + " " + Message.message("lblTableInfo3"));
+        } else {
+            lblInfoTable.setText(Message.message("lblTableInfo5") + " " + EncomendaList1.size() + " " + Message.message("lblTableInfo4"));
+        }
+    }
+    
+    void completeTableTransporte() {
+        this.tbcCodigoTransporte.setCellValueFactory(new PropertyValueFactory<>("id"));
+        this.tbcDestinoTransporte.setCellValueFactory(new PropertyValueFactory<>("cidadeDestino"));
+        this.tbcPlanoTransporte.setCellValueFactory(new PropertyValueFactory<>("plano"));
+        this.tbcPrevisaoTransporte.setCellValueFactory(new PropertyValueFactory<>("dataEntregaString"));
+
+        tbvTransporte.setItems(EncomendaList2);
+    }
+    
     @FXML
     void CalcularRotaOnAction(ActionEvent event) {
         
-         try {
+        try {
            // CadastrarClienteController.NextPage = 0;
             Parent root = FXMLLoader.load(getClass().getResource("/gui/CalcularRotaTransporte.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
             navegation.getMain().setCenter(root);
@@ -111,27 +190,71 @@ public class ConsultarEncomendaTransporteController {
 
     @FXML
     void CalcularRotaOnKeyPressed(KeyEvent event) {
-
+        if (event.getCode() == KeyCode.ENTER) {
+            try {
+                // CadastrarClienteController.NextPage = 0;
+                Parent root = FXMLLoader.load(getClass().getResource("/gui/CalcularRotaTransporte.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+                navegation.getMain().setCenter(root);
+            } catch (Exception ex) {
+                System.err.println(ex);
+            }
+        }
     }
 
     @FXML
     void VoltarOnAction(ActionEvent event) {
-
+        navegation.getFather(stpConsultarEncomendaTransporte);
     }
 
     @FXML
     void VoltarOnKeyPressed(KeyEvent event) {
-
+        if (event.getCode() == KeyCode.ENTER) {
+            navegation.getFather(stpConsultarEncomendaTransporte);
+        }
     }
 
     @FXML
+    void txtPesquisarEncomendaReceberOnKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER){
+            if (!"".equals(this.txtPesquisarEncomendaReceber)){
+                if(this.rbdCodigoReceber.isSelected()==true){
+                    for (int i=0;i<EncomendaList1.size();i++){
+                        
+                        if (Long.toString(EncomendaList1.get(i).getId()).contains(this.txtPesquisarEncomendaReceber.getText())==false){
+                            System.out.println(Long.toString(EncomendaList1.get(i).getId())+"/n");
+                            EncomendaList.add(EncomendaList1.get(i));
+                            EncomendaList1.remove( EncomendaList1.get(i));
+                        }
+                    }
+                }else{
+                    for (int i=0;i<EncomendaList1.size();i++){
+                        
+                        if (!EncomendaList1.get(i).getCidadeDestino().name().toLowerCase().contains(this.txtPesquisarEncomendaReceber.getText().toLowerCase())){
+                            System.out.println(EncomendaList1.get(i).getCidadeDestino().name()+"/n");
+                            EncomendaList.add(EncomendaList1.get(i));
+                            EncomendaList1.remove( EncomendaList1.get(i));
+                        }
+                    }
+                }
+                completeTableAguardando();
+                EncomendaList1.addAll(EncomendaList);
+                EncomendaList = FXCollections.observableArrayList();
+            }else{
+                completeTableAguardando();
+            }
+        }
+    }
+    
+    @FXML
     void rbdCodigoReceberOnAction(ActionEvent event) {
-
+        this.rbdCodigoReceber.setSelected(true);
+        this.rbdDestinoReceber.setSelected(false);
     }
 
     @FXML
     void rbdDestinoReceberOnAction(ActionEvent event) {
-
+        this.rbdCodigoReceber.setSelected(false);
+        this.rbdDestinoReceber.setSelected(true);
     }
 
     @FXML
@@ -146,22 +269,41 @@ public class ConsultarEncomendaTransporteController {
 
     @FXML
     void MaiorOnAction(ActionEvent event) {
-
+        if (tbvAguardando.getSelectionModel().getSelectedItem() != null) {
+            this.btnCalcularRota.setDisable(false);
+            for(int i=0;i<EncomendaList1.size();i++){
+                if (EncomendaList1.get(i).getId()== tbvAguardando.getSelectionModel().getSelectedItem().getId()){
+                    EncomendaList2.add(EncomendaList1.get(i));
+                    EncomendaList1.remove( EncomendaList1.get(i));
+                    i=EncomendaList1.size()+5;
+                    completeTableAguardando();
+                    completeTableTransporte();
+                }
+            }
+        }
     }
 
     @FXML
     void MenorOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void rbdCodigoRecebidaOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void rbdDestinoRecebidaOnAction(ActionEvent event) {
-
+        if (tbvTransporte.getSelectionModel().getSelectedItem() != null) {
+            for(int i=0;i<EncomendaList2.size();i++){
+                if (EncomendaList2.get(i).getId()== tbvTransporte.getSelectionModel().getSelectedItem().getId()){
+                    EncomendaList1.add(EncomendaList2.get(i));
+                    EncomendaList2.remove(EncomendaList2.get(i));
+                    i=EncomendaList2.size()+5;
+                    completeTableAguardando();
+                    completeTableTransporte();
+                }
+            }
+            if (EncomendaList2.isEmpty()){
+                this.btnCalcularRota.setDisable(true);
+                this.txtCategoriaCaminhao.setText("");
+                this.txtCustoEfetivo.setText("");
+                this.txtDisponibilidade.setText("");
+                this.txtPeso.setText("");
+                this.txtVolume.setText("");
+            }
+        }
     }
 
     @FXML

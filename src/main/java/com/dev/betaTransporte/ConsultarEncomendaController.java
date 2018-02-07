@@ -9,7 +9,6 @@ import com.dev.betaTransporte.negocio.EncomendaNegocio;
 import com.dev.betaTransporte.vo.Encomenda;
 import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
-import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;

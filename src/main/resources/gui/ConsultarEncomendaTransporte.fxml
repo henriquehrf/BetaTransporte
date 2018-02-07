@@ -7,240 +7,232 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.ConsultarEncomendaTransporteController">
-   <bottom>
-      <HBox alignment="CENTER" prefHeight="81.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnCalcularRota" mnemonicParsing="false" onAction="#CalcularRotaOnAction" onKeyPressed="#CalcularRotaOnKeyPressed" prefHeight="30.0" prefWidth="100.0" text="%btnCalcularRota">
-               <HBox.margin>
-                  <Insets right="25.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#VoltarOnAction" onKeyPressed="#VoltarOnKeyPressed" prefHeight="30.0" prefWidth="100.0" text="%btnVoltar">
-               <HBox.margin>
-                  <Insets left="25.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </bottom>
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label text="%lblTitleConsultarEncomendaTransporte">
-                     <font>
-                        <Font name="Arial" size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-         </top>
+<StackPane fx:id="stpConsultarEncomendaTransporte" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.ConsultarEncomendaTransporteController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
          <center>
-            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox prefHeight="394.0" prefWidth="400.0">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <HBox alignment="CENTER" prefHeight="332.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                      <children>
-                        <VBox prefHeight="394.0" prefWidth="424.0">
+                        <HBox prefHeight="394.0" prefWidth="400.0">
                            <children>
-                              <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="400.0">
+                              <VBox prefHeight="394.0" prefWidth="424.0">
                                  <children>
-                                    <TextField prefHeight="25.0" prefWidth="309.0" promptText="%lblPesquisarEncomendaReceber">
-                                       <HBox.margin>
-                                          <Insets left="2.0" right="5.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="%lblIr">
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="400.0">
-                                 <children>
-                                    <RadioButton fx:id="rbdCodigoReceber" mnemonicParsing="false" onAction="#rbdCodigoReceberOnAction" text="%lblCodigo">
-                                       <HBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </HBox.margin>
-                                    </RadioButton>
-                                    <RadioButton fx:id="rbdDestinoReceber" mnemonicParsing="false" onAction="#rbdDestinoReceberOnAction" text="%lblDestino">
-                                       <HBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </HBox.margin>
-                                    </RadioButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
-                                 <children>
-                                    <Label text="%lblEncomendasAguardandoTransporte" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="341.0" prefWidth="400.0">
-                                 <children>
-                                    <TableView fx:id="tbvAguardando" onKeyPressed="#tbvAguardandoOnKeyPressed" onMouseClicked="#tbvAguardandoOnMouseClicked" prefHeight="328.0" prefWidth="368.0">
-                                      <columns>
-                                          <TableColumn fx:id="tbcPlanoAguardando" prefWidth="81.0" text="%lblPlano" />
-                                        <TableColumn fx:id="tbcCodigoAguardando" prefWidth="87.0" text="%lblCodigo" />
-                                        <TableColumn fx:id="tbcDestinoAguardando" prefWidth="110.0" text="%lblDestino" />
-                                          <TableColumn fx:id="tbcPrevisaoAguardando" prefWidth="88.0" text="%lblPrevisao" />
-                                      </columns>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </TableView>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <VBox alignment="CENTER" prefHeight="394.0" prefWidth="40.0">
-                     <children>
-                        <Button fx:id="btnMaior" mnemonicParsing="false" onAction="#MaiorOnAction" text="%lblMaior">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="btnMenor" mnemonicParsing="false" onAction="#MenorOnAction" text="%lblMenor">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <HBox prefHeight="394.0" prefWidth="400.0">
-                     <children>
-                        <VBox prefHeight="394.0" prefWidth="424.0">
-                           <children>
-                              <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="400.0">
-                                 <children>
-                                    <TextField prefHeight="25.0" prefWidth="321.0" promptText="%lblPesquisarEncomendaRecebida">
-                                       <HBox.margin>
-                                          <Insets left="2.0" right="5.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="%lblIr">
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="400.0">
-                                 <children>
-                                    <RadioButton fx:id="rbdCodigoRecebida" mnemonicParsing="false" onAction="#rbdCodigoRecebidaOnAction" text="%lblCodigo">
-                                       <HBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </HBox.margin>
-                                    </RadioButton>
-                                    <RadioButton fx:id="rbdDestinoRecebida" mnemonicParsing="false" onAction="#rbdDestinoRecebidaOnAction" text="%lblDestino">
-                                       <HBox.margin>
-                                          <Insets left="5.0" right="5.0" />
-                                       </HBox.margin>
-                                    </RadioButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
-                                 <children>
-                                    <Label text="%lblEncomendasSerTransportadas" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="340.0" prefWidth="387.0">
-                                 <children>
-                                    <VBox prefHeight="328.0" prefWidth="367.0">
+                                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
                                        <children>
-                                          <TableView fx:id="tbvTransporte" onKeyPressed="#tbvTransporteOnKeyPressed" onMouseClicked="#tbvTransporteOnMouseClicked" prefHeight="258.0" prefWidth="372.0">
+                                          <Label text="%lblEncomendasAguardandoTransporte" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="341.0" prefWidth="400.0">
+                                       <children>
+                                          <TableView fx:id="tbvAguardando" onKeyPressed="#tbvAguardandoOnKeyPressed" onMouseClicked="#tbvAguardandoOnMouseClicked" prefHeight="328.0" prefWidth="368.0">
                                              <columns>
-                                                <TableColumn fx:id="tbcPlanoTransporte" prefWidth="81.0" text="%lblPlano" />
-                                                <TableColumn fx:id="tbcCodigoTransporte" prefWidth="87.0" text="%lblCodigo" />
-                                                <TableColumn fx:id="tbcDestinoTransporte" prefWidth="109.0" text="%lblDestino" />
-                                                <TableColumn fx:id="tbcPrevisaoTransporte" prefWidth="88.0" text="%lblPrevisao" />
+                                                <TableColumn fx:id="tbcPlanoAguardando" prefWidth="81.0" text="%lblPlano" />
+                                                <TableColumn fx:id="tbcCodigoAguardando" prefWidth="87.0" text="%lblCodigo" />
+                                                <TableColumn fx:id="tbcDestinoAguardando" prefWidth="110.0" text="%lblDestino" />
+                                                <TableColumn fx:id="tbcPrevisaoAguardando" prefWidth="88.0" text="%lblPrevisao" />
                                              </columns>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
                                           </TableView>
-                                          <VBox prefHeight="42.0" prefWidth="367.0">
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" prefHeight="394.0" prefWidth="40.0">
+                           <children>
+                              <Button fx:id="btnMaior" mnemonicParsing="false" onAction="#MaiorOnAction" text="%lblMaior">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="btnMenor" mnemonicParsing="false" onAction="#MenorOnAction" text="%lblMenor">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <HBox prefHeight="394.0" prefWidth="400.0">
+                           <children>
+                              <VBox prefHeight="394.0" prefWidth="424.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
+                                       <children>
+                                          <Label text="%lblEncomendasSerTransportadas" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="340.0" prefWidth="387.0">
+                                       <children>
+                                          <VBox prefHeight="328.0" prefWidth="367.0">
                                              <children>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                <TableView fx:id="tbvTransporte" onKeyPressed="#tbvTransporteOnKeyPressed" onMouseClicked="#tbvTransporteOnMouseClicked" prefHeight="258.0" prefWidth="372.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="tbcPlanoTransporte" prefWidth="81.0" text="%lblPlano" />
+                                                      <TableColumn fx:id="tbcCodigoTransporte" prefWidth="87.0" text="%lblCodigo" />
+                                                      <TableColumn fx:id="tbcDestinoTransporte" prefWidth="109.0" text="%lblDestino" />
+                                                      <TableColumn fx:id="tbcPrevisaoTransporte" prefWidth="88.0" text="%lblPrevisao" />
+                                                   </columns>
+                                                </TableView>
+                                                <VBox prefHeight="42.0" prefWidth="367.0">
                                                    <children>
-                                                      <Label text="%lblcustoefetivo">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="txtCustoEfetivo" editable="false" prefHeight="25.0" prefWidth="57.0">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </TextField>
-                                                      <Label text="%lblPeso">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="txtPeso" editable="false" prefHeight="25.0" prefWidth="51.0">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </TextField>
-                                                      <Label text="%lblVolume">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="txtVolume" editable="false" prefHeight="25.0" prefWidth="77.0">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </TextField>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label text="%lblcustoefetivo">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txtCustoEfetivo" editable="false" prefHeight="25.0" prefWidth="57.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Label text="%lblPeso">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txtPeso" editable="false" prefHeight="25.0" prefWidth="51.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Label text="%lblVolume">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txtVolume" editable="false" prefHeight="25.0" prefWidth="77.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Label text="%lblCategoriaCaminhao">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txtCategoriaCaminhao" editable="false" prefHeight="25.0" prefWidth="80.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Label text="%lblDisponibilidade">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </Label>
+                                                            <TextField fx:id="txtDisponibilidade" editable="false" prefHeight="25.0" prefWidth="61.0">
+                                                               <HBox.margin>
+                                                                  <Insets right="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets top="10.0" />
+                                                         </VBox.margin>
+                                                      </HBox>
                                                    </children>
-                                                   <VBox.margin>
-                                                      <Insets top="10.0" />
-                                                   </VBox.margin>
-                                                </HBox>
-                                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label text="%lblCategoriaCaminhao">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="txtCategoriaCaminhao" prefHeight="25.0" prefWidth="80.0">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </TextField>
-                                                      <Label text="%lblDisponibilidade">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                      <TextField fx:id="txtDisponibilidade" prefHeight="25.0" prefWidth="61.0">
-                                                         <HBox.margin>
-                                                            <Insets right="5.0" />
-                                                         </HBox.margin>
-                                                      </TextField>
-                                                   </children>
-                                                   <VBox.margin>
-                                                      <Insets top="10.0" />
-                                                   </VBox.margin>
-                                                </HBox>
+                                                </VBox>
                                              </children>
                                           </VBox>
                                        </children>
-                                    </VBox>
+                                    </HBox>
                                  </children>
-                              </HBox>
+                              </VBox>
                            </children>
-                        </VBox>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </center>
+               <top>
+                  <VBox prefHeight="162.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="%lblTitleConsultarEncomendaTransporte">
+                                 <font>
+                                    <Font name="Arial" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="400.0">
+                           <children>
+                              <TextField fx:id="txtPesquisarEncomendaReceber" onKeyPressed="#txtPesquisarEncomendaReceberOnKeyPressed" prefHeight="25.0" prefWidth="309.0" promptText="%lblPesquisarEncomendaReceber">
+                                 <HBox.margin>
+                                    <Insets left="2.0" right="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="400.0">
+                           <children>
+                              <RadioButton fx:id="rbdCodigoReceber" mnemonicParsing="false" onAction="#rbdCodigoReceberOnAction" text="%lblCodigo">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rbdDestinoReceber" mnemonicParsing="false" onAction="#rbdDestinoReceberOnAction" text="%lblDestino">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </top>
+            </BorderPane>
+         </center>
+         <bottom>
+            <VBox prefHeight="94.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="25.0">
+                     <children>
+                        <Label fx:id="lblInfoTable" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="81.0" prefWidth="800.0">
+                     <children>
+                        <Button fx:id="btnCalcularRota" mnemonicParsing="false" onAction="#CalcularRotaOnAction" onKeyPressed="#CalcularRotaOnKeyPressed" prefHeight="30.0" prefWidth="100.0" text="%btnCalcularRota">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnGerarRota" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#VoltarOnAction" onKeyPressed="#VoltarOnKeyPressed" prefHeight="30.0" prefWidth="100.0" text="%btnVoltar">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnVoltar" />
+                           </styleClass>
+                        </Button>
                      </children>
                   </HBox>
                </children>
-            </HBox>
-         </center>
+            </VBox>
+         </bottom>
       </BorderPane>
-   </center>
-</BorderPane>
+   </children>
+</StackPane>

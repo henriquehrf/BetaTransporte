@@ -10,6 +10,7 @@ import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
 import com.dev.betaTransporteENUM.Status;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,11 +34,17 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "Encomenda")
 @NamedQueries({
-    @NamedQuery(name = "Encomenda.GetAllCPFCNPJDestinatario", query = "SELECT m FROM Encomenda m WHERE UPPER(m.cpfCnpjDestinatario) LIKE UPPER(:cspfCnpj) ORDER BY m.cpfCnpjDestinatario ASC")
+    @NamedQuery(name = "Encomenda.GetAllCPFCNPJDestinatario", 
+    query = "SELECT m FROM Encomenda m WHERE UPPER(m.cpfCnpjDestinatario) LIKE UPPER(:cspfCnpj) ORDER BY m.cpfCnpjDestinatario ASC")
     ,
-    @NamedQuery(name = "Encomenda.GetAllEnc", query = "SELECT m FROM Encomenda m ORDER BY m.cpfCnpjDestinatario ASC")
+    @NamedQuery(name = "Encomenda.GetAllEnc", 
+    query = "SELECT m FROM Encomenda m ORDER BY m.cpfCnpjDestinatario ASC")
     ,
-    @NamedQuery(name = "Encomenda.GetAllByPlano", query = "SELECT m FROM Encomenda m WHERE m.Plano = :plano ORDER BY m.cpfCnpjDestinatario ASC")})
+    @NamedQuery(name = "Encomenda.GetAllEncCitStatus", 
+    query = "SELECT m FROM Encomenda m WHERE (m.CidadeOrigem = :cidadeOrigem) AND (m.Status = :status) ORDER BY (m.Plano)")
+    ,
+    @NamedQuery(name = "Encomenda.GetAllByPlano", 
+    query = "SELECT m FROM Encomenda m WHERE m.Plano = :plano ORDER BY m.cpfCnpjDestinatario ASC")})
 public class Encomenda implements EntidadeBase , Serializable {
 
     public Encomenda() {
@@ -203,7 +210,7 @@ public class Encomenda implements EntidadeBase , Serializable {
     public void setLargura(int Largura) {
         this.Largura = Largura;
     }
-
+    
     /**
      * @return the Altura
      */
@@ -237,6 +244,28 @@ public class Encomenda implements EntidadeBase , Serializable {
      */
     public Date getDataCadastro() {
         return dataCadastro;
+    }
+    
+
+    public String getDataEntregaString(){
+        Date dataAux=this.dataCadastro;
+        /*if (getPlano()==Plano.BETA_CONV){
+            dataAux.setDate(dataAux.getDate() + 21);
+            dataAux.setMonth(dataAux.getMonth());
+            dataAux.setYear(dataAux.getYear());
+            // 15 dias uteis
+        }else if (getPlano()==Plano.BETA_GOLD){
+            dataAux.setDate(dataAux.getDate() + 7);
+            dataAux.setMonth(dataAux.getMonth());
+            dataAux.setYear(dataAux.getYear());
+           // 15 dias uteis//7 dias uteis são 9 ou 11 depende do dia da semana
+        }else{
+            dataAux.setDate(dataAux.getDate() + 2);
+            dataAux.setMonth(dataAux.getMonth());
+            dataAux.setYear(dataAux.getYear());
+           // 15 dias uteis//2 dias uteis são 2 ou 4depende do dia da semana
+        } */
+         return new SimpleDateFormat("dd/MM/yyyy").format(dataAux);
     }
 
     /**
