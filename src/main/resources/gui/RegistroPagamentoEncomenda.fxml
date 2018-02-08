@@ -45,12 +45,12 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="%lblNuNotaFiscal" />
+                              <Label text="%lblValor" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtValorDeclarado" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -59,11 +59,11 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
-                              <Label text="%lblValorDeclarado" />
+                              <Label text="%lblDestinatario" />
                            </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtDestinatario" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -71,11 +71,11 @@
                            </children></HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
-                              <Label text="%lblCpfCnpjCliente" />
+                              <Label text="%lblRemetente" />
                            </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtRemetente" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -83,11 +83,11 @@
                            </children></HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
-                              <Label text="%lblCpfCnpjDestino" />
+                              <Label text="%lblNuNotaFiscal" />
                            </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="200.0">
+                              <TextField fx:id="txtNumNotaFiscal" prefHeight="25.0" prefWidth="200.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -99,12 +99,15 @@
                            </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="%lblSim">
+                              <RadioButton fx:id="rdbSim" mnemonicParsing="false" text="%lblSim">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="Escolha" />
+                                 </toggleGroup>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="%lblNao">
+                              <RadioButton fx:id="rdbNao" mnemonicParsing="false" text="%lblNao" toggleGroup="$Escolha">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -116,7 +119,7 @@
                            </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
-                              <DatePicker />
+                              <DatePicker fx:id="dtpDataPagamento" />
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -132,23 +135,23 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="%btnSalvar">
-                     <styleClass>
-                        <String fx:value="btnOperation" />
-                        <String fx:value="btnSalvar" />
-                     </styleClass>
+                  <Button fx:id="btnGeraComprovante" minWidth="130.0" mnemonicParsing="false" onAction="#GeraComprovanteOnAction" text="%btnGerarRelatório">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="btnOperation" />
+                        <String fx:value="btnGerarRota" />
+                     </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" text="%btnCancelar">
-                     <styleClass>
-                        <String fx:value="btnOperation" />
-                        <String fx:value="btnCancelar" />
-                     </styleClass>
+                  <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#VoltarOnAction" text="%btnVoltar">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="btnOperation" />
+                        <String fx:value="btnVoltar" />
+                     </styleClass>
                   </Button>
                </children></HBox>
          </bottom>
