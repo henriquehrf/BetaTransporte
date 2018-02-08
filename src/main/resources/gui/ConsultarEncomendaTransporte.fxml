@@ -90,7 +90,7 @@
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <TextField fx:id="txtCustoEfetivo" editable="false" prefHeight="25.0" prefWidth="57.0">
+                                                            <TextField fx:id="txtCustoEfetivo" prefHeight="25.0" prefWidth="57.0">
                                                                <HBox.margin>
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
@@ -100,7 +100,7 @@
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <TextField fx:id="txtPeso" editable="false" prefHeight="25.0" prefWidth="51.0">
+                                                            <TextField fx:id="txtPeso" prefHeight="25.0" prefWidth="51.0">
                                                                <HBox.margin>
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
@@ -110,7 +110,7 @@
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <TextField fx:id="txtVolume" editable="false" prefHeight="25.0" prefWidth="77.0">
+                                                            <TextField fx:id="txtVolume" prefHeight="25.0" prefWidth="77.0">
                                                                <HBox.margin>
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
@@ -127,7 +127,7 @@
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <TextField fx:id="txtCategoriaCaminhao" editable="false" prefHeight="25.0" prefWidth="80.0">
+                                                            <TextField fx:id="txtCategoriaCaminhao" prefHeight="25.0" prefWidth="80.0">
                                                                <HBox.margin>
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
@@ -137,7 +137,7 @@
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>
                                                             </Label>
-                                                            <TextField fx:id="txtDisponibilidade" editable="false" prefHeight="25.0" prefWidth="61.0">
+                                                            <TextField fx:id="txtDisponibilidade" prefHeight="25.0" prefWidth="61.0">
                                                                <HBox.margin>
                                                                   <Insets right="5.0" />
                                                                </HBox.margin>

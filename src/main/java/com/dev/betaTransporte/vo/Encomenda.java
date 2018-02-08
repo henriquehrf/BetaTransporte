@@ -330,5 +330,8 @@ public class Encomenda implements EntidadeBase , Serializable {
     public void setCidadeOrigem(Cidade CidadeOrigem) {
         this.CidadeOrigem = CidadeOrigem;
     }
+    public int volume (){
+        return this.Altura*this.Largura*this.Comprimento;
+    }
     
 }

@@ -27,9 +27,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import util.GerarPDF;
+import util.Navegation;
 
 /**
  * FXML Controller class
@@ -72,6 +76,9 @@ public class CalcularRotaTransporteController implements Initializable {
     private TextField txtTotalItem;
 
     @FXML
+    private StackPane stpCalcularRota;
+    
+    @FXML
     private TableColumn<Encomenda, String> tbcRotaEncomenda;
 
     @FXML
@@ -93,7 +100,7 @@ public class CalcularRotaTransporteController implements Initializable {
     private TableView<Rota> tbvRotas;
 
     List<Rota> rotas = null;
-
+    Navegation navegation = new Navegation();
     private ObservableList<Encomenda> EncomendaList = FXCollections.observableArrayList();
     private ObservableList<Rota> RotaList = FXCollections.observableArrayList();
 
@@ -119,12 +126,14 @@ public class CalcularRotaTransporteController implements Initializable {
 
     @FXML
     void btnVoltarOnAction(ActionEvent event) {
-
+        navegation.getFather(this.stpCalcularRota);
     }
 
     @FXML
-    void btnVoltarOnKeyPressed(ActionEvent event) {
-
+    void btnVoltarOnKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            navegation.getFather(this.stpCalcularRota);
+        }
     }
 
     void completarTabelaRota(List<Rota> list) {

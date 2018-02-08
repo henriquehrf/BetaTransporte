@@ -128,7 +128,12 @@ public class ConsultarEncomendaTransporteController {
         this.btnCalcularRota.setDisable(true);
         this.rbdCodigoReceber.setSelected(true);
         this.rbdDestinoReceber.setSelected(false);
-
+        this.txtCategoriaCaminhao.setEditable(false);
+        this.txtCustoEfetivo.setEditable(false);
+        this.txtDisponibilidade.setEditable(false);
+        this.txtPeso.setEditable(false);
+        this.txtVolume.setEditable(false);
+        EncomendaList2 = FXCollections.observableArrayList();
         try {
             tbcCodigoAguardando.setStyle(" -fx-alignment:center");
             tbcCodigoTransporte.setStyle(" -fx-alignment:center");
@@ -177,8 +182,26 @@ public class ConsultarEncomendaTransporteController {
         this.tbcDestinoTransporte.setCellValueFactory(new PropertyValueFactory<>("cidadeDestino"));
         this.tbcPlanoTransporte.setCellValueFactory(new PropertyValueFactory<>("plano"));
         this.tbcPrevisaoTransporte.setCellValueFactory(new PropertyValueFactory<>("dataEntregaString"));
-
         tbvTransporte.setItems(EncomendaList2);
+        
+        if (EncomendaList2.isEmpty()) {
+            this.btnCalcularRota.setDisable(true);
+            this.txtCategoriaCaminhao.setText("");
+            this.txtCustoEfetivo.setText("");
+            this.txtDisponibilidade.setText("");
+            this.txtPeso.setText("");
+            this.txtVolume.setText("");
+        }else{
+            float peso=0;
+            int volume=0;
+            this.txtDisponibilidade.setText("Sim");
+            for (Encomenda vo : EncomendaList2) {
+                peso=peso+vo.getPeso();
+                volume=volume+vo.volume();
+            }
+            this.txtPeso.setText(""+peso+"kg");
+            this.txtVolume.setText(""+volume+"cm³");
+        }
     }
 
     @FXML
@@ -222,50 +245,34 @@ public class ConsultarEncomendaTransporteController {
     @FXML
     void txtPesquisarEncomendaReceberOnKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-
             String value = txtPesquisarEncomendaReceber.getText();
             EncomendaListAux = new ArrayList<>();
+            if (this.rbdCodigoReceber.isSelected()){
+                for (Encomenda vo : EncomendaList1) {
+                    if (vo.getId().toString().contains(value)) {
+                        EncomendaListAux.add(vo);
+                    }
+                }
 
-            for (Encomenda vo : EncomendaList1) {
+                if (!txtPesquisarEncomendaReceber.getText().isEmpty()) {
+                    completeTableAguardando(EncomendaListAux);
+                }else{
+                    completeTableAguardando(EncomendaList1);
+                }
+            }else{
+                for (Encomenda vo : EncomendaList1) {
+                    if (vo.getCidadeDestino().name().trim().contains(value.toUpperCase().trim())) {
+                        EncomendaListAux.add(vo);
+                    }
+                }
 
-                if (vo.getId().toString().contains(value)) {
-                    EncomendaListAux.add(vo);
+                if (!txtPesquisarEncomendaReceber.getText().isEmpty()) {
+                    completeTableAguardando(EncomendaListAux);
+
+                }else{
+                    completeTableAguardando(EncomendaList1);
                 }
             }
-
-            if (!txtPesquisarEncomendaReceber.getText().isEmpty()) {
-                completeTableAguardando(EncomendaListAux);
-
-            }else{
-                completeTableAguardando(EncomendaList1);
-            }
-
-//            if (!"".equals(this.txtPesquisarEncomendaReceber)) {
-//                if (this.rbdCodigoReceber.isSelected() == true) {
-//                    for (int i = 0; i < EncomendaList1.size(); i++) {
-//
-//                        if (Long.toString(EncomendaList1.get(i).getId()).contains(this.txtPesquisarEncomendaReceber.getText()) == false) {
-//                            System.out.println(Long.toString(EncomendaList1.get(i).getId()) + "/n");
-//                            EncomendaListAux.add(EncomendaList1.get(i));
-//                            EncomendaList1.remove(EncomendaList1.get(i));
-//                        }
-//                    }
-//                } else {
-//                    for (int i = 0; i < EncomendaList1.size(); i++) {
-//
-//                        if (!EncomendaList1.get(i).getCidadeDestino().name().toLowerCase().contains(this.txtPesquisarEncomendaReceber.getText().toLowerCase())) {
-//                            System.out.println(EncomendaList1.get(i).getCidadeDestino().name() + "/n");
-//                            EncomendaListAux.add(EncomendaList1.get(i));
-//                            EncomendaList1.remove(EncomendaList1.get(i));
-//                        }
-//                    }
-//                }
-//                completeTableAguardando();
-//                EncomendaList1.addAll(EncomendaListAux);
-//                EncomendaListAux = FXCollections.observableArrayList();
-//            } else {
-//                completeTableAguardando();
-//            }
         }
     }
 
@@ -295,37 +302,29 @@ public class ConsultarEncomendaTransporteController {
     void MaiorOnAction(ActionEvent event) {
         if (tbvAguardando.getSelectionModel().getSelectedItem() != null) {
             this.btnCalcularRota.setDisable(false);
-//            for (int i = 0; i < EncomendaList1.size(); i++) {
-//                if (EncomendaList1.get(i).getId() == tbvAguardando.getSelectionModel().getSelectedItem().getId()) {
-//                    EncomendaList2.add(EncomendaList1.get(i));
-//                    EncomendaList1.remove(EncomendaList1.get(i));
-//                    i = EncomendaList1.size() + 5;
-//                    completeTableAguardando();
-//                    completeTableTransporte();
-//                }
-//            }
+            for (int i = 0; i < EncomendaList1.size(); i++) {
+                if (EncomendaList1.get(i).getId() == tbvAguardando.getSelectionModel().getSelectedItem().getId()) {
+                    EncomendaList2.add(EncomendaList1.get(i));
+                    EncomendaList1.remove(EncomendaList1.get(i));
+                    i = EncomendaList1.size() + 5;
+                    completeTableAguardando(EncomendaList1);
+                    completeTableTransporte();
+                }
+            }
         }
     }
 
     @FXML
     void MenorOnAction(ActionEvent event) {
         if (tbvTransporte.getSelectionModel().getSelectedItem() != null) {
-//            for (int i = 0; i < EncomendaList2.size(); i++) {
-//                if (EncomendaList2.get(i).getId() == tbvTransporte.getSelectionModel().getSelectedItem().getId()) {
-//                    EncomendaList1.add(EncomendaList2.get(i));
-//                    EncomendaList2.remove(EncomendaList2.get(i));
-//                    i = EncomendaList2.size() + 5;
-//                    completeTableAguardando();
-//                    completeTableTransporte();
-//                }
-//            }
-            if (EncomendaList2.isEmpty()) {
-                this.btnCalcularRota.setDisable(true);
-                this.txtCategoriaCaminhao.setText("");
-                this.txtCustoEfetivo.setText("");
-                this.txtDisponibilidade.setText("");
-                this.txtPeso.setText("");
-                this.txtVolume.setText("");
+            for (int i = 0; i < EncomendaList2.size(); i++) {
+                if (EncomendaList2.get(i).getId() == tbvTransporte.getSelectionModel().getSelectedItem().getId()) {
+                    EncomendaList1.add(EncomendaList2.get(i));
+                    EncomendaList2.remove(EncomendaList2.get(i));
+                    i = EncomendaList2.size() + 5;
+                    completeTableAguardando(EncomendaList1);
+                    completeTableTransporte();
+                }
             }
         }
     }
