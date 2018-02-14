@@ -151,12 +151,5 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
             return null;
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

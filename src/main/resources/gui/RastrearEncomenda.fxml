@@ -44,9 +44,8 @@
          <center>
             <TableView fx:id="tbvPesquisa" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="tbcCodigo" editable="false" minWidth="150.0" prefWidth="-1.0" sortable="false" text="%lblCodigo" />
-                <TableColumn editable="false" minWidth="380.0" prefWidth="-1.0" sortable="false" text="%lblLocal" />
-                  <TableColumn editable="false" minWidth="170.0" prefWidth="-1.0" sortable="false" text="%lblSituacao" />
+                <TableColumn fx:id="tbcCodigo" editable="false" minWidth="200.0" prefWidth="-1.0" sortable="false" text="%lblCodigo" />
+                  <TableColumn fx:id="tbcSituacao" editable="false" minWidth="500.0" prefWidth="-1.0" sortable="false" text="%lblSituacao" />
               </columns>
                <BorderPane.margin>
                   <Insets left="50.0" right="50.0" />

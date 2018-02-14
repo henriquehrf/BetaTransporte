@@ -55,6 +55,9 @@ import javax.persistence.Temporal;
     ,
     @NamedQuery(name = "Encomenda.GetAllId", 
     query = "SELECT m FROM Encomenda m ORDER BY m.ID DESC")
+    ,
+    @NamedQuery(name = "Encomenda.GetStatus", 
+    query = "SELECT m FROM Encomenda m WHERE m.Status = :status ")
     
 })
 public class Encomenda implements EntidadeBase , Serializable {

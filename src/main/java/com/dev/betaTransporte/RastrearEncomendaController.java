@@ -10,7 +10,6 @@ import com.dev.betaTransporte.vo.Encomenda;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +34,9 @@ public class RastrearEncomendaController implements Initializable {
 
     @FXML
     private TableColumn<Encomenda, Long> tbcCodigo;
+    
+    @FXML
+    private TableColumn<Encomenda, Enum> tbcSituacao;
 
     @FXML
     private StackPane stpRastrearEncomenda;
@@ -66,7 +68,9 @@ public class RastrearEncomendaController implements Initializable {
         EncomendaList.addAll(list);
 
         this.tbcCodigo.setCellValueFactory(new PropertyValueFactory<Encomenda, Long>("Id"));
+        this.tbcSituacao.setCellValueFactory(new PropertyValueFactory<Encomenda, Enum>("Status"));
         tbvPesquisa.setItems(EncomendaList);
+
 
     }
     
@@ -86,7 +90,7 @@ public class RastrearEncomendaController implements Initializable {
 
         try {
             
-            completeTable(encomendaNegocio.searchEncomendabyID(0));
+              completeTable(encomendaNegocio.searchEncomendabyID(0));
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
