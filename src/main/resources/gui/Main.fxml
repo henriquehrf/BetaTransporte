@@ -23,7 +23,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="%mnuBar.Ratreio">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem fx:id="mnuItenRastrearEncomenda" mnemonicParsing="false" onAction="#ItemRastrearOnAction" text="%mnuBar.RastrearEncomenda" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="%mnuBar.Transporte">

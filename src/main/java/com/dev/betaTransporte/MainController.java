@@ -32,22 +32,30 @@ public class MainController implements Initializable {
 
     @FXML
     private MenuItem mnuItenConsultarEncomenda;
-    
+
     @FXML
     private MenuItem mnuItenCliente;
 
     @FXML
     private MenuItem mnuItenEncomenda;
-    
+
     @FXML
     private MenuItem mnuItemRegistraPagamentoEncomenda;
 
-    
-    
-    
-    
-    
-    
+    @FXML
+    private MenuItem mnuItenRastrearEncomenda;
+
+    @FXML
+    void ItemRastrearOnAction(ActionEvent event) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/RastrearEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            bdpPrincipal.setCenter(root);
+
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+    }
 
     @FXML
     void ItemClienteOnAction(ActionEvent event) {
@@ -86,10 +94,10 @@ public class MainController implements Initializable {
             System.err.println(ex);
         }
     }
-    
+
     @FXML
     void ItemRegistraPagamentoEncomendaOnAction(ActionEvent event) {
-try {
+        try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/gui/RegistroPagamentoEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
             bdpPrincipal.setCenter(root);
@@ -98,10 +106,6 @@ try {
             System.err.println(ex);
         }
     }
-    
-    
-    
-    
 
     /**
      * Initializes the controller class.
