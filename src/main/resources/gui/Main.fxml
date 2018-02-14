@@ -21,9 +21,9 @@
                   <MenuItem fx:id="mnuItemRegistraPagamentoEncomenda" mnemonicParsing="false" onAction="#ItemRegistraPagamentoEncomendaOnAction" text="%mnuItem.RegistraPagamentoEncomenda" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="%mnuBar.Ratreio">
+          <Menu mnemonicParsing="false" text="%mnuBar.RastrearEncomenda">
             <items>
-              <MenuItem fx:id="mnuItenRastrearEncomenda" mnemonicParsing="false" onAction="#ItemRastrearOnAction" text="%mnuBar.RastrearEncomenda" />
+              <MenuItem fx:id="mnuItenRastrearEncomenda" mnemonicParsing="false" onAction="#ItemRastrearOnAction" text="%mnuBar.Ratreio" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="%mnuBar.Transporte">
