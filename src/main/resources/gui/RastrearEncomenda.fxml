@@ -33,7 +33,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="25.0" prefWidth="400.0" />
+                              <TextField fx:id="txtPesquisa" onKeyPressed="#isPressed" prefHeight="25.0" prefWidth="400.0" />
                            </children>
                         </HBox>
                      </children>
@@ -42,9 +42,9 @@
             </VBox>
          </top>
          <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tbvPesquisa" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn editable="false" minWidth="150.0" prefWidth="-1.0" sortable="false" text="%lblCodigo" />
+                <TableColumn fx:id="tbcCodigo" editable="false" minWidth="150.0" prefWidth="-1.0" sortable="false" text="%lblCodigo" />
                 <TableColumn editable="false" minWidth="380.0" prefWidth="-1.0" sortable="false" text="%lblLocal" />
                   <TableColumn editable="false" minWidth="170.0" prefWidth="-1.0" sortable="false" text="%lblSituacao" />
               </columns>

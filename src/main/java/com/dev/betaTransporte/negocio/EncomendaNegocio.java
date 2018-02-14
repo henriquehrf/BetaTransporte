@@ -14,7 +14,6 @@ import com.dev.betaTransporte.vo.Encomenda;
 import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Status;
 import java.util.List;
-import javafx.animation.Animation;
 import javafx.scene.control.Alert;
 import util.BoxInfo;
 import util.Message;
@@ -204,4 +203,28 @@ public class EncomendaNegocio {
 
         return 1;
     }
+    
+    
+    public List<Encomenda> searchEncomendabyID(int content) {
+        List<Encomenda> result;
+        try {
+            EncomendaDAO encomendaList = new EncomendaDAO();
+            if (content > 0) {
+                result = encomendaList.GetAllById(content);
+                return result;
+            } 
+            else {
+                result = encomendaList.GetAllId(content);
+                return result;
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    
+    
+    
 }
