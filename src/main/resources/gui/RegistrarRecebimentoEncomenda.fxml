@@ -9,93 +9,211 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.RegistrarRecebimentoEncomendaController">
-   <top>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+
+<StackPane fx:id="stpEncomendaEntrega" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.RegistrarRecebimentoEncomendaController">
+   <children>
+      <BorderPane fx:id="bdpConsultarEncomenda" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/Styles.css">
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="112.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="%lblTitleEncomendaEntregar">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
+                  <Button fx:id="btnSelecionar" mnemonicParsing="false" onAction="#btnSelecionarOnAction" onKeyPressed="#btnSelecionarOnKeyPressed" text="%btnSelecionar">
+                     <styleClass>
+                        <String fx:value="btnOperation" />
+                        <String fx:value="btnVisualizar" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarOnAction" onKeyPressed="#btnVoltarOnKeyPressed" text="%btnVoltar">
+                     <styleClass>
+                        <String fx:value="btnVoltar" />
+                        <String fx:value="btnOperation" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
                </children>
             </HBox>
-            <VBox prefHeight="90.0" prefWidth="800.0">
+         </bottom>
+         <center>
+            <TableView fx:id="tbvPrincipal" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn fx:id="tbcCodigo" prefWidth="119.0" text="%lblCodigo" />
+                  <TableColumn fx:id="tbcNF" prefWidth="152.0" text="%lblNuNotaFiscal" />
+                  <TableColumn fx:id="tbcCPFCNPJ" prefWidth="184.0" text="%lblCpfCnpjCliente" />
+                  <TableColumn fx:id="TbcCliente" prefWidth="304.0" text="%lblNomeRazaoSocial" />
+               </columns>
+               <BorderPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </BorderPane.margin>
+            </TableView>
+         </center>
+         <top>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="%lblPesquisar">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
+                        <Label text="%lblTitleEncomendaEntregar">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
                         </Label>
-                        <TextField fx:id="txtPesquisa" onKeyPressed="#txtPesquisaOnKeyPressed" prefHeight="25.0" prefWidth="379.0">
-                           <HBox.margin>
-                              <Insets right="5.0" />
-                           </HBox.margin>
-                        </TextField>
                      </children>
                   </HBox>
-                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <VBox prefHeight="90.0" prefWidth="800.0">
                      <children>
-                        <RadioButton fx:id="rdbCodigo" mnemonicParsing="false" text="%rdbCodigo">
-                           <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
-                           <toggleGroup>
-                              <ToggleGroup fx:id="filter" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="rdbCpfCnpj" mnemonicParsing="false" text="%rdbCpfCnpj" toggleGroup="$filter">
-                           <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
-                           </HBox.margin>
-                        </RadioButton>
-                        <RadioButton fx:id="rdbNome" layoutX="401.0" layoutY="10.0" mnemonicParsing="false" text="%rdbNome" toggleGroup="$filter" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="%lblPesquisar">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="txtPesquisa" onKeyPressed="#txtPesquisaOnKeyPressed" prefHeight="25.0" prefWidth="379.0">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <RadioButton fx:id="rdbCodigo" mnemonicParsing="false" onAction="#rdbCodigoOnAction" text="%rdbCodigo">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="filter" />
+                                 </toggleGroup>
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rdbCpfCnpj" mnemonicParsing="false" onAction="#rdbCpfCnpjOnAction" text="%rdbCpfCnpj" toggleGroup="$filter">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rdbNome" layoutX="401.0" layoutY="10.0" mnemonicParsing="false" onAction="#rdbNomeOnAction" text="%rdbNome" toggleGroup="$filter" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </top>
+      </BorderPane>
+      <BorderPane fx:id="bdpEntregarEncomenda" prefHeight="200.0" prefWidth="200.0" visible="false">
+         <top>
+            <VBox prefHeight="105.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="103.0" prefWidth="800.0">
+                     <children>
+                        <Label text="%lblTitleEntregarEncomenda">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                </children>
             </VBox>
-         </children>
-      </VBox>
-   </top>
-   <center>
-      <TableView fx:id="tbvPrincipal" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="tbcCodigo" prefWidth="119.0" text="%lblCodigo" />
-            <TableColumn fx:id="tbcNF" prefWidth="152.0" text="%lblNuNotaFiscal" />
-          <TableColumn fx:id="tbcCPFCNPJ" prefWidth="184.0" text="%lblCpfCnpjCliente" />
-            <TableColumn fx:id="TbcCliente" prefWidth="304.0" text="%lblNomeRazaoSocial" />
-        </columns>
-         <BorderPane.margin>
-            <Insets left="20.0" right="20.0" />
-         </BorderPane.margin>
-      </TableView>
-   </center>
-   <bottom>
-      <HBox alignment="CENTER" prefHeight="112.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnSelecionar" mnemonicParsing="false" onAction="#btnSelecionarOnAction" onKeyPressed="#btnSelecionarOnKeyPressed" text="%btnSelecionar">
-               <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
-               </HBox.margin>
-               <styleClass>
-                  <String fx:value="btnOperation" />
-                  <String fx:value="btnVisualizar" />
-               </styleClass>
-            </Button>
-            <Button fx:id="btnVoltar" mnemonicParsing="false" onAction="#btnVoltarOnAction" onKeyPressed="#btnVoltarOnKeyPressed" text="%btnSelecionar">
-               <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
-               </HBox.margin>
-               <styleClass>
-                  <String fx:value="btnVoltar" />
-                  <String fx:value="btnOperation" />
-               </styleClass>
-            </Button>
-         </children>
-      </HBox>
-   </bottom>
-</BorderPane>
+         </top>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="245.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="555.0" minWidth="10.0" prefWidth="555.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="%lblDestinatario" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <children>
+                        <TextField fx:id="txtDestinatario" disable="true" prefWidth="300.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="%lblRemetente" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <children>
+                        <TextField fx:id="txtRemetente" disable="true" prefWidth="300.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+                     <children>
+                        <Label text="%lblNuNotaFiscal" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <children>
+                        <TextField fx:id="txtNotaFiscal" disable="true" prefWidth="200.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+                     <children>
+                        <Label text="%lblDataRecebimento" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <children>
+                        <DatePicker fx:id="dtpRecebimento" prefHeight="25.0" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+         </center>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="112.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#btnSalvarOnAction" onKeyPressed="#btnSalvarOnKeyPressed" text="%btnSalvar">
+                     <styleClass>
+                        <String fx:value="btnOperation" />
+                        <String fx:value="btnSalvar" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btnRetornar" mnemonicParsing="false" onAction="#btnRetornarOnAction" onKeyPressed="#btnRetornarOnKeyPressed" text="%btnRetornar">
+                     <styleClass>
+                        <String fx:value="btnVoltar" />
+                        <String fx:value="btnOperation" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</StackPane>

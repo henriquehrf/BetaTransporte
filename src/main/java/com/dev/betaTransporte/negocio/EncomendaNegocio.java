@@ -134,11 +134,11 @@ public class EncomendaNegocio {
         }
     }
 
-    public List<Encomenda> searchEncomendaEntrega(Cidade cidade, Status status) {
+    public List<Encomenda> searchEncomendaEntrega(Cidade cidade, Status status) throws Exception {
         List<Encomenda> result;
+        EncomendaDAO encomendaList = new EncomendaDAO();
         try {
-
-            result = searchEncomendaEntrega(cidade, status);
+            result = encomendaList.GetAllEntrega(cidade, status);
             return result;
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
