@@ -6,6 +6,7 @@
 package com.dev.betaTransporte.vo;
 
 import com.dev.betaTransporte.dao.EntidadeBase;
+import com.dev.betaTransporte.gmaps.MatrizCidade;
 import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
 import com.dev.betaTransporteENUM.Status;
@@ -335,6 +336,45 @@ public class Encomenda implements EntidadeBase , Serializable {
     }
     public int volume (){
         return this.Altura*this.Largura*this.Comprimento;
+    }
+    
+    public String getNomeCliente(){
+        return this.ClienteVO.getNome();
+    }
+    
+    public float VAlorAPagar() throws Exception{
+        MatrizCidade matrix = new MatrizCidade();
+        float fatorEnc, fatorDis,seguro;
+        int distancia = matrix.map(this.getCidadeOrigem().name().trim(), this.getCidadeDestino().name().trim());
+        
+        if (getPlano().equals(Plano.BETA_CONV)){
+            
+            if (getPeso()<10){
+                fatorEnc = (float) Math.sqrt(getPeso()*3);
+            }else{
+                fatorEnc = (float) ((volume()/1000000)* Math.log10(getPeso())*10);
+            }
+            fatorDis=(float) (10+0.03*distancia);
+            seguro=5;
+        }else if (getPlano().equals(Plano.BETA_GOLD)){
+            
+            if (getPeso()<10){
+                fatorEnc = (float) Math.sqrt(getPeso()*10);
+            }else{
+                fatorEnc = (float) ((volume()/1000000)* Math.log10(getPeso())*30);
+            }
+            fatorDis=(float) (10+0.04*distancia);
+            seguro=5;
+        }else {
+            if (getPeso()<10){
+                fatorEnc = (float) Math.sqrt(getPeso()*20);
+            }else{
+                fatorEnc = (float) ((volume()/1000000)* Math.log10(getPeso())*50);
+            }
+            fatorDis=(float) (20+0.05*distancia);
+            seguro=getValorDeclarado()/100;
+        }
+        return (fatorEnc+fatorDis+seguro);
     }
     
 }

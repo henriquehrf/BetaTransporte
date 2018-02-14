@@ -12,6 +12,7 @@ package com.dev.betaTransporte;
 import com.dev.betaTransporte.negocio.EncomendaNegocio;
 import com.dev.betaTransporte.negocio.UsuarioNegocio;
 import com.dev.betaTransporte.vo.Encomenda;
+import com.dev.betaTransporteENUM.CategoriaCaminhao;
 import com.dev.betaTransporteENUM.Cidade;
 import com.dev.betaTransporteENUM.Plano;
 import com.dev.betaTransporteENUM.Status;
@@ -201,6 +202,19 @@ public class ConsultarEncomendaTransporteController {
             }
             this.txtPeso.setText(""+peso+"kg");
             this.txtVolume.setText(""+volume+"cm³");
+            if (peso<500 && volume<800000){
+                this.txtCategoriaCaminhao.setText(""+CategoriaCaminhao.PEQUENO.name().trim());
+                this.btnMaior.setDisable(false);
+            }else if (peso<1000 && volume<1600000){
+                this.txtCategoriaCaminhao.setText(""+CategoriaCaminhao.MEDIO.name().trim());
+                this.btnMaior.setDisable(false);
+            }else if (peso<13200 && volume<2750000){
+                this.txtCategoriaCaminhao.setText(""+CategoriaCaminhao.GRANDE.name().trim());
+                this.btnMaior.setDisable(false);
+            }else{
+                this.txtCategoriaCaminhao.setText(""+CategoriaCaminhao.GRANDE.name().trim());
+                this.btnMaior.setDisable(true);
+            }
         }
     }
 

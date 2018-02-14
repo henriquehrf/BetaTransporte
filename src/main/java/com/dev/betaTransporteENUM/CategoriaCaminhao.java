@@ -10,7 +10,7 @@ package com.dev.betaTransporteENUM;
  * @author Daniel
  */
 public enum CategoriaCaminhao {
-    CAMINHAO_PEQUENO,
-    CAMINHAO_MEDIO,
-    CAMINHAO_GRANDE
+    PEQUENO,
+    MEDIO,
+    GRANDE
 }
