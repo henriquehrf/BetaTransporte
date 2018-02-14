@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="stpInformarMercadoriaDescarregada" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dev.betaTransporte.InformarMercadoriaDescarregadaController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <HBox alignment="CENTER" prefHeight="332.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox prefHeight="394.0" prefWidth="400.0">
+                           <children>
+                              <VBox prefHeight="394.0" prefWidth="424.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
+                                       <children>
+                                          <Label text="%lblEncomendasReceber" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="341.0" prefWidth="400.0">
+                                       <children>
+                                          <TableView fx:id="tbvReceber" onKeyPressed="#tbvReceberOnKeyPressed" onMouseClicked="#tbvReceberOnMouseClicked" prefHeight="328.0" prefWidth="368.0">
+                                             <columns>
+                                                <TableColumn fx:id="tbcCodigoReceber" prefWidth="100.0" text="%lblCodigo" />
+                                                <TableColumn fx:id="tbcNotaFiscalReceber" prefWidth="100.0" text="%lblNotaFiscal" />
+                                                <TableColumn fx:id="tbcCpfCnpjReceber" prefWidth="166.0" text="%lblCpfCnpj" />
+                                             </columns>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </TableView>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" prefHeight="394.0" prefWidth="40.0">
+                           <children>
+                              <Button fx:id="btnMaior" mnemonicParsing="false" onAction="#MaiorOnAction" text="%lblMaior">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="btnMenor" mnemonicParsing="false" onAction="#MenorOnAction" text="%lblMenor">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <HBox prefHeight="394.0" prefWidth="400.0">
+                           <children>
+                              <VBox prefHeight="394.0" prefWidth="424.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="400.0">
+                                       <children>
+                                          <Label text="%lblEncomendasRecebidas" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="340.0" prefWidth="387.0">
+                                       <children>
+                                          <VBox prefHeight="328.0" prefWidth="367.0">
+                                             <children>
+                                                <TableView fx:id="tbvRecebida" onKeyPressed="#tbvRecebidaOnKeyPressed" onMouseClicked="#tbvRecebidaOnMouseClicked" prefHeight="327.0" prefWidth="367.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="tbcCodigoRecebida" prefWidth="100.0" text="%lblCodigo" />
+                                                      <TableColumn fx:id="tbcNotaFiscalRecebida" prefWidth="100.0" text="%lblNotaFiscal" />
+                                                      <TableColumn fx:id="tbcCpfCnpjRecebida" prefWidth="166.0" text="%lblCpfCnpj" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </center>
+               <top>
+                  <VBox prefHeight="162.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="%lblInformarMercadoriaDescarregada">
+                                 <font>
+                                    <Font name="Arial" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="31.0" prefWidth="400.0">
+                           <children>
+                              <TextField fx:id="txtPesquisarEncomendaReceber" onKeyPressed="#txtPesquisarEncomendaReceberOnKeyPressed" prefHeight="25.0" prefWidth="309.0" promptText="%lblPesquisarEncomendaReceber">
+                                 <HBox.margin>
+                                    <Insets left="2.0" right="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="400.0">
+                           <children>
+                              <RadioButton fx:id="rbdCodigo" mnemonicParsing="false" onAction="#rbdCodigoOnAction" text="%lblCodigo">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rbdNotaFiscal" mnemonicParsing="false" onAction="#rbdNotaFiscalOnAction" text="%lblNotaFiscal">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="rbdCpfCnpj" mnemonicParsing="false" onAction="#rbdCpfCnpjOnAction" text="%lblCpfCnpj" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </top>
+            </BorderPane>
+         </center>
+         <bottom>
+            <VBox prefHeight="94.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="25.0">
+                     <children>
+                        <Label fx:id="lblInfoTable" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="81.0" prefWidth="800.0">
+                     <children>
+                        <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#SalvarOnAction" onKeyPressed="#SalvarOnKeyPressed" prefHeight="30.0" prefWidth="100.0" text="%btnSalvar">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnSalvar" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#CancelarOnAction" onKeyPressed="#CancelarOnKeyPressed" prefHeight="30.0" prefWidth="100.0" text="%btnCancelar">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                           <styleClass>
+                              <String fx:value="btnOperation" />
+                              <String fx:value="btnCancelar" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</StackPane>

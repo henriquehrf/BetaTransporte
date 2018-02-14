@@ -30,6 +30,7 @@
             <Menu mnemonicParsing="false" text="%mnuBar.Transporte">
               <items>
                 <MenuItem fx:id="mnuItenConsultarEncomenda" mnemonicParsing="false" onAction="#ConsultarEncomendaOnAction" text="%mnuItem.ConsultarEncomenda" />
+                  <MenuItem fx:id="mnuItemDescarregarEncomenda" mnemonicParsing="false" onAction="#DescarregarEncomendaOnAction" text="%mnuItem.DescarregarEncomenda" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="%mnuBar.Ajuda">

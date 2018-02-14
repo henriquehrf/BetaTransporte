@@ -37,6 +37,9 @@ public class MainController implements Initializable {
     private MenuItem mnuItenCliente;
 
     @FXML
+    private MenuItem mnuItemDescarregarEncomenda;
+    
+    @FXML
     private MenuItem mnuItenEncomenda;
 
     @FXML
@@ -134,6 +137,7 @@ public class MainController implements Initializable {
         if (user.getFuncionario().equals(user.getFuncionario().Atendente)) {
             mnuItemUsuario.setVisible(false);
             mnuItenConsultarEncomenda.setVisible(false);
+            mnuItemDescarregarEncomenda.setVisible(false);
         }
 
         if (user.getFuncionario().equals(user.getFuncionario().CarregadorDescarregador)) {
@@ -154,4 +158,17 @@ public class MainController implements Initializable {
             System.err.println(ex);
         }
     }
+    
+    @FXML
+    void DescarregarEncomendaOnAction(ActionEvent event) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/InformarMercadoriaDescarregada.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            bdpPrincipal.setCenter(root);
+
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+    }
+    
 }
