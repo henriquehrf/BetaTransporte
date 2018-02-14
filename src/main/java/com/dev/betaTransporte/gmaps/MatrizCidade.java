@@ -11,6 +11,8 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.TravelMode;
 import com.google.maps.model.Unit;
+import util.Mask;
+import util.Util;
 
 /**
  *
@@ -18,7 +20,7 @@ import com.google.maps.model.Unit;
  */
 public class MatrizCidade {
 
-    public GMapsMatrix map(String Origem, String Destino) throws Exception {
+    public int map(String Origem, String Destino) throws Exception {
 
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyAUHQnTgWQRnt3XrkdCwOpyugF5aovWuJA")
@@ -42,7 +44,10 @@ public class MatrizCidade {
         parse.setDistance(matrix.rows[0].elements[0].distance.humanReadable);
         parse.setDuration(matrix.rows[0].elements[0].duration.humanReadable);
 
-        return parse;
+        String txt = parse.distance;
+        Mask mask = new Mask();
+        
+        return Integer.parseInt(mask.OnlyInt(txt));
 
     }
 }

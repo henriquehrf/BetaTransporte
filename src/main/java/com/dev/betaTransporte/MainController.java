@@ -44,12 +44,28 @@ public class MainController implements Initializable {
 
     @FXML
     private MenuItem mnuItenRastrearEncomenda;
+    
+    @FXML
+    private MenuItem mnuItemEntrega;
 
     @FXML
     void ItemRastrearOnAction(ActionEvent event) {
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/gui/RastrearEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
+            bdpPrincipal.setCenter(root);
+
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+    }
+    
+    
+    @FXML
+    void mnuItemEntregaOnAction(ActionEvent event){
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/RegistrarRecebimentoEncomenda.fxml"), ResourceBundle.getBundle("docs/i18N_pt_BR"));
             bdpPrincipal.setCenter(root);
 
         } catch (Exception ex) {

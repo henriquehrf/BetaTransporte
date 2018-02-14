@@ -27,7 +27,7 @@ import util.Util;
 public class EncomendaNegocio {
 
     BoxInfo boxInfo = new BoxInfo();
-    
+
     public static EncomendaException validar(Encomenda encomenda) throws Exception {
         ClienteDAO clienteN = new ClienteDAO();
 
@@ -134,6 +134,18 @@ public class EncomendaNegocio {
         }
     }
 
+    public List<Encomenda> searchEncomendaEntrega(Cidade cidade, Status status) {
+        List<Encomenda> result;
+        try {
+
+            result = searchEncomendaEntrega(cidade, status);
+            return result;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
     public List<Encomenda> searchEncomenda(String content, String type) {
         List<Encomenda> result;
         try {
@@ -156,8 +168,8 @@ public class EncomendaNegocio {
             return null;
         }
     }
-    
-    public List<Encomenda> searchEncomenda2 (int aux, Cidade cidadeOrigem, Status status, Status status2) {
+
+    public List<Encomenda> searchEncomenda2(int aux, Cidade cidadeOrigem, Status status, Status status2) {
         List<Encomenda> result;
         try {
             EncomendaDAO encomendaList = new EncomendaDAO();
@@ -177,7 +189,7 @@ public class EncomendaNegocio {
             return null;
         }
     }
-    
+
     public int excluirEncomenda(Encomenda encomenda) {
 
         try {

@@ -28,6 +28,15 @@
     -fx-border-color: gray;
 }
 
+.btnVisualizar{
+    -fx-background-image: url('../img/ICON_Visualizar.png');
+    -fx-background-size: 25 25 ;
+    -fx-padding: 2 2 2 4;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:5 5;
+    -fx-border-color: gray;
+}
+
 .btnGerarRota{
     -fx-background-size: 25 25 ;
     -fx-padding: 2 2 2 4;

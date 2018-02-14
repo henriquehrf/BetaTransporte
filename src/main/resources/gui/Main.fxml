@@ -24,6 +24,7 @@
           <Menu mnemonicParsing="false" text="%mnuBar.RastrearEncomenda">
             <items>
               <MenuItem fx:id="mnuItenRastrearEncomenda" mnemonicParsing="false" onAction="#ItemRastrearOnAction" text="%mnuBar.Ratreio" />
+                  <MenuItem fx:id="mnuItemEntrega" mnemonicParsing="false" onAction="#mnuItemEntregaOnAction" text="%mnuBar.EncomendaEntrega" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="%mnuBar.Transporte">

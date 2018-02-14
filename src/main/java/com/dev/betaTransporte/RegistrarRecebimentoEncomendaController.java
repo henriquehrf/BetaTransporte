@@ -5,8 +5,15 @@
  */
 package com.dev.betaTransporte;
 
+import com.dev.betaTransporte.gmaps.GMapsMatrix;
+import com.dev.betaTransporte.gmaps.MatrizCidade;
+import com.dev.betaTransporte.negocio.EncomendaNegocio;
+import com.dev.betaTransporteENUM.Cidade;
+import com.dev.betaTransporteENUM.Status;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -25,8 +32,6 @@ import javafx.scene.input.KeyEvent;
  */
 public class RegistrarRecebimentoEncomendaController implements Initializable {
 
-  
-    
     @FXML
     private TableView<?> tbvPrincipal;
 
@@ -87,10 +92,12 @@ public class RegistrarRecebimentoEncomendaController implements Initializable {
     void txtPesquisaOnKeyPressed(KeyEvent event) {
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        EncomendaNegocio encomenda = new EncomendaNegocio();
+
+       encomenda.searchEncomendaEntrega(Cidade.ALTA_FLORESTA, Status.Encomenda_descarregada_na_cidade_destino_e_disponivel_para_o_cliente_retirar);
+    }
+
 }
