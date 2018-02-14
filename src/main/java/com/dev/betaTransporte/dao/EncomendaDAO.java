@@ -16,13 +16,14 @@ import javax.persistence.Query;
  *
  * @author Daniel
  */
-public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
+public class EncomendaDAO extends GenericoDAO<EntidadeBase> {
+
     public EncomendaDAO() throws Exception {
         if (connection == null) {
             getEM();
         }
-    } 
-    
+    }
+
     public List<Encomenda> GetAllCPFCNPJDestinatario(String cpfCnpj) {
         try {
             if (connection == null || !connection.isOpen()) {
@@ -38,7 +39,7 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
             return null;
         }
     }
-    
+
     public List<Encomenda> GetAllEntrega(Cidade cidade, Status status) {
         try {
             if (connection == null || !connection.isOpen()) {
@@ -55,8 +56,8 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
             return null;
         }
     }
-    
-    public List<Encomenda> GetAllEncCitStatus (Cidade cidade, Status status) {
+
+    public List<Encomenda> GetAllEncCitStatus(Cidade cidade, Status status) {
         try {
             if (connection == null || !connection.isOpen()) {
                 getEM();
@@ -72,7 +73,7 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
             return null;
         }
     }
-    
+
     public List<Encomenda> GetAllEnc() {
 
         try {
@@ -91,9 +92,7 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
         }
 
     }
-    
-    
-    
+
     public List<Encomenda> GetAllByPlano(String plano) {
         try {
             if (connection == null || !connection.isOpen()) {
@@ -101,11 +100,11 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
             }
 
             Query query = connection.createNamedQuery("Encomenda.GetAllByPlano", Encomenda.class);
-            if (plano.equals("0")){
+            if (plano.equals("0")) {
                 query.setParameter("plano", Plano.BETA_CONV);
-            }else if(plano.equals("1")){
+            } else if (plano.equals("1")) {
                 query.setParameter("plano", Plano.BETA_GOLD);
-            }else{
+            } else {
                 query.setParameter("plano", Plano.BETA_PLATINIUN);
             }
             List<Encomenda> encomenda = query.getResultList();
@@ -116,8 +115,7 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
             return null;
         }
     }
-    
-    
+
     public List<Encomenda> GetAllById(int id) {
         try {
             if (connection == null || !connection.isOpen()) {
@@ -125,23 +123,6 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
             }
 
             Query query = connection.createNamedQuery("Encomenda.GetAllById", Encomenda.class);
-            query.setParameter("id", id);
-            List<Encomenda> encomenda = query.getResultList();
-            return encomenda;
-
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            return null;
-        }
-    }
-    
-    public List<Encomenda> GetAllId(int id) {
-        try {
-            if (connection == null || !connection.isOpen()) {
-                getEM();
-            }
-
-            Query query = connection.createNamedQuery("Encomenda.GetAllId", Encomenda.class);
             query.setParameter("id", id);
             List<Encomenda> encomenda = query.getResultList();
             return encomenda;

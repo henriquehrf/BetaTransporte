@@ -92,6 +92,8 @@ public class RastrearEncomendaController implements Initializable {
             
               completeTable(encomendaNegocio.searchEncomendabyID(0));
 
+
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

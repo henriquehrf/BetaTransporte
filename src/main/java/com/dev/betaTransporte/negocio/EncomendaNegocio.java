@@ -203,18 +203,17 @@ public class EncomendaNegocio {
 
         return 1;
     }
-    
-    
-    public List<Encomenda> searchEncomendabyID(int content) {
+
+    public List<Encomenda> searchEncomendabyID(int id) {
         List<Encomenda> result;
         try {
             EncomendaDAO encomendaList = new EncomendaDAO();
-            if (content > 0) {
-                result = encomendaList.GetAllById(content);
+            if (id > 0) {
+                result = encomendaList.GetAllById(id);
                 return result;
-            } 
-            else {
-                result = encomendaList.GetAllId(content);
+
+            } else {
+                result = encomendaList.GetAllEnc();
                 return result;
 
             }
@@ -223,6 +222,5 @@ public class EncomendaNegocio {
             return null;
         }
     }
-   
-    
+
 }
