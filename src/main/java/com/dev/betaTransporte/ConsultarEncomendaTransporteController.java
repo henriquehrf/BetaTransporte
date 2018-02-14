@@ -9,6 +9,7 @@ package com.dev.betaTransporte;
  *
  * @author Daniel
  */
+import com.dev.betaTransporte.gmaps.MatrizCidade;
 import com.dev.betaTransporte.negocio.EncomendaNegocio;
 import com.dev.betaTransporte.negocio.UsuarioNegocio;
 import com.dev.betaTransporte.vo.Encomenda;
@@ -21,6 +22,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -122,6 +125,7 @@ public class ConsultarEncomendaTransporteController {
     private List<Encomenda> EncomendaListAux = new ArrayList<>();
     private ObservableList<Encomenda> EncomendaList1 = FXCollections.observableArrayList();
     public static ObservableList<Encomenda> EncomendaList2 = FXCollections.observableArrayList();
+    MatrizCidade matrix = new MatrizCidade();
 
     @FXML
     void initialize() {
@@ -144,6 +148,25 @@ public class ConsultarEncomendaTransporteController {
             EncomendaList1.addAll(encomendaNegocio.searchEncomenda2(centroDistribuicao(), UsuarioNegocio.user.getCidade(), Status.Encomenda_aguardando_transporte_na_cidade_de_origem, Status.Encomenda_descarregada_no_centro_de_distribuição_e_aguardando_o_despacho_para_a_cidade_destino));
             completeTableAguardando(EncomendaList1);
 
+            for (Encomenda vo: EncomendaList1){
+                if (vo.getPlano()==Plano.BETA_CONV){
+                    vo.getDataCadastro().setDate(vo.getDataCadastro().getDate() + 21);
+                    vo.getDataCadastro().setMonth(vo.getDataCadastro().getMonth());
+                    vo.getDataCadastro().setYear(vo.getDataCadastro().getYear());
+                    // 15 dias uteis
+                }else if (vo.getPlano()==Plano.BETA_GOLD){
+                     vo.getDataCadastro().setDate( vo.getDataCadastro().getDate() + 7);
+                     vo.getDataCadastro().setMonth( vo.getDataCadastro().getMonth());
+                     vo.getDataCadastro().setYear( vo.getDataCadastro().getYear());
+                   // 15 dias uteis//7 dias uteis são 9 ou 11 depende do dia da semana
+                }else{
+                     vo.getDataCadastro().setDate( vo.getDataCadastro().getDate() + 2);
+                     vo.getDataCadastro().setMonth( vo.getDataCadastro().getMonth());
+                     vo.getDataCadastro().setYear( vo.getDataCadastro().getYear());
+                   // 15 dias uteis//2 dias uteis são 2 ou 4depende do dia da semana
+                } 
+            }
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -193,6 +216,21 @@ public class ConsultarEncomendaTransporteController {
             this.txtPeso.setText("");
             this.txtVolume.setText("");
         }else{
+            int dist=0;
+            float valor;
+            if (UsuarioNegocio.user.getCidade().equals(Cidade.CUIABA)){
+                try {
+                    dist = matrix.map(UsuarioNegocio.user.getCidade().name().trim(), EncomendaList2.get(0).getCidadeDestino().name().trim());
+                } catch (Exception ex) {
+                    Logger.getLogger(ConsultarEncomendaTransporteController.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }else {
+                try {
+                    dist = matrix.map(UsuarioNegocio.user.getCidade().name().trim(), Cidade.CUIABA.name().trim());
+                } catch (Exception ex) {
+                    Logger.getLogger(ConsultarEncomendaTransporteController.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }
             float peso=0;
             int volume=0;
             this.txtDisponibilidade.setText("Sim");
@@ -205,16 +243,27 @@ public class ConsultarEncomendaTransporteController {
             if (peso<500 && volume<800000){
                 this.txtCategoriaCaminhao.setText(""+CategoriaCaminhao.PEQUENO.name().trim());
                 this.btnMaior.setDisable(false);
+                valor =(float) (50+0.7*dist);
+                this.txtCustoEfetivo.setText(""+valor);
             }else if (peso<1000 && volume<1600000){
                 this.txtCategoriaCaminhao.setText(""+CategoriaCaminhao.MEDIO.name().trim());
                 this.btnMaior.setDisable(false);
+                valor =(float) (50+0.9*dist);
+                this.txtCustoEfetivo.setText(""+valor);
             }else if (peso<13200 && volume<2750000){
                 this.txtCategoriaCaminhao.setText(""+CategoriaCaminhao.GRANDE.name().trim());
                 this.btnMaior.setDisable(false);
+                valor =(float) (50+1.1*dist);
+                this.txtCustoEfetivo.setText(""+valor);
             }else{
                 this.txtCategoriaCaminhao.setText(""+CategoriaCaminhao.GRANDE.name().trim());
                 this.btnMaior.setDisable(true);
+                valor =(float) (50+1.1*dist);
+                this.txtCustoEfetivo.setText(""+valor);
             }
+            
+            
+            
         }
     }
 
