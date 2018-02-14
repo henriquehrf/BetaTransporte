@@ -116,4 +116,47 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase>{
             return null;
         }
     }
+    
+    
+    public List<Encomenda> GetAllById(int id) {
+        try {
+            if (connection == null || !connection.isOpen()) {
+                getEM();
+            }
+
+            Query query = connection.createNamedQuery("Encomenda.GetAllById", Encomenda.class);
+            query.setParameter("id", id);
+            List<Encomenda> encomenda = query.getResultList();
+            return encomenda;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    public List<Encomenda> GetAllId(int id) {
+        try {
+            if (connection == null || !connection.isOpen()) {
+                getEM();
+            }
+
+            Query query = connection.createNamedQuery("Encomenda.GetAllId", Encomenda.class);
+            query.setParameter("id", id);
+            List<Encomenda> encomenda = query.getResultList();
+            return encomenda;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -48,7 +48,15 @@ import javax.persistence.Temporal;
     query = "SELECT m FROM Encomenda m WHERE (m.CidadeDestino = :cidadeDestino) AND (m.Status = :status) ORDER BY (m.Plano)")
     ,
     @NamedQuery(name = "Encomenda.GetAllByPlano", 
-    query = "SELECT m FROM Encomenda m WHERE m.Plano = :plano ORDER BY m.cpfCnpjDestinatario ASC")})
+    query = "SELECT m FROM Encomenda m WHERE m.Plano = :plano ORDER BY m.cpfCnpjDestinatario ASC")
+    ,
+    @NamedQuery(name = "Encomenda.GetAllById", 
+    query = "SELECT m FROM Encomenda m WHERE m.ID = :id ")
+    ,
+    @NamedQuery(name = "Encomenda.GetAllId", 
+    query = "SELECT m FROM Encomenda m ORDER BY m.ID DESC")
+    
+})
 public class Encomenda implements EntidadeBase , Serializable {
 
     public Encomenda() {
