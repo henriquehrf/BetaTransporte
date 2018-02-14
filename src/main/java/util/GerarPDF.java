@@ -15,9 +15,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -95,8 +93,8 @@ public class GerarPDF {
         //\src\main\resources\img
         String caminho = new File("./src/main/resources/img/IMG_01_LogoBetaTransportePNG.png").getCanonicalPath();
         Image figura = Image.getInstance(caminho);
-         figura.scaleToFit(100, 100);
-         figura.setAlignment(1);
+        figura.scaleToFit(100, 100);
+        figura.setAlignment(1);
         document.add(figura);
 
         Paragraph p = new Paragraph("Beta Transporte - Relatório de Encomendas e Rotas");
@@ -145,6 +143,56 @@ public class GerarPDF {
         document2.addAuthor("Beta Transporte");
         document2.addProducer();
 
+    }
+
+    public void gerarComprovanteEntrega(String url, Encomenda encomenda,String dtRecebimento) throws Exception {
+
+        Date dt = new Date();
+        String pattern = "dd/MM/yyyy";
+        String dtSolicitacao = new SimpleDateFormat(pattern).format(dt);
+
+// criação do documento
+        Document document = new Document();
+        document.addCreationDate();
+        document.addAuthor("Beta Transporte");
+        document.addProducer();
+
+        PdfWriter.getInstance(document, new FileOutputStream(url + "/Comprovante_Entrega" + dt.getTime() + ".pdf"));
+
+        document.open();
+        document.addCreationDate();
+        //\src\main\resources\img
+        String caminho = new File("./src/main/resources/img/IMG_01_LogoBetaTransportePNG.png").getCanonicalPath();
+        Image figura = Image.getInstance(caminho);
+        figura.scaleToFit(100, 100);
+        figura.setAlignment(1);
+        document.add(figura);
+
+        Paragraph p = new Paragraph("Beta Transporte - Comprovante de Retirada de Encomenda");
+        document.add(new Paragraph(" "));
+        document.add(new Paragraph(" "));
+        document.add(new Paragraph(" "));
+
+        String txt = "";
+        String rodape = "";
+
+        txt += "Retirada por _________________________________________________ referente ao transporte"
+                + "de Nº " + encomenda.getId() + ", e Nº Nota Fiscal " + encomenda.getNumNotaFiscal() + " do cliente"
+                + " " + encomenda.getNomeCliente();
+        rodape += "Para maior clareza firmamos o presente documento\n\n\n"
+                + encomenda.getCidadeDestino() + ","+dtRecebimento+"\n\n\n\n\n"
+                + "__________________________________________\n"
+                + "Assinatura/Carimbo Beta Transporte\n\n"
+                + "__________________________________________\n"
+                + "Assinatura/Carimbo Cliente";
+
+        Paragraph conteudo = new Paragraph(txt);
+        conteudo.setAlignment(2);
+        Paragraph assinatura = new Paragraph(rodape);
+        assinatura.setAlignment(3);
+        document.add(conteudo);
+        document.add(assinatura);
+        document.close();
     }
 
     public void solicitarEmprestimo(List<Encomenda> encomendas, List<Rota> rotas, String url, String destino, String garagem, String tempo) throws Exception {
