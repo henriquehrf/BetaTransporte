@@ -73,6 +73,39 @@ public class EncomendaDAO extends GenericoDAO<EntidadeBase> {
             return null;
         }
     }
+    
+    public List<Encomenda> GetAllEncStatus(Status status) {
+        try {
+            if (connection == null || !connection.isOpen()) {
+                getEM();
+            }
+            Query query = connection.createNamedQuery("Encomenda.GetAllEncStatus", Encomenda.class);
+            query.setParameter("status", status);
+            List<Encomenda> encomenda = query.getResultList();
+            return encomenda;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    public List<Encomenda> GetAllEncCitStatusDest(Cidade cidade, Status status) {
+        try {
+            if (connection == null || !connection.isOpen()) {
+                getEM();
+            }
+            Query query = connection.createNamedQuery("Encomenda.GetAllEncCitStatusDest", Encomenda.class);
+            query.setParameter("cidadeDestino", cidade);
+            query.setParameter("status", status);
+            List<Encomenda> encomenda = query.getResultList();
+            return encomenda;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
 
     public List<Encomenda> GetAllEnc() {
 

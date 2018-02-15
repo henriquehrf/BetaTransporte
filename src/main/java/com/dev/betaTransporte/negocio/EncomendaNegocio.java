@@ -179,7 +179,7 @@ public class EncomendaNegocio {
             } else {
                 List<Encomenda> result2;
                 result2 = encomendaList.GetAllEncCitStatus(cidadeOrigem, status2);
-                result.addAll(result);
+                result.addAll(result2);
                 return result;
 
             }
@@ -189,6 +189,27 @@ public class EncomendaNegocio {
         }
     }
 
+    public List<Encomenda> searchEncomenda3(int aux, Cidade cidadeDestino, Status status, Status status2) {
+        List<Encomenda> result;
+        try {
+            EncomendaDAO encomendaList = new EncomendaDAO();
+            result = encomendaList.GetAllEncCitStatusDest(cidadeDestino, status);
+            if (aux == 1) {
+                return result;
+
+            } else {
+                List<Encomenda> result2;
+                result2 = encomendaList.GetAllEncStatus(status2);
+                result.addAll(result2);
+                return result;
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
     public int excluirEncomenda(Encomenda encomenda) {
 
         try {

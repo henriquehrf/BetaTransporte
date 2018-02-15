@@ -44,11 +44,17 @@ import javax.persistence.Temporal;
     @NamedQuery(name = "Encomenda.GetAllEncCitStatus", 
     query = "SELECT m FROM Encomenda m WHERE (m.CidadeOrigem = :cidadeOrigem) AND (m.Status = :status) ORDER BY (m.Plano)")
     ,
+    @NamedQuery(name = "Encomenda.GetAllEncCitStatusDest", 
+    query = "SELECT m FROM Encomenda m WHERE (m.CidadeDestino = :cidadeDestino) AND (m.Status = :status) ORDER BY (m.Plano)")
+    ,
     @NamedQuery(name = "Encomenda.GetAllEntrega", 
     query = "SELECT m FROM Encomenda m WHERE (m.CidadeDestino = :cidadeDestino) AND (m.Status = :status) ORDER BY (m.Plano)")
     ,
     @NamedQuery(name = "Encomenda.GetAllByPlano", 
     query = "SELECT m FROM Encomenda m WHERE m.Plano = :plano ORDER BY m.cpfCnpjDestinatario ASC")
+    ,
+    @NamedQuery(name = "Encomenda.GetAllEncStatus", 
+    query = "SELECT m FROM Encomenda m WHERE m.Status = :status ORDER BY (m.Plano)")
     ,
     @NamedQuery(name = "Encomenda.GetAllById", 
     query = "SELECT m FROM Encomenda m WHERE m.ID = :id ")   
@@ -290,6 +296,9 @@ public class Encomenda implements EntidadeBase , Serializable {
         return cpfCnpjDestinatario;
     }
 
+    public String getCpfCnpjCliente() {
+        return getClienteVO().getCpfCnpj();
+    }
     /**
      * @param cpfCnpjDestinatario the cpfCnpjDestinatario to set
      */

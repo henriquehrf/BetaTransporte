@@ -76,7 +76,7 @@
                                                    <columns>
                                                       <TableColumn fx:id="tbcCodigoRecebida" prefWidth="100.0" text="%lblCodigo" />
                                                       <TableColumn fx:id="tbcNotaFiscalRecebida" prefWidth="100.0" text="%lblNotaFiscal" />
-                                                      <TableColumn fx:id="tbcCpfCnpjRecebida" prefWidth="166.0" text="%lblCpfCnpj" />
+                                                      <TableColumn fx:id="tbcCpfCnpjRecebida" prefWidth="165.0" text="%lblCpfCnpj" />
                                                    </columns>
                                                 </TableView>
                                              </children>
